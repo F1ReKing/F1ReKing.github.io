@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android中shape的特性详解 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="本文针对shape中的属性进行详解">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中shape的特性详解">
+<meta property="og:url" content="http://f1reking.me/2016/12/01/Android-shape/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="本文针对shape中的属性进行详解">
+<meta property="og:updated_time" content="2016-12-31T06:20:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中shape的特性详解">
+<meta name="twitter:description" content="本文针对shape中的属性进行详解">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android中shape的特性详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android中shape的特性详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-12-01T14:33:33.000Z" itemprop="datePublished" class="page-time">
+  2016-12-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#shape"><span class="post-toc-number">1.</span> <span class="post-toc-text">shape</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用经验"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用经验</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本文参考："><span class="post-toc-number">3.</span> <span class="post-toc-text">本文参考：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android-shape"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android中shape的特性详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-12-01 22:33:33" datetime="2016-12-01T14:33:33.000Z"  itemprop="datePublished">2016-12-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文针对shape中的属性进行详解<a id="more"></a></p>
+<h3 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h3><p>首先讲下shape，shape可以自定义形状，可以定义以下四种类型，通过android:shape属性定义：  </p>
+<ul>
+<li>rectangle：矩形，可以画出各种矩形。  </li>
+<li>oval：椭圆形，也可以用来画正圆形。  </li>
+<li>line：线形，可以画实线和虚线。   </li>
+<li>ring：环形，可以画环形进度条。</li>
+</ul>
+<p>接下来对于属性进行详解：  </p>
+<ul>
+<li><strong>corners</strong>：设置圆角<ul>
+<li>android:radius 圆角半径，四个角</li>
+<li>android:topLeftRadius 左上角的圆角半径</li>
+<li>android:topRightRadius 右上角的圆角半径</li>
+<li>android:bottomLeftRadius 左下角的圆角半径</li>
+<li>android:bottomRightRadius 右下角的圆角半径</li>
+</ul>
+</li>
+<li><strong>gradient</strong>：设置形状的渐变颜色，可以是线性渐变、辐射渐变、扫描性渐变<ul>
+<li>android:type 渐变的类型<ul>
+<li>linear 线性渐变，默认</li>
+<li>radial 放射渐变，设置该项时，android:gradientRadius也必须设置</li>
+<li>sweep 扫描渐变</li>
+</ul>
+</li>
+<li>android:startColor 渐变开始的颜色</li>
+<li>android:endColor 渐变结束的颜色</li>
+<li>android:centerColor 渐变中间的颜色</li>
+<li>android:angle 渐变的角度，线性渐变时才有效，必须是45的倍数，0表示从左到右，90表示从下到上</li>
+<li>android:centerX 渐变中心的相对X坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间</li>
+<li>android:centerY 渐变中心的相对Y坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间</li>
+<li>android:gradientRadius 渐变的半径，只有渐变类型为radial时才能使用</li>
+<li>android:useLevel 如果为true，则可以在LevelListDrawable中使用</li>
+</ul>
+</li>
+<li><strong>padding</strong>：设置内容与形状边界的内间距<ul>
+<li>android:left 左内间距</li>
+<li>android:right 右内间距</li>
+<li>android:top 上内间距</li>
+<li>android:bottom 下内间距</li>
+</ul>
+</li>
+<li><strong>size</strong>：设置大小<ul>
+<li>android:width 设置宽度</li>
+<li>android:height 设置高度</li>
+</ul>
+</li>
+<li><strong>solid</strong>：设置形状的填充颜色<ul>
+<li>android:color 填充的颜色</li>
+</ul>
+</li>
+<li><strong>stroke</strong>：设置描边<ul>
+<li>android:color 描边的颜色</li>
+<li>android:width 描边的宽度</li>
+<li>android:dashWidth    设置虚线时的横线长度</li>
+<li>android:dashGap 设置虚线时的横线之间的距离</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用经验"><a href="#使用经验" class="headerlink" title="使用经验"></a>使用经验</h3><ol>
+<li>画线时需注意：<ul>
+<li>只能画水平线，画不了竖线；</li>
+<li>线的高度是通过stroke的android:width属性设置的；</li>
+<li>size的android:height属性定义的是整个形状区域的高度；</li>
+<li>size的height必须大于stroke的width，否则，线无法显示；</li>
+<li>线在整个形状区域中是居中显示的；</li>
+<li>线左右两边会留有空白间距，线越粗，空白越大；</li>
+<li>引用虚线的view需要添加属性android:layerType，值设为”software”，否则显示不了虚线。</li>
+</ul>
+</li>
+<li>当shape根元素为ring类型时，需要在根元素用以下属性：<ul>
+<li>android:innerRadius 内环的半径</li>
+<li>android:innerRadiusRatio 浮点型，以环的宽度比率来表示内环的半径，默认为3，表示内环半径为环的宽度除以3，该值会被android:innerRadius覆盖</li>
+<li>android:thickness 环的厚度</li>
+<li>android:thicknessRatio 浮点型，以环的宽度比率来表示环的厚度，默认为9，表示环的厚度为环的宽度除以9，该值会被android:thickness覆盖</li>
+<li>android:useLevel 一般为false，否则可能环形无法显示，只有作为LevelListDrawable使用时才设为true</li>
+</ul>
+</li>
+</ol>
+<h3 id="本文参考："><a href="#本文参考：" class="headerlink" title="本文参考："></a>本文参考：</h3><ol>
+<li><a href="http://keeganlee.me/post/android/20150830" target="_blank" rel="external">http://keeganlee.me/post/android/20150830</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-12-31T06:20:59.000Z" itemprop="dateUpdated">2016-12-31 14:20:59</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2016/12/01/Android-shape/" target="_blank" rel="external">http://f1reking.me/2016/12/01/Android-shape/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.me">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2016/12/01/Android-shape/&title=《Android中shape的特性详解》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2016/12/01/Android-shape/&title=《Android中shape的特性详解》 — F1ReKing Blog&source=本文针对shape中的属性进行详解" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2016/12/01/Android-shape/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android中shape的特性详解》 — F1ReKing Blog&url=http://f1reking.me/2016/12/01/Android-shape/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2016/12/01/Android-shape/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/12/04/Android-webview/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android中WebView指南</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/30/Android-edittext/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android中EditText的一切</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://f1reking.me/2016/12/01/Android-shape/index.html',
+        sourceId: 'Android-shape',
+        productKey: 'b39936ac61594c73a0b39d620881867c',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2016/12/01/Android-shape/&title=《Android中shape的特性详解》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2016/12/01/Android-shape/&title=《Android中shape的特性详解》 — F1ReKing Blog&source=本文针对shape中的属性进行详解" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2016/12/01/Android-shape/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android中shape的特性详解》 — F1ReKing Blog&url=http://f1reking.me/2016/12/01/Android-shape/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2016/12/01/Android-shape/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3a3W7CMAwGUN7/pZm0K6RR+GwXtCanV4iVtCeTLP/kdouv++/1+pvH7x+vv/e/vudo5RMuDAyMyzLuL6/8JY5e5ehzsmXJu2FgYOzDqC6XbMTr1aph+s07Y2BgYLRePdmC6nMxMDAweilaniAmgRgDAwNjUsQmZe0kHH+pFsfAwLggozoY+ObnD843MDAwLsK4F6+zUsZ8kBmtj4GBsTRjfpCiN8isFrFROMbAwFiUMTn6MAm+vWK4cGYNAwNjOUav3Zand5NRwQkjAQwMjIszej/rJXzJwCAvfZ88HQMDYxtGXpr2DlhUi9vCJmJgYGzAqLb4ewdVq8OAcsDFwMBYlJEf1cpHkpOVz3oWBgbGSox80Wq7rTp+GCWOGBgYmzHyVtqkuK2OSDEwMPZkzNO4eUjNhwrNY2EYGBgLMfI2WXWcMFkhImFgYGzAyFO6/EhZLzXM08EnqSEGBsaijPJNccnaC7LVrbk1rRgYGFdlJCVlFZ805j4yg8XAwFiIMQ+dyfBgXiq/+Q9gYGBswKgOBvLELgm7vcT0sGuIgYGxHKPX8MozzfxYRnUIWngYBgbGxRmThlfygMmvCn/FwMBYmjFvuk36fJMCGAMDYzdGtRCtJo7V/asWwxgYGPswqiVrdWxQHS0UGm0YGBgYQbA7twBuBmsMDAyMVpqYl6+TAQMGBsY+jKSInY8Q8kQzCeuFQSYGBsbFGb3BQD4SyJto1aNmJ8w3MDAw/jvjBxDBnpwAPnesAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

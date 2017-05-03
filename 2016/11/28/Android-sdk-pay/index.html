@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android接入支付SDK | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android接入支付SDK">
+<meta property="og:url" content="http://f1reking.me/2016/11/28/Android-sdk-pay/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006y8mN6gw1fa82y2qyfkj30ou0sydk0.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/006y8mN6gw1fa83ekftcij30es03gjrp.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006y8mN6gw1fa85omq9ydj30nk0coq53.jpg">
+<meta property="og:updated_time" content="2016-12-31T06:20:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android接入支付SDK">
+<meta name="twitter:description" content="最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006y8mN6gw1fa82y2qyfkj30ou0sydk0.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android接入支付SDK</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android接入支付SDK</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-28T03:57:49.000Z" itemprop="datePublished" class="page-time">
+  2016-11-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#微信支付"><span class="post-toc-number">1.</span> <span class="post-toc-text">微信支付</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">前期准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接入SDK"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">接入SDK</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接口调用"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">接口调用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#支付回调"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">支付回调</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遇到的问题"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">遇到的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#支付宝支付"><span class="post-toc-number">2.</span> <span class="post-toc-text">支付宝支付</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前期准备-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">前期准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接入SDK-1"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">接入SDK</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接口调用-1"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">接口调用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#遇到的问题-1"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">遇到的问题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android-sdk-pay"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android接入支付SDK</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-11-28 11:57:49" datetime="2016-11-28T03:57:49.000Z"  itemprop="datePublished">2016-11-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。<a id="more"></a></p>
+<h2 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
+<li>注册账号，创建应用，开通微信支付。</li>
+<li>查看APP支付文档：<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_1" target="_blank" rel="external">https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_1</a>  </li>
+<li>了解支付流程：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww2.sinaimg.cn/large/006y8mN6gw1fa82y2qyfkj30ou0sydk0.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ol>
+<h3 id="接入SDK"><a href="#接入SDK" class="headerlink" title="接入SDK"></a>接入SDK</h3><ol>
+<li>引入libs，下载<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1" target="_blank" rel="external">https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1</a>，并将libammsdk.jar放到libs文件夹下。</li>
+<li><p>配置签名<br>在debug下直接配置key，这样就可以在debug下调试了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">        debug &#123;</div><div class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"你的keystore文件路径"</span>)</span></span></div><div class="line">            storePassword "xxx"</div><div class="line">            keyAlias "xxx"</div><div class="line">            keyPassword "xxx"</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"你的keystore文件路径"</span>)</span></span></div><div class="line">            storePassword "xxx"</div><div class="line">            keyAlias "xxx"</div><div class="line">            keyPassword "xxx"</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line">buildTypes &#123;</div><div class="line">        debug &#123;</div><div class="line">            signingConfig signingConfigs.debug</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            signingConfig signingConfigs.release</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建WXPayEntryActivity<br>在报名下创建如下图的Activity，demo里也有，WXPaEntryActivity是支付的回调，WXEntryActivity是微信登录和分享的回调。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa83ekftcij30es03gjrp.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+<li><p>AndroidManifest.xml中注册</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">   <span class="attr">android:name</span>=<span class="string">".wxapi.WXPayEntryActivity"</span></div><div class="line">   <span class="attr">android:exported</span>=<span class="string">"true"</span></div><div class="line">   <span class="attr">android:launchMode</span>=<span class="string">"singleTop"</span></div><div class="line">   <span class="attr">android:screenOrientation</span>=<span class="string">"portrait"</span></div><div class="line">   <span class="attr">android:theme</span>=<span class="string">"@android:style/Theme.Translucent.NoTitleBar"</span></div><div class="line">   <span class="attr">android:windowSoftInputMode</span>=<span class="string">"stateHidden"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>加入混淆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-libraryjars libs/libammsdk.jar</div><div class="line">-keep class com.tencent.** &#123; *;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="接口调用"><a href="#接口调用" class="headerlink" title="接口调用"></a>接口调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 调用微信支付</div><div class="line"> * <span class="doctag">@param</span> datas 微信支付数据</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">toWXPay</span><span class="params">(String datas)</span> </span>&#123;</div><div class="line">    IWXAPI api = WXAPIFactory.createWXAPI(PayActivity.<span class="keyword">this</span>, WX_APP_ID);</div><div class="line">    api.registerApp(WX_APP_ID);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        JSONObject jsonObject = <span class="keyword">new</span> JSONObject(datas);</div><div class="line">        PayReq req = <span class="keyword">new</span> PayReq();</div><div class="line">        req.appId = jsonObject.getString(<span class="string">"appid"</span>);<span class="comment">// 微信开放平台appid</span></div><div class="line">        req.nonceStr = jsonObject.getString(<span class="string">"noncestr"</span>);<span class="comment">// 随机字符串</span></div><div class="line">        req.packageValue = jsonObject.getString(<span class="string">"package"</span>);<span class="comment">// 支付内容</span></div><div class="line">        req.partnerId = jsonObject.getString(<span class="string">"partnerid"</span>);<span class="comment">// 财付通id</span></div><div class="line">        req.prepayId = jsonObject.getString(<span class="string">"prepayid"</span>);<span class="comment">// 微信预支付编号</span></div><div class="line">        req.sign = jsonObject.getString(<span class="string">"sign"</span>);<span class="comment">// 签名</span></div><div class="line">        req.timeStamp = jsonObject.getString(<span class="string">"timestamp"</span>);<span class="comment">// 时间戳</span></div><div class="line">        req.extData = <span class="string">"app data"</span>; <span class="comment">// optional</span></div><div class="line">        <span class="comment">// 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信</span></div><div class="line">        api.sendReq(req);</div><div class="line">    &#125; <span class="keyword">catch</span> (JSONException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="支付回调"><a href="#支付回调" class="headerlink" title="支付回调"></a>支付回调</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WXPayEntryActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">IWXAPIEventHandler</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> IWXAPI api;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        api = WXAPIFactory.createWXAPI(<span class="keyword">this</span>, Config.WX_APP_ID);</div><div class="line">        api.handleIntent(getIntent(), <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onNewIntent</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onNewIntent(intent);</div><div class="line">        setIntent(intent);</div><div class="line">        api.handleIntent(intent, <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReq</span><span class="params">(BaseReq req)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResp</span><span class="params">(BaseResp resp)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) &#123;</div><div class="line">            <span class="keyword">switch</span> (resp.errCode) &#123;</div><div class="line">                <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"支付成功"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> -<span class="number">1</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"支付失败，请检查"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> -<span class="number">2</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"已取消支付"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"支付失败，请检查"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            finish();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li><p>未安装微信客户端的情况下使用，然后会发现提示<code>E/ActivityThread: Failed to find provider info for com.tencent.mm.sdk.plugin.provider</code>，因为微信没有html5页面能使用支付，所以我们必须要在使用支付之前做个判断，因为微信sdk有提供个参数可以判断，所以应该加上：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isWXAppInstall</span><span class="params">()</span> </span>&#123;</div><div class="line">        IWXAPI api = WXAPIFactory.createWXAPI(PayActivity.<span class="keyword">this</span>, WX_APP_ID);</div><div class="line">        api.registerApp(WX_APP_ID);</div><div class="line">        <span class="keyword">boolean</span> isWXAppInstalled = api.isWXAppInstalled() &amp;&amp; api.isWXAppSupportAPI();</div><div class="line">        <span class="keyword">return</span> isWXAppInstalled;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (isWXAppInstall()) &#123;</div><div class="line">    DialogUtil.showProDialog(PayActivity.<span class="keyword">this</span>);</div><div class="line">    toWXPay(datas);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"未安装微信客户端"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Android7.0上会出现回调成功重复多次，这个待再次确认，可能是微信的bug。 </p>
+</li>
+</ol>
+<h2 id="支付宝支付"><a href="#支付宝支付" class="headerlink" title="支付宝支付"></a>支付宝支付</h2><h3 id="前期准备-1"><a href="#前期准备-1" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
+<li>注册账号，创建应用，开通支付功能。</li>
+<li>查看文档:<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7386797.0.0.Eky59h&amp;treeId=59&amp;articleId=103563&amp;docType=1" target="_blank" rel="external">支付文档</a></li>
+<li>了解支付流程：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa85omq9ydj30nk0coq53.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ol>
+<h3 id="接入SDK-1"><a href="#接入SDK-1" class="headerlink" title="接入SDK"></a>接入SDK</h3><ol>
+<li>引入libs，下载<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.Q5gnm8&amp;treeId=193&amp;articleId=104509&amp;docType=1" target="_blank" rel="external">支付宝SDK及DEMO</a>，并将alipaySdk-xx.jar包放到libs文件夹下</li>
+<li><p>AndroidManifest.xml中注册</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"com.alipay.sdk.app.H5PayActivity"</span></div><div class="line">    <span class="attr">android:configChanges</span>=<span class="string">"orientation|keyboardHidden|navigation"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:screenOrientation</span>=<span class="string">"behind"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"com.alipay.sdk.auth.AuthActivity"</span></div><div class="line">    <span class="attr">android:configChanges</span>=<span class="string">"orientation|keyboardHidden|navigation"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:screenOrientation</span>=<span class="string">"behind"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>加入权限</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>加入混淆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-libraryjars libs/alipaySdk-xx.jar</div><div class="line">-keep class com.alipay.android.app.IAlixPay&#123;*;&#125;</div><div class="line">-keep class com.alipay.android.app.IAlixPay$Stub&#123;*;&#125;</div><div class="line">-keep class com.alipay.android.app.IRemoteServiceCallback&#123;*;&#125;</div><div class="line">-keep class com.alipay.android.app.IRemoteServiceCallback$Stub&#123;*;&#125;</div><div class="line">-keep class com.alipay.sdk.app.PayTask&#123; public *;&#125;</div><div class="line">-keep class com.alipay.sdk.app.AuthTask&#123; public *;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="接口调用-1"><a href="#接口调用-1" class="headerlink" title="接口调用"></a>接口调用</h3><p>支付宝的demo已经写得很明了易懂了，这里简单列出接口调用的主要代码，其他代码请看支付宝DEMO。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 调取支付宝SDK</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> payInfo 支付信息</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">alipay</span><span class="params">(<span class="keyword">final</span> String payInfo)</span> </span>&#123;</div><div class="line">    Runnable payRunnable = () -&gt; &#123;</div><div class="line">        PayTask alipay = <span class="keyword">new</span> PayTask(PayActivity.<span class="keyword">this</span>);</div><div class="line">        String result = alipay.pay(payInfo, <span class="keyword">true</span>);</div><div class="line">        Message msg = <span class="keyword">new</span> Message();</div><div class="line">        msg.what = SDK_PAY_FLAG;</div><div class="line">        msg.obj = result;</div><div class="line">        mHandler.sendMessage(msg);</div><div class="line">    &#125;;</div><div class="line">    Thread payThread = <span class="keyword">new</span> Thread(payRunnable);</div><div class="line">    payThread.start();</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 支付宝支付回调处理</div><div class="line"> */</div><div class="line"><span class="meta">@SuppressLint</span>(<span class="string">"HandlerLeak"</span>)</div><div class="line"><span class="keyword">private</span> Handler mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">            <span class="keyword">case</span> SDK_PAY_FLAG: &#123;</div><div class="line">                PayResult payResult = <span class="keyword">new</span> PayResult((String) msg.obj);</div><div class="line">                String resultInfo = payResult.getResult();<span class="comment">// 同步返回需要验证的信息</span></div><div class="line">                String resultStatus = payResult.getResultStatus();</div><div class="line">                <span class="comment">// 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档</span></div><div class="line">                <span class="keyword">if</span> (TextUtils.equals(resultStatus, <span class="string">"9000"</span>)) &#123;</div><div class="line">                    Toast.makeText(PayActivity.<span class="keyword">this</span>, <span class="string">"支付成功"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span> (TextUtils.equals(resultStatus, <span class="string">"8000"</span>)) &#123;</div><div class="line">                        Toast.makeText(PayActivity.<span class="keyword">this</span>, <span class="string">"支付结果确认中"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误</span></div><div class="line">                        Toast.makeText(PayActivity.<span class="keyword">this</span>, <span class="string">"支付失败"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="遇到的问题-1"><a href="#遇到的问题-1" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>很容易遇到的问题就是支付参数遗漏，可以直接<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.DwA283&amp;treeId=59&amp;articleId=103663&amp;docType=1" target="_blank" rel="external">查看文档</a></li>
+<li>还会可能遇到支付错误，可以直接<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.Na0IAJ&amp;treeId=59&amp;articleId=104048&amp;docType=1" target="_blank" rel="external">查看文档</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-12-31T06:20:42.000Z" itemprop="dateUpdated">2016-12-31 14:20:42</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2016/11/28/Android-sdk-pay/" target="_blank" rel="external">http://f1reking.me/2016/11/28/Android-sdk-pay/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.me">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2016/11/28/Android-sdk-pay/&title=《Android接入支付SDK》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2016/11/28/Android-sdk-pay/&title=《Android接入支付SDK》 — F1ReKing Blog&source=最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2016/11/28/Android-sdk-pay/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android接入支付SDK》 — F1ReKing Blog&url=http://f1reking.me/2016/11/28/Android-sdk-pay/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2016/11/28/Android-sdk-pay/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/11/30/Android-edittext/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android中EditText的一切</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/23/Android-Activity/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android之Activity</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://f1reking.me/2016/11/28/Android-sdk-pay/index.html',
+        sourceId: 'Android-sdk-pay',
+        productKey: 'b39936ac61594c73a0b39d620881867c',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2016/11/28/Android-sdk-pay/&title=《Android接入支付SDK》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2016/11/28/Android-sdk-pay/&title=《Android接入支付SDK》 — F1ReKing Blog&source=最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2016/11/28/Android-sdk-pay/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android接入支付SDK》 — F1ReKing Blog&url=http://f1reking.me/2016/11/28/Android-sdk-pay/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2016/11/28/Android-sdk-pay/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS27DMAxF0ex/0+40g0q+j3QLmLoaBYlj63hA8KPPB6/ra31/s/pMrl9d8/3Nw0uGDBmvZVzbtX8wuTPfOv/1lz3IkCHjAAbZxP4a8q/VJkgov9mzDBkyZGyD7FOJ4P4+MmTIkNFhkHQwTQRlyJAho1bEkiSPv45OiStDhozTGLUw+j+f/2S+IUOGjFcxrnClj09HDsVdyZAhYzSDB7ha+tgP3LzBJ0OGjNkMUkZ2Wmn86MYDB8VkyJAxlFErMp9K+/otPxkyZMxmpGFx/z7SUWXa5lumhjJkyBjNSEeJnWSxdpyCvzgZMmScwOCAdMSYhmzyWoOOoAwZMgYxamFuf30amlujCBkyZIxm7IvG/jdPjTbRCFOGDBnjGGlDv3bgtTY0JSE4vpEMGTKGMtKSsnPN/vqbGawMGTKGMtIUjQ8sSU7aHyGgDFeGDBkjGOnjScirpYbkeMfy/jJkyDiGQcaNnTEkIaVpogwZMk5g8HMLafDlg8nOa5IhQ8YJjM5GeUBMy2Ay1LzpHcqQIWM0gxe3nTK1M4RAAVeGDBnjGGkTrdYUI//iha4MGTJOYFzhIg01fgd+t2JuK0OGjBGMfrBLC2CS5PGtxxgZMmS8llELkbyhlqaDZA8yZMg4k8GL27Ql1z+KgcpgGTJkyACBj6ePvJQNWnUyZMiQEYbIdADJBxLLPciQIeMARm0Y0D+0URttypAh4zQGLx3T0pRvorZ1GTJkHMD4AQyIqHZF1C/dAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

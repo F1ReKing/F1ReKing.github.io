@@ -1,0 +1,1290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>F1ReKing Blog</title>
+  <subtitle>Be the change you want to see in the world.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://f1reking.me/"/>
+  <updated>2017-04-20T08:12:29.000Z</updated>
+  <id>http://f1reking.me/</id>
+  
+  <author>
+    <name>F1ReKing</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac JDK版本切换</title>
+    <link href="http://f1reking.me/2017/04/20/Mac-JDK-Change/"/>
+    <id>http://f1reking.me/2017/04/20/Mac-JDK-Change/</id>
+    <published>2017-04-20T07:44:33.000Z</published>
+    <updated>2017-04-20T08:12:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇是通过命令轻松切换到对应的Java版本教程。<a id="more"></a></p>
+<p>由于开发Android项目现在基本用到JDK8，但最近在搞JavaWeb项目需要用到JDK7而已，所以需要同时有多个版本的JDK并存，就研究下如何并存。</p>
+<h2 id="目标："><a href="#目标：" class="headerlink" title="目标："></a>目标：</h2><p>通过命令’jdk7’,’jdk8’轻松切换到对应的jdk版本，默认初始为jdk7。</p>
+<h2 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h2><ol>
+<li><strong>安装所有的JDK：</strong><br> 自行到Oracle官网下载安装对应的版本，由于Oracle官网已经下不到JDK7的安装包，所以这里我可以提供下载：<a href="https://pan.baidu.com/s/1kVQGzp9" target="_blank" rel="external">百度云：密码34bj</a></li>
+<li><p><strong>配置：</strong>  </p>
+<ul>
+<li><p>创建.bash_profile配置文件（若已经有该文件直接跳过此步骤）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch ~/.bash_profile</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑.bash_profile</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash_profile</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置jdk版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0.jdk/Contents/Home</div><div class="line">export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home</div><div class="line">export JAVA_HOME=$JAVA_7_HOME</div></pre></td></tr></table></figure>
+</li>
+<li><p>alias命令动态切换配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias jdk8=&apos;export JAVA_HOME=$JAVA_8_HOME&apos;</div><div class="line">alias jdk7=&apos;export JAVA_HOME=$JAVA_7_HOME&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重新执行.bash_profile文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>验证：</strong><br>使用jdk7、jdk8命令即可切换jdk版本</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇是通过命令轻松切换到对应的Java版本教程。
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+    
+    
+      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android用户关闭APP通知导致Toast不显示的解决方案</title>
+    <link href="http://f1reking.me/2017/03/29/Android-Toast/"/>
+    <id>http://f1reking.me/2017/03/29/Android-Toast/</id>
+    <published>2017-03-29T08:00:18.000Z</published>
+    <updated>2017-04-20T07:45:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一篇在开发过程中发现Toast不显示的解决方案文章<a id="more"></a></p>
+<h3 id="案发"><a href="#案发" class="headerlink" title="案发"></a>案发</h3><p>在最近的开发过程中，测试反映华为手机没有显示toast，于是先排查是不是华为rom的问题，后来一步步排查，发现只要Notification被关闭，toast也不能显示，而且华为手机安装app后默认是关闭Notification，WTF，这是个坑，必须得解决。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>好久没去看Toast的源码了，从肯定从Toast的源码下手，从源码中发现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Show the view for the specified duration.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (mNextView == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"setView must have been called"</span>);</div><div class="line">    &#125;</div><div class="line">    INotificationManager service = getService();</div><div class="line">    String pkg = mContext.getOpPackageName();</div><div class="line">    TN tn = mTN;</div><div class="line">    tn.mNextView = mNextView;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        service.enqueueToast(pkg, tn, mDuration);</div><div class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">        <span class="comment">// Empty</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一篇在开发过程中发现Toast不显示的解决方案文章
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内存泄漏解析</title>
+    <link href="http://f1reking.me/2017/03/01/memory-leak-analysis/"/>
+    <id>http://f1reking.me/2017/03/01/memory-leak-analysis/</id>
+    <published>2017-03-01T01:51:34.000Z</published>
+    <updated>2017-03-28T14:40:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇对于Android中内存泄漏进行解析。<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相对于C/C++的内存泄漏是new出来的对象没有delete，而java中内存泄漏是new出来的对象放在Heap上无法被GC回收，所以对于内存泄漏，在开发过程中不可轻易忽视。</p>
+<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>首先谈谈Java的内存分配：</p>
+<ol>
+<li>静态存储区： 编译时就分配好，在程序整个运行期间都存在，主要存放静态数据和常量；</li>
+<li>栈区：当方法执行时，会在栈区内存中创建方法体内部的局部变量，方法结束后自动释放内存；</li>
+<li>堆区：通常用来存放new出来的对象，由java垃圾回收期回收。</li>
+</ol>
+<p>对于java垃圾回收机制回收不同引用类型的介绍：</p>
+<ol>
+<li>强引用(StrongRefrrence)： JVM宁可抛出OOM，也不会让GC回收具有强引用的对象；</li>
+<li>软引用(SoftReference)：只有在内存空间不足时，才会被回收的对象；</li>
+<li>弱引用(WeakReference)：在GC时，一旦发现只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存；</li>
+<li>虚引用(PhantomReference)：任何时候都可以被GC回收。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否存在该对象的虚引用，来了解这个对象是否将要被回收。可以用来作为GC回收Object的标志。</li>
+</ol>
+<p>总结为以下：  </p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>回收时机</th>
+<th>用途</th>
+<th>生存时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>强</td>
+<td>从来不会</td>
+<td>对象的一般状态</td>
+<td>JVM停止运行时终止</td>
+</tr>
+<tr>
+<td>软</td>
+<td>在内存不足时</td>
+<td>联合ReferenceQueue构造有效期短/占内存大/生命周期长的对象的二级高速缓冲器（内存不足才清空）</td>
+<td>内存不足时终止</td>
+</tr>
+<tr>
+<td>弱</td>
+<td>在垃圾回收时</td>
+<td>联合ReferenceQueue构造有效期短/占内存大/生命周期长的对象的一级高速缓冲器（系统发生gc则清空）</td>
+<td>gc运行后终止</td>
+</tr>
+<tr>
+<td>虚</td>
+<td>在垃圾回收时</td>
+<td>联合ReferenceQueue来跟踪对象被垃圾回收器回收的活动</td>
+<td>gc运行后终止</td>
+</tr>
+</tbody>
+</table>
+<h2 id="内存泄漏解析"><a href="#内存泄漏解析" class="headerlink" title="内存泄漏解析"></a>内存泄漏解析</h2><h3 id="1-持有Context"><a href="#1-持有Context" class="headerlink" title="1.持有Context"></a>1.持有Context</h3><p>context是最容易忽视的，很多情况下我们可能随意传递context，例如给一个类传递context的时候经常用Activity，但该类持有对Activity的全部引用，当Activity关闭的时候因为被其他类持有，而导致无法正常被回收，从而导致内存泄漏。</p>
+<p><strong>解决方案：</strong></p>
+<p>在给类传递context的时候使用Application对象，避免依赖activity的生命周期，但谨慎对context使用static关键字。</p>
+<h3 id="2-Handler"><a href="#2-Handler" class="headerlink" title="2.Handler"></a>2.Handler</h3><p>Handler是最容易造成内存泄漏的，如果Handler中有延迟的任务或是等在执行的队列过长，由于消息队列持有对Handler的引用，而Handler又持有actvity的隐式引用，这个引用会保持到消息得到处理，而导致activity无法被垃圾回收器进行回收，而导致内存泄漏。  </p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>把Handler放到单独的类中，或者使用静态的内部类避免泄漏</li>
+<li>如果想要在Handler内部去调用Activity中的资源，可以在Handler中使用弱引用的方式指向所在的Activity，使用static+WeakReference的方式断开handler与activity的关系</li>
+</ol>
+<h3 id="3-单例模式"><a href="#3-单例模式" class="headerlink" title="3.单例模式"></a>3.单例模式</h3><p>在使用单例模式的时候如果使用不当也是会造成内存泄漏的，因为单例膜撕的静态特征使得单例模式的生命周期和应用一样的长，这说明了当一个对象不需要使用了，而单例对象还存在该对象的引用，那么这个对象就不能正常的被回收，导致内存泄漏。</p>
+<p><strong>解决方案：</strong></p>
+<p>在构建单例模式时，我们经常会传入Activity的context，当Activity退出之后，单例对象还持有他的引用，所以为了避免传Activity的context，在单例中通过传入的context获取到全局的上下文对象，而不适用Activity的Context就解决了这个问题。</p>
+<h3 id="4-非静态内部类创建静态实例"><a href="#4-非静态内部类创建静态实例" class="headerlink" title="4.非静态内部类创建静态实例"></a>4.非静态内部类创建静态实例</h3><p>在非静态的内部类默认会持有外部类的引用，而我们又使用非静态内部类创建了一个静态的实例，该静态实例的声明周期和应用一样长，这就导致了该静态实例一直会持有该Activity的引用，导致Activity不能正常回收。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>将内部类修改成静态的，这样它对外部类就没有引用</li>
+<li>将该对象抽取出来封装成一个单例。</li>
+</ol>
+<h3 id="5-线程"><a href="#5-线程" class="headerlink" title="5.线程"></a>5.线程</h3><p>我们在使用线程时，一般都使用匿名内部类，而匿名内部类会对外部类持有默认的引用，当Activity关闭之后如果现成中的任务还没有执行完毕，就会导致Activity不能正常回收，造成内存泄漏。</p>
+<p><strong>解决方案：</strong></p>
+<p>创建一个静态的类，实现Runnable方法，在使用的时候实例化。</p>
+<h3 id="6-资源未关闭"><a href="#6-资源未关闭" class="headerlink" title="6.资源未关闭"></a>6.资源未关闭</h3><p>对于使用了BroadcastReceiver、ContentObserver、File、Cursor、Stream、Bitmap等资源，应该在Activity销毁时及时关闭或者注销掉，否则这些资源不会被回收，造成内存泄漏。</p>
+<h3 id="7-监听器未注销"><a href="#7-监听器未注销" class="headerlink" title="7.监听器未注销"></a>7.监听器未注销</h3><p>在很多地方需要register的监听器，要确保及时unregister监听器。</p>
+<h3 id="8-WebView"><a href="#8-WebView" class="headerlink" title="8.WebView"></a>8.WebView</h3><p>webView是个坑，很难驾驭，如果你在webView有js连调中有线程处理，不再需要使用webView的时候，应该调用它的destory()销毁，释放其占用的内存，否则其占用的内存长期也不能回收，从而造成内存泄漏。</p>
+<h3 id="9-集合容器"><a href="#9-集合容器" class="headerlink" title="9.集合容器"></a>9.集合容器</h3><p>我们通常会把一些对象的引用加入到集合容器（比如ArrayList）中，当我们不再需要该对象时，并没有把它的引用从集合中清理掉，这样这个集合就会越来越大。如果这个集合是static的话，那情况就更严重了。</p>
+<p><strong>解决方案：</strong></p>
+<p>所以在退出程序之前，将集合里面的东西clear，然后置为null，再退出程序。</p>
+<h2 id="内存泄漏检测工具"><a href="#内存泄漏检测工具" class="headerlink" title="内存泄漏检测工具"></a>内存泄漏检测工具</h2><p>对于检测工具，我推荐两种：</p>
+<ol>
+<li><a href="http://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">MAT(Memory Analyzer Tool)</a>，具体使用方法网上很多。</li>
+<li><a href="https://github.com/square/leakcanary" target="_blank" rel="external">LeakCanary</a>，这是我近2年一直在用的一个检测库，配置简单，抓捕率高，但某些机型上有些bug，所以开发阶段可以用，发版建议关闭。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>构造Adapter时，没有使用缓存的 convertView</li>
+<li>Bitmap对象不在使用时调用recycle()释放内存</li>
+<li>Context使用不当造成内存泄露：不要对一个Activity Context保持长生命周期的引用。尽量在一切可以使用应用ApplicationContext代替Context的地方进行替换。</li>
+<li>非静态内部类的静态实例容易造成内存泄漏：即一个类中如果你不能够控制它其中内部类的生命周期（譬如Activity中的一些特殊Handler等），则尽量使用静态类和弱引用来处理（譬如ViewRoot的实现）。</li>
+<li>警惕线程未终止造成的内存泄露；譬如在Activity中关联了一个生命周期超过Activity的Thread，在退出Activity时切记结束线程。一个典型的例子就是HandlerThread的run方法是一个死循环，它不会自己结束，线程的生命周期超过了Activity生命周期，我们必须手动在Activity的销毁方法中中调运thread.getLooper().quit();才不会泄露。</li>
+<li>对象的注册与反注册没有成对出现造成的内存泄露；譬如注册广播接收器、注册观察者（典型的譬如数据库的监听）等。</li>
+<li>创建与关闭没有成对出现造成的泄露；譬如Cursor资源必须手动关闭，WebView必须手动销毁，流等对象必须手动关闭等。</li>
+<li>不要在执行频率很高的方法或者循环中创建对象（比如onmeasure），可以使用HashTable等创建一组对象容器从容器中取那些对象，而不用每次new与释放。</li>
+<li>避免代码设计模式的错误造成内存泄露；譬如循环引用，A持有B，B持有C，C持有A，这样的设计谁都得不到释放。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://blog.csdn.net/imuhao/article/details/51694144" target="_blank" rel="external">Android内存泄漏解决方案(OOM)</a></li>
+<li><a href="http://www.cnblogs.com/liushilin/p/5900089.html" target="_blank" rel="external">内存泄漏全解析，从此拒绝ANR，让OOM远离你的身边，跟内存泄漏say byebye</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇对于Android中内存泄漏进行解析。
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Chrome for Mac键盘快捷键整理</title>
+    <link href="http://f1reking.me/2017/01/20/mac-chrome-keyboard-shortcuts/"/>
+    <id>http://f1reking.me/2017/01/20/mac-chrome-keyboard-shortcuts/</id>
+    <published>2017-01-20T07:53:01.000Z</published>
+    <updated>2017-02-21T02:08:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇是对Mac中chrome的键盘快捷键整理。<a id="more"></a><br>本篇整理自官网<a href="http://support.google.com/chrome/bin/answer.py?hl=zh-Hans&amp;answer=165450" target="_blank" rel="external">http://support.google.com/chrome/bin/answer.py?hl=zh-Hans&amp;answer=165450</a></p>
+<h2 id="标签页和窗口快捷键"><a href="#标签页和窗口快捷键" class="headerlink" title="标签页和窗口快捷键"></a>标签页和窗口快捷键</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">⌘-N</td>
+<td style="text-align:left">打开新窗口。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-T</td>
+<td style="text-align:left">打开新标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-N</td>
+<td style="text-align:left">在隐身模式下打开新窗口。 </td>
+</tr>
+<tr>
+<td style="text-align:left">按 ⌘-O，然后选择文件。</td>
+<td style="text-align:left">在 Google Chrome 浏览器中打开计算机中的文件。</td>
+</tr>
+<tr>
+<td style="text-align:left">按住 ⌘ 键，然后点击链接。或用鼠标中键（或鼠标滚轮）点击链接。</td>
+<td style="text-align:left">从后台在新标签页中打开链接。</td>
+</tr>
+<tr>
+<td style="text-align:left">按住 ⌘-Shift 键，然后点击链接。或按住 Shift 的同时用鼠标中键（或鼠标滚轮）点击链接。</td>
+<td style="text-align:left">在新标签页中打开链接并切换到刚打开的标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">按住 Shift 键，然后点击链接。</td>
+<td style="text-align:left">在新窗口中打开链接。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-T</td>
+<td style="text-align:left">重新打开上次关闭的标签页。Google Chrome 浏览器可记住最近关闭的 10 个标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">将标签页拖出标签栏。</td>
+<td style="text-align:left">在新窗口中打开标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">将标签页从标签栏拖到现有窗口中。</td>
+<td style="text-align:left">在现有窗口中打开标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">同时按 ⌘-Option 和向右箭头键。</td>
+<td style="text-align:left">切换到下一个标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">同时按 ⌘-Option 和向左箭头键。</td>
+<td style="text-align:left">切换到上一个标签页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-W</td>
+<td style="text-align:left">关闭当前标签页或弹出窗口。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-W</td>
+<td style="text-align:left">关闭当前窗口。</td>
+</tr>
+<tr>
+<td style="text-align:left">点击并按住浏览器工具栏中的后退或前进箭头。</td>
+<td style="text-align:left">在新标签页中显示浏览历史记录。</td>
+</tr>
+<tr>
+<td style="text-align:left">按 Delete 或 ⌘-[</td>
+<td style="text-align:left">转到当前标签页的上一页浏览历史记录。</td>
+</tr>
+<tr>
+<td style="text-align:left">按 Shift-Delete 或 ⌘-]</td>
+<td style="text-align:left">转到当前标签页的下一页浏览历史记录。</td>
+</tr>
+<tr>
+<td style="text-align:left">按住 Shift，然后点击窗口左上方的 + 按钮。</td>
+<td style="text-align:left">最大化窗口。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-M</td>
+<td style="text-align:left">最小化窗口。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-H</td>
+<td style="text-align:left">隐藏 Chrome 浏览器。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-H</td>
+<td style="text-align:left">隐藏其他所有窗口。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Q</td>
+<td style="text-align:left">关闭 Google Chrome 浏览器。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Google-Chrome-浏览器功能快捷键"><a href="#Google-Chrome-浏览器功能快捷键" class="headerlink" title="Google Chrome 浏览器功能快捷键"></a>Google Chrome 浏览器功能快捷键</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">⌘-Shift-B</td>
+<td style="text-align:left">打开和关闭书签栏。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-B</td>
+<td style="text-align:left">打开书签管理器。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-,</td>
+<td style="text-align:left">打开“偏好设置”对话框。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Y</td>
+<td style="text-align:left">打开“历史记录”页面。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-J</td>
+<td style="text-align:left">打开“下载内容”页面。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-Delete</td>
+<td style="text-align:left">打开“清除浏览数据”对话框。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-M</td>
+<td style="text-align:left">在多个用户之间切换。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="地址栏快捷键"><a href="#地址栏快捷键" class="headerlink" title="地址栏快捷键"></a>地址栏快捷键</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">输入搜索字词，然后按 Enter。</td>
+<td style="text-align:left">使用默认搜索引擎进行搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">输入搜索引擎关键字，按空格键，然后输入搜索字词，再按 Enter。</td>
+<td style="text-align:left">使用与关键字相关联的搜索引擎进行搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">首先输入搜索引擎网址，然后在系统提示时按 Tab，输入搜索字词，再按 Enter。</td>
+<td style="text-align:left">使用与网址相关联的搜索引擎进行搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">输入网址，然后按 ⌘-Enter。</td>
+<td style="text-align:left">在新后台标签页中打开网址。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-L</td>
+<td style="text-align:left">突出显示网址。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-F</td>
+<td style="text-align:left">将“?”置于地址栏中。在问号后输入搜索字词可用默认搜索引擎执行搜索。</td>
+</tr>
+<tr>
+<td style="text-align:left">同时按 Option 和向左箭头键。</td>
+<td style="text-align:left">将光标移到地址栏中的前一个关键字词</td>
+</tr>
+<tr>
+<td style="text-align:left">同时按 Option 和向右箭头键。</td>
+<td style="text-align:left">在地址栏中将光标移到下一个关键字词</td>
+</tr>
+<tr>
+<td style="text-align:left">同时按 Shift-Option 和向左箭头键。</td>
+<td style="text-align:left">在地址栏中突出显示上一关键字词</td>
+</tr>
+<tr>
+<td style="text-align:left">同时按 Shift-Option 和向右箭头键。</td>
+<td style="text-align:left">在地址栏中突出显示下一关键字词</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Delete</td>
+<td style="text-align:left">在地址栏中删除光标前的关键字词</td>
+</tr>
+<tr>
+<td style="text-align:left">用键盘上的方向键从地址栏下拉菜单中选择一个条目，然后按 Shift-Fn-Delete。</td>
+<td style="text-align:left">从浏览历史记录中删除所选条目（如果可以）。</td>
+</tr>
+<tr>
+<td style="text-align:left">在地址栏菜单中按 Page Up 或 Page Down。</td>
+<td style="text-align:left">在菜单中选择上一条目或下一条目。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="网页快捷键"><a href="#网页快捷键" class="headerlink" title="网页快捷键"></a>网页快捷键</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">⌘-P</td>
+<td style="text-align:left">打印当前网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-P</td>
+<td style="text-align:left">打开“网页设置”对话框。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-S</td>
+<td style="text-align:left">保存当前网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-I</td>
+<td style="text-align:left">通过电子邮件发送当前网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-R</td>
+<td style="text-align:left">重新加载当前网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-,</td>
+<td style="text-align:left">停止加载当前网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-F</td>
+<td style="text-align:left">打开查找栏。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-G</td>
+<td style="text-align:left">在查找栏中查找下一条与输入内容相匹配的内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-G 或 Shift-Enter</td>
+<td style="text-align:left">在查找栏中查找上一条与输入内容相匹配的内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-E</td>
+<td style="text-align:left">使用所选内容查找</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-J</td>
+<td style="text-align:left">跳到所选内容</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-I</td>
+<td style="text-align:left">打开开发者工具。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-J</td>
+<td style="text-align:left">打开“JavaScript 控制台”。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-U</td>
+<td style="text-align:left">打开当前网页的源代码。</td>
+</tr>
+<tr>
+<td style="text-align:left">按住 Option，然后点击链接。</td>
+<td style="text-align:left">下载链接目标。</td>
+</tr>
+<tr>
+<td style="text-align:left">将链接拖到书签栏中。</td>
+<td style="text-align:left">将链接保存为书签。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-D</td>
+<td style="text-align:left">将当前网页保存为书签。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-D</td>
+<td style="text-align:left">将所有打开的标签页以书签的形式保存在新文件夹中。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-F</td>
+<td style="text-align:left">在全屏模式下打开网页。再按一次 ⌘-Shift-F 可退出全屏模式。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-+</td>
+<td style="text-align:left">放大网页上的所有内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘ 和 -</td>
+<td style="text-align:left">缩小网页上的所有内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-0</td>
+<td style="text-align:left">将网页上的所有内容都恢复到正常大小。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-H</td>
+<td style="text-align:left">在当前标签页中打开主页。</td>
+</tr>
+<tr>
+<td style="text-align:left">空格键</td>
+<td style="text-align:left">向下滚动网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-F</td>
+<td style="text-align:left">搜索网页。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文本快捷键"><a href="#文本快捷键" class="headerlink" title="文本快捷键"></a>文本快捷键</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">⌘-C</td>
+<td style="text-align:left">将突出显示的内容复制到剪贴板中。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Option-C</td>
+<td style="text-align:left">将您正在查看的网页的网址复制到剪贴板中。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-V</td>
+<td style="text-align:left">从剪贴板中粘贴内容。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-Option-V</td>
+<td style="text-align:left">仅粘贴内容，不带源格式。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-X 或 Shift-Delete</td>
+<td style="text-align:left">删除突出显示的内容并将其复制到剪贴板中。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Z</td>
+<td style="text-align:left">撤消最后一步操作。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-Shift-Z</td>
+<td style="text-align:left">重复最后一步操作。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-X</td>
+<td style="text-align:left">删除突出显示的内容并将其保存到剪贴板中（剪切）。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-A</td>
+<td style="text-align:left">选择当前网页上的所有文本。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-:</td>
+<td style="text-align:left">打开“拼写和语法”对话框。</td>
+</tr>
+<tr>
+<td style="text-align:left">⌘-;</td>
+<td style="text-align:left">检查当前网页上的拼写和语法</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇是对Mac中chrome的键盘快捷键整理。
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+    
+    
+      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用DownloadManager进行版本更新（兼容7.0）</title>
+    <link href="http://f1reking.me/2017/01/16/Android-DownloadManager/"/>
+    <id>http://f1reking.me/2017/01/16/Android-DownloadManager/</id>
+    <published>2017-01-16T08:34:53.000Z</published>
+    <updated>2017-03-24T06:28:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇对于Android中对于DownloadManager的使用经验分享。<a id="more"></a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>DownloadManager是Android SDK中封装的下载文件类，可以很方便开发者使用下载文件。其具体看官方API<a href="https://developer.android.com/reference/android/app/DownloadManager.html" target="_blank" rel="external">https://developer.android.com/reference/android/app/DownloadManager.html</a></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ol>
+<li><p>使用DownloadManager下载 </p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> DownloadManager mDownloadManager;</div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> downloadId;</div><div class="line">    <span class="keyword">private</span> String apkName;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DownloadUtils</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(String url, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> String packageName = <span class="string">"com.android.providers.downloads"</span>;</div><div class="line">        <span class="keyword">int</span> state = mContext.getPackageManager().getApplicationEnabledSetting(packageName);</div><div class="line">        <span class="comment">//检测下载管理器是否被禁用</span></div><div class="line">        <span class="keyword">if</span> (state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED</div><div class="line">            || state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER</div><div class="line">            || state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED) &#123;</div><div class="line">            AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(mContext).setTitle(<span class="string">"温馨提示"</span>).setMessage</div><div class="line">                (<span class="string">"系统下载管理器被禁止，需手动打开"</span>).setPositiveButton(<span class="string">"确定"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                    dialog.dismiss();</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);</div><div class="line">                        intent.setData(Uri.parse(<span class="string">"package:"</span> + packageName));</div><div class="line">                        mContext.startActivity(intent);</div><div class="line">                    &#125; <span class="keyword">catch</span> (ActivityNotFoundException e) &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);</div><div class="line">                        mContext.startActivity(intent);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;).setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                    dialog.dismiss();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            builder.create().show();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//正常下载流程</span></div><div class="line">            apkName = name;</div><div class="line">            DownloadManager.Request request = <span class="keyword">new</span> DownloadManager.Request(Uri.parse(url));</div><div class="line">            request.setAllowedOverRoaming(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">            <span class="comment">//通知栏显示</span></div><div class="line">            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);</div><div class="line">            request.setTitle(AppUtils.getAppName(mContext));</div><div class="line">            request.setDescription(<span class="string">"正在下载中..."</span>);</div><div class="line">            request.setVisibleInDownloadsUi(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">            <span class="comment">//设置下载的路径</span></div><div class="line">            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, apkName);</div><div class="line"></div><div class="line">            <span class="comment">//获取DownloadManager</span></div><div class="line">            mDownloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);</div><div class="line">            downloadId = mDownloadManager.enqueue(request);</div><div class="line"></div><div class="line">            mContext.registerReceiver(mReceiver, <span class="keyword">new</span> IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> BroadcastReceiver mReceiver = <span class="keyword">new</span> BroadcastReceiver() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">            checkStatus();</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 检查下载状态</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkStatus</span><span class="params">()</span> </span>&#123;</div><div class="line">        DownloadManager.Query query = <span class="keyword">new</span> DownloadManager.Query();</div><div class="line">        query.setFilterById(downloadId);</div><div class="line">        Cursor cursor = mDownloadManager.query(query);</div><div class="line">        <span class="keyword">if</span> (cursor.moveToFirst()) &#123;</div><div class="line">            <span class="keyword">int</span> status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));</div><div class="line">            <span class="keyword">switch</span> (status) &#123;</div><div class="line">                <span class="comment">//下载暂停</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_PAUSED:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载延迟</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_PENDING:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//正在下载</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_RUNNING:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载完成</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_SUCCESSFUL:</div><div class="line">                    installAPK();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载失败</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_FAILED:</div><div class="line">                    Toast.makeText(mContext, <span class="string">"下载失败"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        cursor.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 7.0兼容</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installAPK</span><span class="params">()</span> </span>&#123;</div><div class="line">        File apkFile =</div><div class="line">            <span class="keyword">new</span> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), apkName);</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</div><div class="line">            Uri apkUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + <span class="string">".provider"</span>, apkFile);</div><div class="line">            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</div><div class="line">            intent.setDataAndType(apkUri, <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            intent.setDataAndType(Uri.fromFile(apkFile), <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">        &#125;</div><div class="line">        mContext.startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>在Manifest中添加使用权限</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在Manifest中添加7.0私有文件权限</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">    <span class="attr">android:authorities</span>=<span class="string">"$&#123;applicationId&#125;.provider"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">        <span class="attr">android:resource</span>=<span class="string">"@xml/provider_paths"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>建立xml私有文件权限配置<br>在res中建立xml文件夹，建立provider_paths.xml文件，文件中：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">resources</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">paths</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">external-path</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"download"</span></div><div class="line">            <span class="attr">path</span>=<span class="string">""</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">paths</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
+<li>已兼容7.0私有文件权限问题</li>
+<li>对于部分机型默认或者一些原因，下载管理器是被禁用掉的，必须手动开启或者写代码去跳转到设置界面开启，代码中已兼容。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://www.trinea.cn/android/android-downloadmanager/" target="_blank" rel="external">Android系统下载管理DownloadManager功能介绍及使用示例</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇对于Android中对于DownloadManager的使用经验分享。
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速集成友盟多渠道打包</title>
+    <link href="http://f1reking.me/2017/01/16/UMeng-package/"/>
+    <id>http://f1reking.me/2017/01/16/UMeng-package/</id>
+    <published>2017-01-16T01:24:46.000Z</published>
+    <updated>2017-01-16T04:46:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇针对快速集成友盟多渠道打包的经验分享<a id="more"></a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>依个人理解，多渠道只是给运营数据统计方便查看而已，并不是个技术，虽然以前面试的时候有被问到会不会多渠道打包，不过说实在，如果你公司的项目没有要求数据统计，一般不会有多渠道统计的，所以即使要用，也能很快集成的，首先还是放出官网的文档：<a href="http://dev.umeng.com/analytics/android-doc/integration" target="_blank" rel="external">http://dev.umeng.com/analytics/android-doc/integration</a>,本篇就是让你快速集成，不用再去翻看文档。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>先注册账号，并建立新应用，拿到Appkey</li>
+<li><p>导入SDK<br> 在app的gradle依赖中添加：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile &apos;com.umeng.analytics:analytics:latest.integration&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 在project的gradle中添加</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">            mavenCentral()     </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置Appkey.<br>在manifest中配置权限及appkey</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">application</span> ……&gt;</span></div><div class="line">……</div><div class="line"><span class="tag">&lt;<span class="name">activity</span> ……/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:value</span>=<span class="string">"YOUR_APP_KEY"</span> <span class="attr">android:name</span>=<span class="string">"UMENG_APPKEY"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:value</span>=<span class="string">"$&#123;UMENG_CHANNEL_VALUE&#125;"</span> <span class="attr">android:name</span>=<span class="string">"UMENG_CHANNEL"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">application</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>注意：在android6.0之后会有权限检查问题，若要正常使用，请在代码中手动配置权限，这里不再祥述。   </p>
+</blockquote>
+<ol>
+<li><p>代码集成统计<br>在每个Activity集成下列代码，建议配置在BaseActivity里：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="keyword">super</span>.onResume();</div><div class="line">MobclickAgent.onResume(<span class="keyword">this</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line"><span class="keyword">super</span>.onPause();</div><div class="line">MobclickAgent.onPause(<span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>当所有步骤做好之后，接下来就是多渠道打包的事了。</p>
+<ol>
+<li><p>首先是代码代码混淆：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-keepclassmembers class * &#123;</div><div class="line">   public &lt;init&gt; (org.json.JSONObject);</div><div class="line">&#125;</div><div class="line">-keepclassmembers enum * &#123;</div><div class="line">    public static **[] values();</div><div class="line">    public static ** valueOf(java.lang.String);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置渠道号<br> 在gradle配置渠道号</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">productFlavors &#123;</div><div class="line">       xiaomi &#123;&#125;</div><div class="line">       _360 &#123;&#125;</div><div class="line">       baidu &#123;&#125;</div><div class="line">       wandoujia &#123;&#125;</div><div class="line">   &#125;</div><div class="line">   </div><div class="line">   productFlavors.all &#123; </div><div class="line">   flavor -&gt; flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>打包    </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew assembleRelease</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
+<li>目前这种打包方式很慢，要快速打包我推荐看<a href="http://tech.meituan.com/mt-apk-packaging.html" target="_blank" rel="external">美团多渠道打包</a></li>
+<li>之后有空再来扩展…</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇针对快速集成友盟多渠道打包的经验分享
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+      <category term="tools" scheme="http://f1reking.me/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bye2016Hi2017</title>
+    <link href="http://f1reking.me/2016/12/31/Bye2016Hi2017/"/>
+    <id>http://f1reking.me/2016/12/31/Bye2016Hi2017/</id>
+    <published>2016-12-31T10:28:10.000Z</published>
+    <updated>2016-12-31T15:11:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Be the change you want to see in the world.<a id="more"></a></p>
+</blockquote>
+<h4 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h4><p>一整年还算顺利，年初被4399因入职体检原因被退offer，给自己放假了2个月在家休养生息，也想通了自己这一年要走的路，我要做产品，年后加入一家创业公司，做一款公司自己的产品，独立负责Android端的开发工作，突破了自己过去的技术障碍，入手了2016的愿望清单，把想看的书都看了，走吧，2016，过去的你，我还算顺利。  </p>
+<h4 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h4><p>接下来的一年要继续加油努力，把技术提高到中上水平，把技术全栈化，把薪资提高一个层次，github上多贡献开源，每周至少一篇博客。  </p>
+<h4 id="书单列表："><a href="#书单列表：" class="headerlink" title="书单列表："></a>书单列表：</h4><ol>
+<li>Android开发艺术探索</li>
+<li>Android源码设计模式</li>
+</ol>
+<h4 id="心愿单："><a href="#心愿单：" class="headerlink" title="心愿单："></a>心愿单：</h4><ol>
+<li>减重</li>
+<li>早睡早起</li>
+<li>制定每天工作计划</li>
+<li>不忘初心，不忘初心</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Be the change you want to see in the world.
+    
+    </summary>
+    
+      <category term="Life" scheme="http://f1reking.me/categories/Life/"/>
+    
+    
+      <category term="Life" scheme="http://f1reking.me/tags/Life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中WebView指南</title>
+    <link href="http://f1reking.me/2016/12/04/Android-webview/"/>
+    <id>http://f1reking.me/2016/12/04/Android-webview/</id>
+    <published>2016-12-04T13:14:42.000Z</published>
+    <updated>2016-12-31T06:19:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>so,在Android系统中内置了webkit内核浏览器，Android中有个组件叫<a href="https://developer.android.com/reference/android/webkit/WebView.html" target="_blank" rel="external">WebView</a>，能够在应用中展示web界面，此篇就剥解WebView的一切。<a id="more"></a></p>
+<h2 id="WebView简介"><a href="#WebView简介" class="headerlink" title="WebView简介"></a>WebView简介</h2><p>为了开发者能够实现在app内展示网页内容并与网页交互的需求，</p>
+<h2 id="WebView基本使用"><a href="#WebView基本使用" class="headerlink" title="WebView基本使用"></a>WebView基本使用</h2><h2 id="WebView-API详解"><a href="#WebView-API详解" class="headerlink" title="WebView API详解"></a>WebView API详解</h2><h2 id="WebSettings"><a href="#WebSettings" class="headerlink" title="WebSettings"></a>WebSettings</h2><h2 id="WebViewClient"><a href="#WebViewClient" class="headerlink" title="WebViewClient"></a>WebViewClient</h2><h2 id="WebChromeClient"><a href="#WebChromeClient" class="headerlink" title="WebChromeClient"></a>WebChromeClient</h2><h2 id="JavaScript与WebView交互"><a href="#JavaScript与WebView交互" class="headerlink" title="JavaScript与WebView交互"></a>JavaScript与WebView交互</h2><h2 id="WebView加载优化"><a href="#WebView加载优化" class="headerlink" title="WebView加载优化"></a>WebView加载优化</h2><h2 id="WebView使用经验"><a href="#WebView使用经验" class="headerlink" title="WebView使用经验"></a>WebView使用经验</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;so,在Android系统中内置了webkit内核浏览器，Android中有个组件叫&lt;a href=&quot;https://developer.android.com/reference/android/webkit/WebView.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebView&lt;/a&gt;，能够在应用中展示web界面，此篇就剥解WebView的一切。
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中shape的特性详解</title>
+    <link href="http://f1reking.me/2016/12/01/Android-shape/"/>
+    <id>http://f1reking.me/2016/12/01/Android-shape/</id>
+    <published>2016-12-01T14:33:33.000Z</published>
+    <updated>2016-12-31T06:20:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文针对shape中的属性进行详解<a id="more"></a></p>
+<h3 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h3><p>首先讲下shape，shape可以自定义形状，可以定义以下四种类型，通过android:shape属性定义：  </p>
+<ul>
+<li>rectangle：矩形，可以画出各种矩形。  </li>
+<li>oval：椭圆形，也可以用来画正圆形。  </li>
+<li>line：线形，可以画实线和虚线。   </li>
+<li>ring：环形，可以画环形进度条。</li>
+</ul>
+<p>接下来对于属性进行详解：  </p>
+<ul>
+<li><strong>corners</strong>：设置圆角<ul>
+<li>android:radius 圆角半径，四个角</li>
+<li>android:topLeftRadius 左上角的圆角半径</li>
+<li>android:topRightRadius 右上角的圆角半径</li>
+<li>android:bottomLeftRadius 左下角的圆角半径</li>
+<li>android:bottomRightRadius 右下角的圆角半径</li>
+</ul>
+</li>
+<li><strong>gradient</strong>：设置形状的渐变颜色，可以是线性渐变、辐射渐变、扫描性渐变<ul>
+<li>android:type 渐变的类型<ul>
+<li>linear 线性渐变，默认</li>
+<li>radial 放射渐变，设置该项时，android:gradientRadius也必须设置</li>
+<li>sweep 扫描渐变</li>
+</ul>
+</li>
+<li>android:startColor 渐变开始的颜色</li>
+<li>android:endColor 渐变结束的颜色</li>
+<li>android:centerColor 渐变中间的颜色</li>
+<li>android:angle 渐变的角度，线性渐变时才有效，必须是45的倍数，0表示从左到右，90表示从下到上</li>
+<li>android:centerX 渐变中心的相对X坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间</li>
+<li>android:centerY 渐变中心的相对Y坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间</li>
+<li>android:gradientRadius 渐变的半径，只有渐变类型为radial时才能使用</li>
+<li>android:useLevel 如果为true，则可以在LevelListDrawable中使用</li>
+</ul>
+</li>
+<li><strong>padding</strong>：设置内容与形状边界的内间距<ul>
+<li>android:left 左内间距</li>
+<li>android:right 右内间距</li>
+<li>android:top 上内间距</li>
+<li>android:bottom 下内间距</li>
+</ul>
+</li>
+<li><strong>size</strong>：设置大小<ul>
+<li>android:width 设置宽度</li>
+<li>android:height 设置高度</li>
+</ul>
+</li>
+<li><strong>solid</strong>：设置形状的填充颜色<ul>
+<li>android:color 填充的颜色</li>
+</ul>
+</li>
+<li><strong>stroke</strong>：设置描边<ul>
+<li>android:color 描边的颜色</li>
+<li>android:width 描边的宽度</li>
+<li>android:dashWidth    设置虚线时的横线长度</li>
+<li>android:dashGap 设置虚线时的横线之间的距离</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用经验"><a href="#使用经验" class="headerlink" title="使用经验"></a>使用经验</h3><ol>
+<li>画线时需注意：<ul>
+<li>只能画水平线，画不了竖线；</li>
+<li>线的高度是通过stroke的android:width属性设置的；</li>
+<li>size的android:height属性定义的是整个形状区域的高度；</li>
+<li>size的height必须大于stroke的width，否则，线无法显示；</li>
+<li>线在整个形状区域中是居中显示的；</li>
+<li>线左右两边会留有空白间距，线越粗，空白越大；</li>
+<li>引用虚线的view需要添加属性android:layerType，值设为”software”，否则显示不了虚线。</li>
+</ul>
+</li>
+<li>当shape根元素为ring类型时，需要在根元素用以下属性：<ul>
+<li>android:innerRadius 内环的半径</li>
+<li>android:innerRadiusRatio 浮点型，以环的宽度比率来表示内环的半径，默认为3，表示内环半径为环的宽度除以3，该值会被android:innerRadius覆盖</li>
+<li>android:thickness 环的厚度</li>
+<li>android:thicknessRatio 浮点型，以环的宽度比率来表示环的厚度，默认为9，表示环的厚度为环的宽度除以9，该值会被android:thickness覆盖</li>
+<li>android:useLevel 一般为false，否则可能环形无法显示，只有作为LevelListDrawable使用时才设为true</li>
+</ul>
+</li>
+</ol>
+<h3 id="本文参考："><a href="#本文参考：" class="headerlink" title="本文参考："></a>本文参考：</h3><ol>
+<li><a href="http://keeganlee.me/post/android/20150830" target="_blank" rel="external">http://keeganlee.me/post/android/20150830</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文针对shape中的属性进行详解
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中EditText的一切</title>
+    <link href="http://f1reking.me/2016/11/30/Android-edittext/"/>
+    <id>http://f1reking.me/2016/11/30/Android-edittext/</id>
+    <published>2016-11-30T01:38:32.000Z</published>
+    <updated>2016-12-31T06:20:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇我想总结下关于EditText控件的使用和遇到的问题<a id="more"></a></p>
+<p>可以，不跟你多bb，基本知识请直接看<a href="https://developer.android.com/reference/android/widget/EditText.html" target="_blank" rel="external">Android Developers中关于EditText的API</a>，本篇问题也大多于查看api之后的方法总结。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>经常碰到界面初始化后EditText就会自动获取焦点并弹出输入法，这样的用户体验很不好，所以我们可以禁止输入法自动弹出。<br>解决方案：<br>方案1：在Activity的onCreate()方法中加入：<br><code>getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);</code><br>方案2：在Manifest文件中的Activity注册标签下，加入属性：<br><code>android:windowSoftInputMode=&quot;statehidden&quot;</code></li>
+<li>用户在使用EditText进行输入后，我们可以利用软键盘上特色功能进行导航，提高用户体验。<br>在xml中添加属性：android:imeOptions.<br>actionGo  输入法右下角显示“去往”.<br>actionSearch  输入法右下角显示“搜索”.<br>actionSend  输入法右下角显示“发送”.<br>actionNext  输入法右下角显示“下一个”.<br>actionDone  输入法右下角显示“完成”.<br>actionPrevious  输入法右下角显示“上一个”.<br>给EditText设置OnEditorActionListener，代码如下：     <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> OnEditorActionListener actionListener = <span class="keyword">new</span> OnEditorActionListener() &#123;  </div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onEditorAction</span><span class="params">(TextView v, <span class="keyword">int</span> actionId, KeyEvent event)</span> </span>&#123;  </div><div class="line">        <span class="keyword">switch</span> (v.getId()) &#123;  </div><div class="line">            <span class="keyword">case</span> R.id.et_first:  </div><div class="line">                <span class="keyword">if</span>(actionId == EditorInfo.IME_ACTION_SEND) &#123;</div><div class="line">                <span class="comment">//进行处理  </span></div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">case</span> R.id.et_second:  </div><div class="line">                <span class="keyword">if</span>(actionId == EditorInfo.IME_ACTION_SEARCH) &#123;</div><div class="line">                <span class="comment">//进行处理   </span></div><div class="line">                &#125;  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">            <span class="keyword">default</span>:  </div><div class="line">                <span class="keyword">break</span>;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">    &#125;  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>注意：</strong>必须在xml上加上<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">android:maxLines="1"     </div><div class="line">android:inputType="text"</div></pre></td></tr></table></figure></p>
+<p>中其中一个才能使用这个导航功能，或者用java代码也行<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">editText.setInputType(EditorInfo.TYPE_CLASS_TEXT);  </div><div class="line">editText.setSingleLine(<span class="keyword">true</span>);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇我想总结下关于EditText控件的使用和遇到的问题
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android接入支付SDK</title>
+    <link href="http://f1reking.me/2016/11/28/Android-sdk-pay/"/>
+    <id>http://f1reking.me/2016/11/28/Android-sdk-pay/</id>
+    <published>2016-11-28T03:57:49.000Z</published>
+    <updated>2016-12-31T06:20:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。<a id="more"></a></p>
+<h2 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
+<li>注册账号，创建应用，开通微信支付。</li>
+<li>查看APP支付文档：<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_1" target="_blank" rel="external">https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_1</a>  </li>
+<li>了解支付流程：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww2.sinaimg.cn/large/006y8mN6gw1fa82y2qyfkj30ou0sydk0.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ol>
+<h3 id="接入SDK"><a href="#接入SDK" class="headerlink" title="接入SDK"></a>接入SDK</h3><ol>
+<li>引入libs，下载<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1" target="_blank" rel="external">https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1</a>，并将libammsdk.jar放到libs文件夹下。</li>
+<li><p>配置签名<br>在debug下直接配置key，这样就可以在debug下调试了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">        debug &#123;</div><div class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"你的keystore文件路径"</span>)</span></span></div><div class="line">            storePassword "xxx"</div><div class="line">            keyAlias "xxx"</div><div class="line">            keyPassword "xxx"</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"你的keystore文件路径"</span>)</span></span></div><div class="line">            storePassword "xxx"</div><div class="line">            keyAlias "xxx"</div><div class="line">            keyPassword "xxx"</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line">buildTypes &#123;</div><div class="line">        debug &#123;</div><div class="line">            signingConfig signingConfigs.debug</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            signingConfig signingConfigs.release</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建WXPayEntryActivity<br>在报名下创建如下图的Activity，demo里也有，WXPaEntryActivity是支付的回调，WXEntryActivity是微信登录和分享的回调。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa83ekftcij30es03gjrp.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+<li><p>AndroidManifest.xml中注册</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">   <span class="attr">android:name</span>=<span class="string">".wxapi.WXPayEntryActivity"</span></div><div class="line">   <span class="attr">android:exported</span>=<span class="string">"true"</span></div><div class="line">   <span class="attr">android:launchMode</span>=<span class="string">"singleTop"</span></div><div class="line">   <span class="attr">android:screenOrientation</span>=<span class="string">"portrait"</span></div><div class="line">   <span class="attr">android:theme</span>=<span class="string">"@android:style/Theme.Translucent.NoTitleBar"</span></div><div class="line">   <span class="attr">android:windowSoftInputMode</span>=<span class="string">"stateHidden"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>加入混淆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-libraryjars libs/libammsdk.jar</div><div class="line">-keep class com.tencent.** &#123; *;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="接口调用"><a href="#接口调用" class="headerlink" title="接口调用"></a>接口调用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 调用微信支付</div><div class="line"> * <span class="doctag">@param</span> datas 微信支付数据</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">toWXPay</span><span class="params">(String datas)</span> </span>&#123;</div><div class="line">    IWXAPI api = WXAPIFactory.createWXAPI(PayActivity.<span class="keyword">this</span>, WX_APP_ID);</div><div class="line">    api.registerApp(WX_APP_ID);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        JSONObject jsonObject = <span class="keyword">new</span> JSONObject(datas);</div><div class="line">        PayReq req = <span class="keyword">new</span> PayReq();</div><div class="line">        req.appId = jsonObject.getString(<span class="string">"appid"</span>);<span class="comment">// 微信开放平台appid</span></div><div class="line">        req.nonceStr = jsonObject.getString(<span class="string">"noncestr"</span>);<span class="comment">// 随机字符串</span></div><div class="line">        req.packageValue = jsonObject.getString(<span class="string">"package"</span>);<span class="comment">// 支付内容</span></div><div class="line">        req.partnerId = jsonObject.getString(<span class="string">"partnerid"</span>);<span class="comment">// 财付通id</span></div><div class="line">        req.prepayId = jsonObject.getString(<span class="string">"prepayid"</span>);<span class="comment">// 微信预支付编号</span></div><div class="line">        req.sign = jsonObject.getString(<span class="string">"sign"</span>);<span class="comment">// 签名</span></div><div class="line">        req.timeStamp = jsonObject.getString(<span class="string">"timestamp"</span>);<span class="comment">// 时间戳</span></div><div class="line">        req.extData = <span class="string">"app data"</span>; <span class="comment">// optional</span></div><div class="line">        <span class="comment">// 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信</span></div><div class="line">        api.sendReq(req);</div><div class="line">    &#125; <span class="keyword">catch</span> (JSONException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="支付回调"><a href="#支付回调" class="headerlink" title="支付回调"></a>支付回调</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WXPayEntryActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">IWXAPIEventHandler</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> IWXAPI api;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        api = WXAPIFactory.createWXAPI(<span class="keyword">this</span>, Config.WX_APP_ID);</div><div class="line">        api.handleIntent(getIntent(), <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onNewIntent</span><span class="params">(Intent intent)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onNewIntent(intent);</div><div class="line">        setIntent(intent);</div><div class="line">        api.handleIntent(intent, <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReq</span><span class="params">(BaseReq req)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResp</span><span class="params">(BaseResp resp)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) &#123;</div><div class="line">            <span class="keyword">switch</span> (resp.errCode) &#123;</div><div class="line">                <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"支付成功"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> -<span class="number">1</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"支付失败，请检查"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> -<span class="number">2</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"已取消支付"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">"支付失败，请检查"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            finish();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li><p>未安装微信客户端的情况下使用，然后会发现提示<code>E/ActivityThread: Failed to find provider info for com.tencent.mm.sdk.plugin.provider</code>，因为微信没有html5页面能使用支付，所以我们必须要在使用支付之前做个判断，因为微信sdk有提供个参数可以判断，所以应该加上：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isWXAppInstall</span><span class="params">()</span> </span>&#123;</div><div class="line">        IWXAPI api = WXAPIFactory.createWXAPI(PayActivity.<span class="keyword">this</span>, WX_APP_ID);</div><div class="line">        api.registerApp(WX_APP_ID);</div><div class="line">        <span class="keyword">boolean</span> isWXAppInstalled = api.isWXAppInstalled() &amp;&amp; api.isWXAppSupportAPI();</div><div class="line">        <span class="keyword">return</span> isWXAppInstalled;</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (isWXAppInstall()) &#123;</div><div class="line">    DialogUtil.showProDialog(PayActivity.<span class="keyword">this</span>);</div><div class="line">    toWXPay(datas);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    Toast.makeText(<span class="keyword">this</span>, <span class="string">"未安装微信客户端"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>Android7.0上会出现回调成功重复多次，这个待再次确认，可能是微信的bug。 </p>
+</li>
+</ol>
+<h2 id="支付宝支付"><a href="#支付宝支付" class="headerlink" title="支付宝支付"></a>支付宝支付</h2><h3 id="前期准备-1"><a href="#前期准备-1" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
+<li>注册账号，创建应用，开通支付功能。</li>
+<li>查看文档:<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7386797.0.0.Eky59h&amp;treeId=59&amp;articleId=103563&amp;docType=1" target="_blank" rel="external">支付文档</a></li>
+<li>了解支付流程：<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa85omq9ydj30nk0coq53.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ol>
+<h3 id="接入SDK-1"><a href="#接入SDK-1" class="headerlink" title="接入SDK"></a>接入SDK</h3><ol>
+<li>引入libs，下载<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.Q5gnm8&amp;treeId=193&amp;articleId=104509&amp;docType=1" target="_blank" rel="external">支付宝SDK及DEMO</a>，并将alipaySdk-xx.jar包放到libs文件夹下</li>
+<li><p>AndroidManifest.xml中注册</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"com.alipay.sdk.app.H5PayActivity"</span></div><div class="line">    <span class="attr">android:configChanges</span>=<span class="string">"orientation|keyboardHidden|navigation"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:screenOrientation</span>=<span class="string">"behind"</span>/&gt;</div><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"com.alipay.sdk.auth.AuthActivity"</span></div><div class="line">    <span class="attr">android:configChanges</span>=<span class="string">"orientation|keyboardHidden|navigation"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:screenOrientation</span>=<span class="string">"behind"</span>/&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>加入权限</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_PHONE_STATE"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>加入混淆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-libraryjars libs/alipaySdk-xx.jar</div><div class="line">-keep class com.alipay.android.app.IAlixPay&#123;*;&#125;</div><div class="line">-keep class com.alipay.android.app.IAlixPay$Stub&#123;*;&#125;</div><div class="line">-keep class com.alipay.android.app.IRemoteServiceCallback&#123;*;&#125;</div><div class="line">-keep class com.alipay.android.app.IRemoteServiceCallback$Stub&#123;*;&#125;</div><div class="line">-keep class com.alipay.sdk.app.PayTask&#123; public *;&#125;</div><div class="line">-keep class com.alipay.sdk.app.AuthTask&#123; public *;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="接口调用-1"><a href="#接口调用-1" class="headerlink" title="接口调用"></a>接口调用</h3><p>支付宝的demo已经写得很明了易懂了，这里简单列出接口调用的主要代码，其他代码请看支付宝DEMO。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 调取支付宝SDK</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> payInfo 支付信息</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">alipay</span><span class="params">(<span class="keyword">final</span> String payInfo)</span> </span>&#123;</div><div class="line">    Runnable payRunnable = () -&gt; &#123;</div><div class="line">        PayTask alipay = <span class="keyword">new</span> PayTask(PayActivity.<span class="keyword">this</span>);</div><div class="line">        String result = alipay.pay(payInfo, <span class="keyword">true</span>);</div><div class="line">        Message msg = <span class="keyword">new</span> Message();</div><div class="line">        msg.what = SDK_PAY_FLAG;</div><div class="line">        msg.obj = result;</div><div class="line">        mHandler.sendMessage(msg);</div><div class="line">    &#125;;</div><div class="line">    Thread payThread = <span class="keyword">new</span> Thread(payRunnable);</div><div class="line">    payThread.start();</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 支付宝支付回调处理</div><div class="line"> */</div><div class="line"><span class="meta">@SuppressLint</span>(<span class="string">"HandlerLeak"</span>)</div><div class="line"><span class="keyword">private</span> Handler mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">            <span class="keyword">case</span> SDK_PAY_FLAG: &#123;</div><div class="line">                PayResult payResult = <span class="keyword">new</span> PayResult((String) msg.obj);</div><div class="line">                String resultInfo = payResult.getResult();<span class="comment">// 同步返回需要验证的信息</span></div><div class="line">                String resultStatus = payResult.getResultStatus();</div><div class="line">                <span class="comment">// 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档</span></div><div class="line">                <span class="keyword">if</span> (TextUtils.equals(resultStatus, <span class="string">"9000"</span>)) &#123;</div><div class="line">                    Toast.makeText(PayActivity.<span class="keyword">this</span>, <span class="string">"支付成功"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">if</span> (TextUtils.equals(resultStatus, <span class="string">"8000"</span>)) &#123;</div><div class="line">                        Toast.makeText(PayActivity.<span class="keyword">this</span>, <span class="string">"支付结果确认中"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="comment">// 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误</span></div><div class="line">                        Toast.makeText(PayActivity.<span class="keyword">this</span>, <span class="string">"支付失败"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="遇到的问题-1"><a href="#遇到的问题-1" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>很容易遇到的问题就是支付参数遗漏，可以直接<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.DwA283&amp;treeId=59&amp;articleId=103663&amp;docType=1" target="_blank" rel="external">查看文档</a></li>
+<li>还会可能遇到支付错误，可以直接<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.Na0IAJ&amp;treeId=59&amp;articleId=104048&amp;docType=1" target="_blank" rel="external">查看文档</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android之Activity</title>
+    <link href="http://f1reking.me/2016/11/23/Android-Activity/"/>
+    <id>http://f1reking.me/2016/11/23/Android-Activity/</id>
+    <published>2016-11-23T07:02:00.000Z</published>
+    <updated>2017-03-09T02:15:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近打算整理下之前的学习笔记，这篇是关于学习Activity的小结<a id="more"></a></p>
+<h2 id="Activity的四种launchMode"><a href="#Activity的四种launchMode" class="headerlink" title="Activity的四种launchMode"></a>Activity的四种launchMode</h2><p>launchMode在多个Activity跳转的过程中扮演着重要的角色，它可以决定是否生成新的Activity实例，是否重用已存在的Activity实例，是否和其他Activity实例公用一个task里。task是一个具有栈结构的对象，一个task可以管理多个Activity，启动一个应用，也就创建一个与之对应的task。<br>Activity一共有四个launchMode：  </p>
+<ol>
+<li>standard</li>
+<li>singleTop</li>
+<li>singleTask</li>
+<li>singleInstance  </li>
+</ol>
+<p>我们可以在AndroidManifest.xml中配置<activity>的android:launchMode属性填上以上四种之一。  </activity></p>
+<h3 id="standrad"><a href="#standrad" class="headerlink" title="standrad"></a>standrad</h3><p>这是默认模式，每次激活Activity时都会创建Activity实例，并放入任务栈中。使用场景：大多数Activity。</p>
+<h3 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h3><p>如果在任务的栈顶正好存在该Activity的实例，就重用该实例( 会调用实例的 onNewIntent() )，否则就会创建新的实例并放入栈顶，即使栈中已经存在该Activity的实例，只要不在栈顶，都会创建新的实例。使用场景如新闻类或者阅读类App的内容页面。</p>
+<h3 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h3><p>如果在栈中已经有该Activity的实例，就重用该实例(会调用实例的 onNewIntent() )。重用时，会让该实例回到栈顶，因此在它上面的实例将会被移出栈。如果栈中不存在该实例，将会创建新的实例放入栈中。使用场景如浏览器的主界面。不管从多少个应用启动浏览器，只会启动主界面一次，其余情况都会走onNewIntent，并且会清空主界面上面的其他页面。</p>
+<h3 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h3><p>在一个新栈中创建该Activity的实例，并让多个应用共享该栈中的该Activity实例。一旦该模式的Activity实例已经存在于某个栈中，任何应用再激活该Activity时都会重用该栈中的实例( 会调用实例的 onNewIntent() )。其效果相当于多个应用共享一个应用，不管谁激活该 Activity 都会进入同一个应用中。使用场景如闹铃提醒，将闹铃提醒与闹铃设置分离。singleInstance不要用于中间页面，如果用于中间页面，跳转会有问题，比如：A -&gt; B (singleInstance) -&gt; C，完全退出后，在此启动，首先打开的是B。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近打算整理下之前的学习笔记，这篇是关于学习Activity的小结
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android之Service</title>
+    <link href="http://f1reking.me/2016/11/23/Android-Service/"/>
+    <id>http://f1reking.me/2016/11/23/Android-Service/</id>
+    <published>2016-11-23T03:00:24.000Z</published>
+    <updated>2016-11-24T13:31:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>对Android的Service组件写个小结<a id="more"></a></p>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="Service有几种启动方式"><a href="#Service有几种启动方式" class="headerlink" title="Service有几种启动方式"></a>Service有几种启动方式</h3><p>Service是一个专门在后台处理长时间任务的Android组件，它没有UI。它有两种启动方式，startService和bindService，结束用stopService和unBindService。</p>
+<h3 id="两种方式的区别"><a href="#两种方式的区别" class="headerlink" title="两种方式的区别"></a>两种方式的区别</h3><ol>
+<li>startService只是启动Service，启动它的组件（如Activity）和Service并没有关联，只有当Service调用stopSelf或者其他组件调用stopService服务才会终止。 </li>
+<li>bindService方法启动Service，其他组件可以通过回调获取Service的代理对象和Service交互，而这两方也进行了绑定，当启动方销毁时，Service也会自动进行unBind操作，当发现所有绑定都进行了unBind时才会销毁Service。  </li>
+</ol>
+<h3 id="生命周期比较"><a href="#生命周期比较" class="headerlink" title="生命周期比较"></a>生命周期比较</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww2.sinaimg.cn/large/7853084cgw1fa1x7s8uh1j20at0e3tan.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="Service的onCreate回调函数可以做耗时的操作吗？"><a href="#Service的onCreate回调函数可以做耗时的操作吗？" class="headerlink" title="Service的onCreate回调函数可以做耗时的操作吗？"></a>Service的onCreate回调函数可以做耗时的操作吗？</h3><p>不可以，Service的onCreate是在主线程(ActivityThread)中调用的，耗时操作会阻塞UI，如果你只需要在当前界面去做一些耗时操作，界面退出或改变时，工作也要停止，那么这时直接使用Thread(或者AsyncTask,ThreadHandler)会更合适你。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对Android的Service组件写个小结
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android中的“再按一次返回键退出程序”的改进</title>
+    <link href="http://f1reking.me/2016/11/19/Android-app-exit/"/>
+    <id>http://f1reking.me/2016/11/19/Android-app-exit/</id>
+    <published>2016-11-19T05:27:19.000Z</published>
+    <updated>2016-11-24T13:30:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在优化公司项目的代码，发现以前的坑很多，我慢慢地在填，今天就发现了一个坑，就是首页的“再按一次返回键退出程序“功能，所以这个坑，我就填了。<a id="more"></a></p>
+<p>首先，项目里的版本代码是这样的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isExit = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">Handler mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>.handleMessage(msg);</div><div class="line">            isExit = <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onKeyDown</span><span class="params">(<span class="keyword">int</span> keyCode, KeyEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK) &#123;</div><div class="line">            exit();</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onKeyDown(keyCode, event);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">exit</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!isExit) &#123;</div><div class="line">            isExit = <span class="keyword">true</span>;</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"再按一次退出程序"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            mHandler.sendEmptyMessageDelayed(<span class="number">0</span>, <span class="number">2000</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            finish();</div><div class="line">            System.exit(<span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这是一种很扯淡的写法，而且用handler有内存泄漏的风险，而且代码也不精简，所以我就填了这个坑。</p>
+<p>经过修改直接写个简洁版的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">long</span> exitTime = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onKeyDown</span><span class="params">(<span class="keyword">int</span> keyCode, KeyEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; event.getAction() == KeyEvent.ACTION_DOWN) &#123;</div><div class="line">            <span class="keyword">if</span> ((System.currentTimeMillis() - exitTime) &gt; <span class="number">2000</span>) &#123;</div><div class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"再按一次退出程序"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                exitTime = System.currentTimeMillis();</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                finish();</div><div class="line">                System.exit(<span class="number">0</span>);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onKeyDown(keyCode, event);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>经过修改后，代码精简易懂。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在优化公司项目的代码，发现以前的坑很多，我慢慢地在填，今天就发现了一个坑，就是首页的“再按一次返回键退出程序“功能，所以这个坑，我就填了。
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java中String、StringBuffer及StringBuilder的区别</title>
+    <link href="http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/"/>
+    <id>http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/</id>
+    <published>2016-11-17T05:14:26.000Z</published>
+    <updated>2017-03-01T09:20:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。<a id="more"></a></p>
+<h2 id="String介绍"><a href="#String介绍" class="headerlink" title="String介绍"></a>String介绍</h2><p>从官网介绍中可看到String是字符串常量，字符串长度不变，它是不可变的。<br>在使用String主要注意的几点：  </p>
+<ol>
+<li><strong>String类初始化后是不可变的</strong>  </li>
+<li><strong>使用String不一定创建对象</strong></li>
+<li><strong>使用new String,一定创建对象</strong></li>
+</ol>
+<h2 id="StringBuffer介绍"><a href="#StringBuffer介绍" class="headerlink" title="StringBuffer介绍"></a>StringBuffer介绍</h2><p>从官网介绍中可看到StringBuffer是线程安全的可变字符序列，在任意时间点上它都包含某种特定的字符序列，但通过某些方法调用可以改变该序列的长度和内容。<br>操作上提供append和insert方法，append方法是将字符添加到缓冲区的末端，而insert方法则能在指定的点添加字符。</p>
+<h2 id="StringBuilder介绍"><a href="#StringBuilder介绍" class="headerlink" title="StringBuilder介绍"></a>StringBuilder介绍</h2><p>从官方介绍知道StringBuilder是一个可变的字符序列，线程是不安全的，速度相较于StringBuffer要更快些。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>如果要操作少量的数据，用String；</li>
+<li>单线程操作大量数据，用StringBuilder；</li>
+<li>多线程操作大量数据，用StringBuffer；</li>
+<li>不要使用String的“+”来进行多次拼接，因为性能很差，应该使用StringBuffer或StringBuilder类；</li>
+<li>为了获得更好的性能，在构造StringBuffer或StringBuilder时应尽可能指定它们的容量，默认构造容量为16个字符；</li>
+<li>StringBuilder使用在方法内部来完成类似“+”功能，因为是线程不安全的，所以用完以后可以丢弃掉，StringBuffer主要用在全局变量中；</li>
+</ol>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
+<li><strong>可变与不可变</strong><br> String类中使用字符数组保存字符串，<code>private final char value[]</code>中因为有‘final’修饰符，所以String对象是不可变的。<br> StringBuilder与StringBuffer都继承AbstractStringBuilder类，<code>char[] value</code>可见在AbstractStringBuilder中也是使用字符数组保存字符串，所以这两种对象都是可变的。</li>
+<li><strong>是否多线程安全</strong><br> String中的对象是不可变的，显然线程安全。<br> StringBuffer对方法加了同步锁，所以是线程安全。<br> StringBuilder并没有对方法进行加同步锁，所以是非线程安全。</li>
+<li><strong>StringBuilder与StringBuffer共同点</strong><br> StringBuilder与StringBuffer同继承AbstractStringBuilder。共同有公共方法，只是StringBuffer会在方法上加synchronized进行同步。<br> 如果程序不是多线程的，使用StringBuilder效率高于StringBuffer。 </li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。
+    
+    </summary>
+    
+      <category term="Java" scheme="http://f1reking.me/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://f1reking.me/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iterm2设置代理</title>
+    <link href="http://f1reking.me/2016/11/13/Iterm2-set-agent/"/>
+    <id>http://f1reking.me/2016/11/13/Iterm2-set-agent/</id>
+    <published>2016-11-13T06:01:42.000Z</published>
+    <updated>2016-11-24T13:40:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为最近刚用上MacOS，还在熟悉阶段，我以为我把ss开了全局代理之后就能顺利走代理了，然而我错了，这个全局代理对终端是没有用的，最后发现终端还是需要单独设置代理的。  </p>
+<p>在终端下执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=socks5://127.0.0.1:1080   </div><div class="line">export https_proxy=socks5://127.0.0.1:1080</div></pre></td></tr></table></figure></p>
+<p>如果是http的代理，需要执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=http://127.0.0.1:1080/</div><div class="line">export https_proxy=http://127.0.0.1:1080/</div></pre></td></tr></table></figure></p>
+<p>如果需要开机自动设置的话，可以直接把上面的代码加到~/.bash_profile里面就可以了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为最近刚用上MacOS，还在熟悉阶段，我以为我把ss开了全局代理之后就能顺利走代理了，然而我错了，这个全局代理对终端是没有用的，最后发现终端还是需要单独设置代理的。  &lt;/p&gt;
+&lt;p&gt;在终端下执行：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+    
+    
+      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+    
+      <category term="Tools" scheme="http://f1reking.me/tags/Tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac环境配置adb不起作用解决方案</title>
+    <link href="http://f1reking.me/2016/11/13/Mac-set-adb/"/>
+    <id>http://f1reking.me/2016/11/13/Mac-set-adb/</id>
+    <published>2016-11-13T02:39:24.000Z</published>
+    <updated>2016-11-24T13:40:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在mac下配置好了adb之后，发现每次要使用的话 都需要source .bash_profile后才能使用。这是一个大坑啊，索性就研究下如何避免这个操作。</p>
+<p>经过查找原因之后，发现其实这个是zsh的锅，所以就去改zsh的配置文件了。</p>
+<p>解决方案：<br>在User目录在找到.zshrc文件，在文件的最后添加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#Endble my profile  </div><div class="line">source ~/.bash_profile</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在mac下配置好了adb之后，发现每次要使用的话 都需要source .bash_profile后才能使用。这是一个大坑啊，索性就研究下如何避免这个操作。&lt;/p&gt;
+&lt;p&gt;经过查找原因之后，发现其实这个是zsh的锅，所以就去改zsh的配置文件了。&lt;/p&gt;
+&lt;p&gt;解决方案：&lt;b
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+    
+    
+      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+    
+      <category term="Tools" scheme="http://f1reking.me/tags/Tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式之单例模式</title>
+    <link href="http://f1reking.me/2016/08/29/Design-Pattern-Singleton/"/>
+    <id>http://f1reking.me/2016/08/29/Design-Pattern-Singleton/</id>
+    <published>2016-08-29T13:43:08.000Z</published>
+    <updated>2016-11-24T13:28:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。<a id="more"></a></p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>确保某个类有且只有一个对象的场景，避免产生多个对象消耗过多的资源，或者某种类型的对象只应该有且只有一个。例如，创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源，这时就要考虑使用单例模式。</p>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><h2 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h2><p>懒汉模式是声明一个静态对象，并且在用户第一次调用getInstance时进行初始化，其实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>优点：只有在使用时才会被实例化，在一定程度上节约了资源；<br>缺点：第一次加载时需要及时进行实例化，反应稍慢，最大的问题是每次调用getInstance都进行同步，造成不必要的同步开销。<br><strong>这种模式一般不建议使用</strong></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>《Android源码设计模式-解析与实战》</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简述&quot;&gt;&lt;a href=&quot;#简述&quot; class=&quot;headerlink&quot; title=&quot;简述&quot;&gt;&lt;/a&gt;简述&lt;/h1&gt;&lt;p&gt;单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。
+    
+    </summary>
+    
+      <category term="Java" scheme="http://f1reking.me/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://f1reking.me/tags/Java/"/>
+    
+      <category term="Design-Pattern" scheme="http://f1reking.me/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的Gradle配置</title>
+    <link href="http://f1reking.me/2016/08/25/Gradle-config/"/>
+    <id>http://f1reking.me/2016/08/25/Gradle-config/</id>
+    <published>2016-08-25T14:06:01.000Z</published>
+    <updated>2016-11-24T13:40:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。<a id="more"></a></p>
+<h2 id="Default-Config"><a href="#Default-Config" class="headerlink" title="Default Config"></a>Default Config</h2><p>由于多项目管理总是需要配置Gradle和第三方包的依赖，然而不可能每次新开项目都要一个个去添加第三方依赖，所以我们可以统一管理起来，也给多个module统一管理Gradle。  </p>
+<p>在project的根目录下新建Config.gradle文件来统一管理基本配置。</p>
+<p>Config.gradle文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">    supportVersion = &apos;23.4.0&apos;</div><div class="line"></div><div class="line">    android = [compileSdkVersion: 23,</div><div class="line">               buildToolsVersion: &quot;23.0.3&quot;,</div><div class="line">               applicationId    : &quot;me.f1reking.demo&quot;,</div><div class="line">               minSdkVersion    : 15,</div><div class="line">               targetSdkVersion : 23,</div><div class="line">               versionCode      : 1,</div><div class="line">               versionName      : &quot;1.0&quot;]</div><div class="line"></div><div class="line"></div><div class="line">    dependencies = [appcompatV7              : &quot;com.android.support:appcompat-v7:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    supportV4                : &quot;com.android.support:support-v4:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    design                   : &quot;com.android.support:design:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    recyclerview             : &quot;com.android.support:recyclerview-v7:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    glide                    : &apos;com.github.bumptech.glide:glide:3.7.0&apos;]</div></pre></td></tr></table></figure></p>
+<p>然后在build.gradle文件添加<code>apply from: &quot;config.gradle&quot;</code> 作为文件引导</p>
+<p>最后就可以在app的build.gradle使用配置了，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def config = rootProject.ext.android //android配置</div><div class="line">def dep = rootProject.ext.dependencies // 依赖配置</div><div class="line"></div><div class="line">compileSdkVersion config.compileSdkVersion</div><div class="line">buildToolsVersion config.buildToolsVersion</div><div class="line"></div><div class="line">defaultConfig &#123;</div><div class="line">  applicationId config.applicationId</div><div class="line">  minSdkVersion config.minSdkVersion</div><div class="line">  targetSdkVersion config.targetSdkVersion</div><div class="line">  versionCode config.versionCode</div><div class="line">  versionName config.versionName</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">  compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</div><div class="line">  compile dep.appcompatV7</div><div class="line">  compile dep.supportV4</div><div class="line">  compile dep.design</div><div class="line">  compile dep.recyclerview</div><div class="line">  compile dep.glide</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。
+    
+    </summary>
+    
+      <category term="Gradle" scheme="http://f1reking.me/categories/Gradle/"/>
+    
+    
+      <category term="Gradle" scheme="http://f1reking.me/tags/Gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RxBus</title>
+    <link href="http://f1reking.me/2016/08/22/RxBus/"/>
+    <id>http://f1reking.me/2016/08/22/RxBus/</id>
+    <published>2016-08-22T13:43:54.000Z</published>
+    <updated>2016-11-24T13:30:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>之前项目用的是<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>，最近项目开始用RxJava去替换些复杂的逻辑操作，所以可以用RxBus来替代EventBus，这样可以省去库的依赖，减小apk的大小。<a id="more"></a></p>
+</blockquote>
+<h4 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h4><p>此篇需要有RxJava的基础，关于RxJava，可以看扔物线的<a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">给 Android 开发者的 RxJava 详解</a>.</p>
+<h4 id="RxBus"><a href="#RxBus" class="headerlink" title="RxBus"></a>RxBus</h4><p>若对于RxJava有些了解，其RxBus的简单代码如下:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RxBus</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> RxBus instance;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Subject bus;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RxBus</span><span class="params">()</span> </span>&#123;</div><div class="line">        bus = <span class="keyword">new</span> SerializedSubject&lt;&gt;(PublishSubject.create());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RxBus <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (RxBus.class) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">                    instance = <span class="keyword">new</span> RxBus();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//提供一个事件传递</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">post</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        bus.onNext(o);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 根据传递的 eventType 类型返回特定类型(eventType)的 被观察者</span></div><div class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">Observable&lt;T&gt; <span class="title">toObserverable</span><span class="params">(Class&lt;T&gt; eventType)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> bus.ofType(eventType);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>发送事件的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RxBus.getInstance().post(<span class="keyword">new</span> Event(<span class="number">0</span>));</div></pre></td></tr></table></figure></p>
+<p>Event是要发送的事件:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> flag;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(<span class="keyword">int</span> flag)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.flag = flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(String message, <span class="keyword">int</span> flag)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">        <span class="keyword">this</span>.flag = flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFlag</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接收事件的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// rxSubscription是一个Subscription的全局变量，这段代码可以在onCreate/onStart等生命周期内</span></div><div class="line">rxSubscription = RxBus.getDefault().toObserverable(Event.class)</div><div class="line">        .subscribe(<span class="keyword">new</span> Action1&lt;UserEvent&gt;() &#123;</div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Event event)</span> </span>&#123;</div><div class="line">                 </div><div class="line">                   String message = event.getMessage();</div><div class="line">                   ...</div><div class="line">               &#125;</div><div class="line">           &#125;,</div><div class="line">        <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">                <span class="comment">// <span class="doctag">TODO:</span> 处理异常</span></div><div class="line">            &#125;        </div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p> 一定要记得在生命周期结束的地方取消订阅事件，防止RxJava可能会引起的内存泄漏问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onDestroy();</div><div class="line">    <span class="keyword">if</span>(!rxSubscription.isUnsubscribed()) &#123;</div><div class="line">        rxSubscription.unsubscribe();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;之前项目用的是&lt;a href=&quot;https://github.com/greenrobot/EventBus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;EventBus&lt;/a&gt;，最近项目开始用RxJava去替换些复杂的逻辑操作，所以可以用RxBus来替代EventBus，这样可以省去库的依赖，减小apk的大小。
+    
+    </summary>
+    
+      <category term="RxJava" scheme="http://f1reking.me/categories/RxJava/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+    
+      <category term="RxJava" scheme="http://f1reking.me/tags/RxJava/"/>
+    
+  </entry>
+  
+</feed>

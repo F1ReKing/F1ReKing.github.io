@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用DownloadManager进行版本更新（兼容7.0） | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="本篇对于Android中对于DownloadManager的使用经验分享。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用DownloadManager进行版本更新（兼容7.0）">
+<meta property="og:url" content="http://f1reking.me/2017/01/16/Android-DownloadManager/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="本篇对于Android中对于DownloadManager的使用经验分享。">
+<meta property="og:updated_time" content="2017-03-24T06:28:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用DownloadManager进行版本更新（兼容7.0）">
+<meta name="twitter:description" content="本篇对于Android中对于DownloadManager的使用经验分享。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用DownloadManager进行版本更新（兼容7.0）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用DownloadManager进行版本更新（兼容7.0）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-16T08:34:53.000Z" itemprop="datePublished" class="page-time">
+  2017-01-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正文"><span class="post-toc-number">2.</span> <span class="post-toc-text">正文</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后记"><span class="post-toc-number">3.</span> <span class="post-toc-text">后记</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android-DownloadManager"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用DownloadManager进行版本更新（兼容7.0）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-01-16 16:34:53" datetime="2017-01-16T08:34:53.000Z"  itemprop="datePublished">2017-01-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本篇对于Android中对于DownloadManager的使用经验分享。<a id="more"></a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>DownloadManager是Android SDK中封装的下载文件类，可以很方便开发者使用下载文件。其具体看官方API<a href="https://developer.android.com/reference/android/app/DownloadManager.html" target="_blank" rel="external">https://developer.android.com/reference/android/app/DownloadManager.html</a></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ol>
+<li><p>使用DownloadManager下载 </p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> DownloadManager mDownloadManager;</div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> downloadId;</div><div class="line">    <span class="keyword">private</span> String apkName;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DownloadUtils</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(String url, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> String packageName = <span class="string">"com.android.providers.downloads"</span>;</div><div class="line">        <span class="keyword">int</span> state = mContext.getPackageManager().getApplicationEnabledSetting(packageName);</div><div class="line">        <span class="comment">//检测下载管理器是否被禁用</span></div><div class="line">        <span class="keyword">if</span> (state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED</div><div class="line">            || state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER</div><div class="line">            || state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED) &#123;</div><div class="line">            AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(mContext).setTitle(<span class="string">"温馨提示"</span>).setMessage</div><div class="line">                (<span class="string">"系统下载管理器被禁止，需手动打开"</span>).setPositiveButton(<span class="string">"确定"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                    dialog.dismiss();</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);</div><div class="line">                        intent.setData(Uri.parse(<span class="string">"package:"</span> + packageName));</div><div class="line">                        mContext.startActivity(intent);</div><div class="line">                    &#125; <span class="keyword">catch</span> (ActivityNotFoundException e) &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);</div><div class="line">                        mContext.startActivity(intent);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;).setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                    dialog.dismiss();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            builder.create().show();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//正常下载流程</span></div><div class="line">            apkName = name;</div><div class="line">            DownloadManager.Request request = <span class="keyword">new</span> DownloadManager.Request(Uri.parse(url));</div><div class="line">            request.setAllowedOverRoaming(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">            <span class="comment">//通知栏显示</span></div><div class="line">            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);</div><div class="line">            request.setTitle(AppUtils.getAppName(mContext));</div><div class="line">            request.setDescription(<span class="string">"正在下载中..."</span>);</div><div class="line">            request.setVisibleInDownloadsUi(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">            <span class="comment">//设置下载的路径</span></div><div class="line">            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, apkName);</div><div class="line"></div><div class="line">            <span class="comment">//获取DownloadManager</span></div><div class="line">            mDownloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);</div><div class="line">            downloadId = mDownloadManager.enqueue(request);</div><div class="line"></div><div class="line">            mContext.registerReceiver(mReceiver, <span class="keyword">new</span> IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> BroadcastReceiver mReceiver = <span class="keyword">new</span> BroadcastReceiver() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">            checkStatus();</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 检查下载状态</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkStatus</span><span class="params">()</span> </span>&#123;</div><div class="line">        DownloadManager.Query query = <span class="keyword">new</span> DownloadManager.Query();</div><div class="line">        query.setFilterById(downloadId);</div><div class="line">        Cursor cursor = mDownloadManager.query(query);</div><div class="line">        <span class="keyword">if</span> (cursor.moveToFirst()) &#123;</div><div class="line">            <span class="keyword">int</span> status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));</div><div class="line">            <span class="keyword">switch</span> (status) &#123;</div><div class="line">                <span class="comment">//下载暂停</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_PAUSED:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载延迟</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_PENDING:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//正在下载</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_RUNNING:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载完成</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_SUCCESSFUL:</div><div class="line">                    installAPK();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载失败</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_FAILED:</div><div class="line">                    Toast.makeText(mContext, <span class="string">"下载失败"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        cursor.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 7.0兼容</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installAPK</span><span class="params">()</span> </span>&#123;</div><div class="line">        File apkFile =</div><div class="line">            <span class="keyword">new</span> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), apkName);</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</div><div class="line">            Uri apkUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + <span class="string">".provider"</span>, apkFile);</div><div class="line">            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</div><div class="line">            intent.setDataAndType(apkUri, <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            intent.setDataAndType(Uri.fromFile(apkFile), <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">        &#125;</div><div class="line">        mContext.startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>在Manifest中添加使用权限</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在Manifest中添加7.0私有文件权限</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">    <span class="attr">android:authorities</span>=<span class="string">"$&#123;applicationId&#125;.provider"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">        <span class="attr">android:resource</span>=<span class="string">"@xml/provider_paths"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>建立xml私有文件权限配置<br>在res中建立xml文件夹，建立provider_paths.xml文件，文件中：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">resources</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">paths</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">external-path</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"download"</span></div><div class="line">            <span class="attr">path</span>=<span class="string">""</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">paths</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
+<li>已兼容7.0私有文件权限问题</li>
+<li>对于部分机型默认或者一些原因，下载管理器是被禁用掉的，必须手动开启或者写代码去跳转到设置界面开启，代码中已兼容。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://www.trinea.cn/android/android-downloadmanager/" target="_blank" rel="external">Android系统下载管理DownloadManager功能介绍及使用示例</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-24T06:28:51.000Z" itemprop="dateUpdated">2017-03-24 14:28:51</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2017/01/16/Android-DownloadManager/" target="_blank" rel="external">http://f1reking.me/2017/01/16/Android-DownloadManager/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.me">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2017/01/16/Android-DownloadManager/&title=《使用DownloadManager进行版本更新（兼容7.0）》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2017/01/16/Android-DownloadManager/&title=《使用DownloadManager进行版本更新（兼容7.0）》 — F1ReKing Blog&source=本篇对于Android中对于DownloadManager的使用经验分享。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2017/01/16/Android-DownloadManager/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用DownloadManager进行版本更新（兼容7.0）》 — F1ReKing Blog&url=http://f1reking.me/2017/01/16/Android-DownloadManager/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2017/01/16/Android-DownloadManager/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/20/mac-chrome-keyboard-shortcuts/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Chrome for Mac键盘快捷键整理</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/16/UMeng-package/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">快速集成友盟多渠道打包</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://f1reking.me/2017/01/16/Android-DownloadManager/index.html',
+        sourceId: 'Android-DownloadManager',
+        productKey: 'b39936ac61594c73a0b39d620881867c',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2017/01/16/Android-DownloadManager/&title=《使用DownloadManager进行版本更新（兼容7.0）》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2017/01/16/Android-DownloadManager/&title=《使用DownloadManager进行版本更新（兼容7.0）》 — F1ReKing Blog&source=本篇对于Android中对于DownloadManager的使用经验分享。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2017/01/16/Android-DownloadManager/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用DownloadManager进行版本更新（兼容7.0）》 — F1ReKing Blog&url=http://f1reking.me/2017/01/16/Android-DownloadManager/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2017/01/16/Android-DownloadManager/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOUlEQVR42u3aQW7DMAwF0dz/0u42RSBlPmkHkDReBa4b6XnBkBRfL3xdb9fnnfn90TOjz+93br5kyJCxLIMv/LnAfGHyPF939IwMGTLOYcw3MfrMQzN5HXwtGTJkyEi/jqd06RZlyJAh466AWytKSQIqQ4YMGbUGGS9i+ev4aS0uQ4aMBRm86/77z4+cb8iQIWMpxhVetZRxHih5eB1+mwwZMrZm8ACXlqN3tduC/ciQIWNTBt8cD76dMM2HPIrvWIYMGcsy0sZZZ0SM/y9p+f0LuDJkyNiUUetfpcvw4MsHOOLfExkyZCzLSNvx6eFiMdVLjxBkyJCxNSMd+UqbYuRJzo5LWRkyZGzBSJtiPLymqSQ//hz+bsiQIWNTRjpzVQvTnUZe/9BUhgwZezB4m55nZSShTA8YvqSJMmTI2JQxT7zSjZJv64TX4R0ZMmQcwEhHJTqhNv3rzTMjMmTI2IjBG228fdYvleOAK0OGjC0YnQEIvqHOSFmwBxkyZBzA4C37zsFkp6n35aXLkCHjAEY61pBuvTbYEawlQ4aMgxm8vEwLYI5BiaMMGTIOY5AiNg6I4VpxKilDhoxNGVd41RpqJMjyI4pWUihDhowFGc8dMcYDE6XyOMbIkCFjWUat3cYXTtPBWstPhgwZJzA6Jes8HKdpXw0pQ4YMGZ0CkiB5eI3HwmTIkHEkg6dxpDGXpp7D75EhQ8YBDH4Y0D/IjE9ZSRCXIUPG1gye3vHln9hEp/SVIUPGsow/x0gi4O7QTH0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

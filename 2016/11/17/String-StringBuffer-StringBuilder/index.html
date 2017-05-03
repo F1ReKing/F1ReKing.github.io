@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Java中String、StringBuffer及StringBuilder的区别 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中String、StringBuffer及StringBuilder的区别">
+<meta property="og:url" content="http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。">
+<meta property="og:updated_time" content="2017-03-01T09:20:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中String、StringBuffer及StringBuilder的区别">
+<meta name="twitter:description" content="最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java中String、StringBuffer及StringBuilder的区别</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java中String、StringBuffer及StringBuilder的区别</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-17T05:14:26.000Z" itemprop="datePublished" class="page-time">
+  2016-11-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#String介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">String介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#StringBuffer介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">StringBuffer介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#StringBuilder介绍"><span class="post-toc-number">3.</span> <span class="post-toc-text">StringBuilder介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#区别"><span class="post-toc-number">5.</span> <span class="post-toc-text">区别</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-String-StringBuffer-StringBuilder"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java中String、StringBuffer及StringBuilder的区别</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-11-17 13:14:26" datetime="2016-11-17T05:14:26.000Z"  itemprop="datePublished">2016-11-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。<a id="more"></a></p>
+<h2 id="String介绍"><a href="#String介绍" class="headerlink" title="String介绍"></a>String介绍</h2><p>从官网介绍中可看到String是字符串常量，字符串长度不变，它是不可变的。<br>在使用String主要注意的几点：  </p>
+<ol>
+<li><strong>String类初始化后是不可变的</strong>  </li>
+<li><strong>使用String不一定创建对象</strong></li>
+<li><strong>使用new String,一定创建对象</strong></li>
+</ol>
+<h2 id="StringBuffer介绍"><a href="#StringBuffer介绍" class="headerlink" title="StringBuffer介绍"></a>StringBuffer介绍</h2><p>从官网介绍中可看到StringBuffer是线程安全的可变字符序列，在任意时间点上它都包含某种特定的字符序列，但通过某些方法调用可以改变该序列的长度和内容。<br>操作上提供append和insert方法，append方法是将字符添加到缓冲区的末端，而insert方法则能在指定的点添加字符。</p>
+<h2 id="StringBuilder介绍"><a href="#StringBuilder介绍" class="headerlink" title="StringBuilder介绍"></a>StringBuilder介绍</h2><p>从官方介绍知道StringBuilder是一个可变的字符序列，线程是不安全的，速度相较于StringBuffer要更快些。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>如果要操作少量的数据，用String；</li>
+<li>单线程操作大量数据，用StringBuilder；</li>
+<li>多线程操作大量数据，用StringBuffer；</li>
+<li>不要使用String的“+”来进行多次拼接，因为性能很差，应该使用StringBuffer或StringBuilder类；</li>
+<li>为了获得更好的性能，在构造StringBuffer或StringBuilder时应尽可能指定它们的容量，默认构造容量为16个字符；</li>
+<li>StringBuilder使用在方法内部来完成类似“+”功能，因为是线程不安全的，所以用完以后可以丢弃掉，StringBuffer主要用在全局变量中；</li>
+</ol>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
+<li><strong>可变与不可变</strong><br> String类中使用字符数组保存字符串，<code>private final char value[]</code>中因为有‘final’修饰符，所以String对象是不可变的。<br> StringBuilder与StringBuffer都继承AbstractStringBuilder类，<code>char[] value</code>可见在AbstractStringBuilder中也是使用字符数组保存字符串，所以这两种对象都是可变的。</li>
+<li><strong>是否多线程安全</strong><br> String中的对象是不可变的，显然线程安全。<br> StringBuffer对方法加了同步锁，所以是线程安全。<br> StringBuilder并没有对方法进行加同步锁，所以是非线程安全。</li>
+<li><strong>StringBuilder与StringBuffer共同点</strong><br> StringBuilder与StringBuffer同继承AbstractStringBuilder。共同有公共方法，只是StringBuffer会在方法上加synchronized进行同步。<br> 如果程序不是多线程的，使用StringBuilder效率高于StringBuffer。 </li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-01T09:20:59.000Z" itemprop="dateUpdated">2017-03-01 17:20:59</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2016/11/17/String-StringBuffer-StringBuilder/" target="_blank" rel="external">http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.me">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/&title=《Java中String、StringBuffer及StringBuilder的区别》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/&title=《Java中String、StringBuffer及StringBuilder的区别》 — F1ReKing Blog&source=最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java中String、StringBuffer及StringBuilder的区别》 — F1ReKing Blog&url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/11/19/Android-app-exit/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android中的“再按一次返回键退出程序”的改进</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/13/Iterm2-set-agent/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">iterm2设置代理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/index.html',
+        sourceId: 'String-StringBuffer-StringBuilder',
+        productKey: 'b39936ac61594c73a0b39d620881867c',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/&title=《Java中String、StringBuffer及StringBuilder的区别》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/&title=《Java中String、StringBuffer及StringBuilder的区别》 — F1ReKing Blog&source=最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java中String、StringBuffer及StringBuilder的区别》 — F1ReKing Blog&url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwklEQVR42u3awW7CMBAEUP7/p1uppx5ImPHahUovJwQl5KWSdzPrxyM+vn6O5NPk9e93ro72GkYHHh4e3tKl3//M1Tv52e7/Jvn06npe3Bo8PDy8Y7xkub+/lPbS5+9ExQMPDw/vrbxk4W4X9LxdxsPDw/u/vPtSkReS/BL/tDDg4eHhxbwkjGhhazHuWnHakLXg4eHhddOlYgD2Ca8Pzvfw8PDwBlP1tv3NC8nap/XV4uHh4R3grUWreXs9H57lxaB4YsDDw8Mb8NpFNm9w25B3fuYnZ8DDw8M7wMuX+/yk7beiIVYwHouqHx4eHt6YNw9VR0P9rcHEk3Pi4eHhHebtHYklQcMkkogCCzw8PLzDvPZy15rgfDNW23BfZi14eHh4B3jtaCpfoNuGOA9/o4AYDw8P7wBvHgesja/aUpRv2BrVJTw8PLyA18LW4tS88Mzb7lFJwMPDwytzgzxgTYrBrka5vWUvNl3h4eHhjXltI9vGE3sLTB034+Hh4R3grS3Bk59ZKz/tSAwPDw/vHC9/pJ8PwNpb07bjl/M9PDw8vK289gdaxtr4v/1u0Uzj4eHhjXntQl/sR8jz4/IJIGmvL+seHh4e3pi3Fjoko69dmxIe5RFN9vDw8PDGvLXH/rXRVNsi56FG0Y/j4eHhjXn5Q36+uWotfk0w9eYtPDw8vK28PJbNF/F2ADaPcfHw8PDey2vDhTaiXSsSyfHk9uHh4eEd4LVP7kn727bmeZnZMGDDw8PDG/O+yiOPZfOlvy0YxQ3Cw8PDO8CbL775sD8fdM0LEh4eHt5p3t5ikBeAtbPV/x88PDy8Y7y1YpDfrLW2OG++L9/Bw8PDeysvLxuT8KINLF6cDQ8PD+8DeO02rMlN2bAJDA8PD+8Yb9IK5w1xvrFgHmrg4eHhneOtZaH3gDZNTW5K3o7XBx4eHl7K+wbun9pPAL0N/AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

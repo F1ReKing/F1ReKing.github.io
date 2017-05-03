@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>内存泄漏解析 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="本篇对于Android中内存泄漏进行解析。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存泄漏解析">
+<meta property="og:url" content="http://f1reking.me/2017/03/01/memory-leak-analysis/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="本篇对于Android中内存泄漏进行解析。">
+<meta property="og:updated_time" content="2017-03-28T14:40:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内存泄漏解析">
+<meta name="twitter:description" content="本篇对于Android中内存泄漏进行解析。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">内存泄漏解析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">内存泄漏解析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-01T01:51:34.000Z" itemprop="datePublished" class="page-time">
+  2017-03-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#杂谈"><span class="post-toc-number">2.</span> <span class="post-toc-text">杂谈</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存泄漏解析"><span class="post-toc-number">3.</span> <span class="post-toc-text">内存泄漏解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-持有Context"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1.持有Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Handler"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.Handler</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-单例模式"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.单例模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-非静态内部类创建静态实例"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4.非静态内部类创建静态实例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-线程"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">5.线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-资源未关闭"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">6.资源未关闭</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-监听器未注销"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">7.监听器未注销</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-WebView"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">8.WebView</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-集合容器"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">9.集合容器</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存泄漏检测工具"><span class="post-toc-number">4.</span> <span class="post-toc-text">内存泄漏检测工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-memory-leak-analysis"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">内存泄漏解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-01 09:51:34" datetime="2017-03-01T01:51:34.000Z"  itemprop="datePublished">2017-03-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本篇对于Android中内存泄漏进行解析。<a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相对于C/C++的内存泄漏是new出来的对象没有delete，而java中内存泄漏是new出来的对象放在Heap上无法被GC回收，所以对于内存泄漏，在开发过程中不可轻易忽视。</p>
+<h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>首先谈谈Java的内存分配：</p>
+<ol>
+<li>静态存储区： 编译时就分配好，在程序整个运行期间都存在，主要存放静态数据和常量；</li>
+<li>栈区：当方法执行时，会在栈区内存中创建方法体内部的局部变量，方法结束后自动释放内存；</li>
+<li>堆区：通常用来存放new出来的对象，由java垃圾回收期回收。</li>
+</ol>
+<p>对于java垃圾回收机制回收不同引用类型的介绍：</p>
+<ol>
+<li>强引用(StrongRefrrence)： JVM宁可抛出OOM，也不会让GC回收具有强引用的对象；</li>
+<li>软引用(SoftReference)：只有在内存空间不足时，才会被回收的对象；</li>
+<li>弱引用(WeakReference)：在GC时，一旦发现只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存；</li>
+<li>虚引用(PhantomReference)：任何时候都可以被GC回收。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否存在该对象的虚引用，来了解这个对象是否将要被回收。可以用来作为GC回收Object的标志。</li>
+</ol>
+<p>总结为以下：  </p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>回收时机</th>
+<th>用途</th>
+<th>生存时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>强</td>
+<td>从来不会</td>
+<td>对象的一般状态</td>
+<td>JVM停止运行时终止</td>
+</tr>
+<tr>
+<td>软</td>
+<td>在内存不足时</td>
+<td>联合ReferenceQueue构造有效期短/占内存大/生命周期长的对象的二级高速缓冲器（内存不足才清空）</td>
+<td>内存不足时终止</td>
+</tr>
+<tr>
+<td>弱</td>
+<td>在垃圾回收时</td>
+<td>联合ReferenceQueue构造有效期短/占内存大/生命周期长的对象的一级高速缓冲器（系统发生gc则清空）</td>
+<td>gc运行后终止</td>
+</tr>
+<tr>
+<td>虚</td>
+<td>在垃圾回收时</td>
+<td>联合ReferenceQueue来跟踪对象被垃圾回收器回收的活动</td>
+<td>gc运行后终止</td>
+</tr>
+</tbody>
+</table>
+<h2 id="内存泄漏解析"><a href="#内存泄漏解析" class="headerlink" title="内存泄漏解析"></a>内存泄漏解析</h2><h3 id="1-持有Context"><a href="#1-持有Context" class="headerlink" title="1.持有Context"></a>1.持有Context</h3><p>context是最容易忽视的，很多情况下我们可能随意传递context，例如给一个类传递context的时候经常用Activity，但该类持有对Activity的全部引用，当Activity关闭的时候因为被其他类持有，而导致无法正常被回收，从而导致内存泄漏。</p>
+<p><strong>解决方案：</strong></p>
+<p>在给类传递context的时候使用Application对象，避免依赖activity的生命周期，但谨慎对context使用static关键字。</p>
+<h3 id="2-Handler"><a href="#2-Handler" class="headerlink" title="2.Handler"></a>2.Handler</h3><p>Handler是最容易造成内存泄漏的，如果Handler中有延迟的任务或是等在执行的队列过长，由于消息队列持有对Handler的引用，而Handler又持有actvity的隐式引用，这个引用会保持到消息得到处理，而导致activity无法被垃圾回收器进行回收，而导致内存泄漏。  </p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>把Handler放到单独的类中，或者使用静态的内部类避免泄漏</li>
+<li>如果想要在Handler内部去调用Activity中的资源，可以在Handler中使用弱引用的方式指向所在的Activity，使用static+WeakReference的方式断开handler与activity的关系</li>
+</ol>
+<h3 id="3-单例模式"><a href="#3-单例模式" class="headerlink" title="3.单例模式"></a>3.单例模式</h3><p>在使用单例模式的时候如果使用不当也是会造成内存泄漏的，因为单例膜撕的静态特征使得单例模式的生命周期和应用一样的长，这说明了当一个对象不需要使用了，而单例对象还存在该对象的引用，那么这个对象就不能正常的被回收，导致内存泄漏。</p>
+<p><strong>解决方案：</strong></p>
+<p>在构建单例模式时，我们经常会传入Activity的context，当Activity退出之后，单例对象还持有他的引用，所以为了避免传Activity的context，在单例中通过传入的context获取到全局的上下文对象，而不适用Activity的Context就解决了这个问题。</p>
+<h3 id="4-非静态内部类创建静态实例"><a href="#4-非静态内部类创建静态实例" class="headerlink" title="4.非静态内部类创建静态实例"></a>4.非静态内部类创建静态实例</h3><p>在非静态的内部类默认会持有外部类的引用，而我们又使用非静态内部类创建了一个静态的实例，该静态实例的声明周期和应用一样长，这就导致了该静态实例一直会持有该Activity的引用，导致Activity不能正常回收。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>将内部类修改成静态的，这样它对外部类就没有引用</li>
+<li>将该对象抽取出来封装成一个单例。</li>
+</ol>
+<h3 id="5-线程"><a href="#5-线程" class="headerlink" title="5.线程"></a>5.线程</h3><p>我们在使用线程时，一般都使用匿名内部类，而匿名内部类会对外部类持有默认的引用，当Activity关闭之后如果现成中的任务还没有执行完毕，就会导致Activity不能正常回收，造成内存泄漏。</p>
+<p><strong>解决方案：</strong></p>
+<p>创建一个静态的类，实现Runnable方法，在使用的时候实例化。</p>
+<h3 id="6-资源未关闭"><a href="#6-资源未关闭" class="headerlink" title="6.资源未关闭"></a>6.资源未关闭</h3><p>对于使用了BroadcastReceiver、ContentObserver、File、Cursor、Stream、Bitmap等资源，应该在Activity销毁时及时关闭或者注销掉，否则这些资源不会被回收，造成内存泄漏。</p>
+<h3 id="7-监听器未注销"><a href="#7-监听器未注销" class="headerlink" title="7.监听器未注销"></a>7.监听器未注销</h3><p>在很多地方需要register的监听器，要确保及时unregister监听器。</p>
+<h3 id="8-WebView"><a href="#8-WebView" class="headerlink" title="8.WebView"></a>8.WebView</h3><p>webView是个坑，很难驾驭，如果你在webView有js连调中有线程处理，不再需要使用webView的时候，应该调用它的destory()销毁，释放其占用的内存，否则其占用的内存长期也不能回收，从而造成内存泄漏。</p>
+<h3 id="9-集合容器"><a href="#9-集合容器" class="headerlink" title="9.集合容器"></a>9.集合容器</h3><p>我们通常会把一些对象的引用加入到集合容器（比如ArrayList）中，当我们不再需要该对象时，并没有把它的引用从集合中清理掉，这样这个集合就会越来越大。如果这个集合是static的话，那情况就更严重了。</p>
+<p><strong>解决方案：</strong></p>
+<p>所以在退出程序之前，将集合里面的东西clear，然后置为null，再退出程序。</p>
+<h2 id="内存泄漏检测工具"><a href="#内存泄漏检测工具" class="headerlink" title="内存泄漏检测工具"></a>内存泄漏检测工具</h2><p>对于检测工具，我推荐两种：</p>
+<ol>
+<li><a href="http://www.eclipse.org/mat/downloads.php" target="_blank" rel="external">MAT(Memory Analyzer Tool)</a>，具体使用方法网上很多。</li>
+<li><a href="https://github.com/square/leakcanary" target="_blank" rel="external">LeakCanary</a>，这是我近2年一直在用的一个检测库，配置简单，抓捕率高，但某些机型上有些bug，所以开发阶段可以用，发版建议关闭。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>构造Adapter时，没有使用缓存的 convertView</li>
+<li>Bitmap对象不在使用时调用recycle()释放内存</li>
+<li>Context使用不当造成内存泄露：不要对一个Activity Context保持长生命周期的引用。尽量在一切可以使用应用ApplicationContext代替Context的地方进行替换。</li>
+<li>非静态内部类的静态实例容易造成内存泄漏：即一个类中如果你不能够控制它其中内部类的生命周期（譬如Activity中的一些特殊Handler等），则尽量使用静态类和弱引用来处理（譬如ViewRoot的实现）。</li>
+<li>警惕线程未终止造成的内存泄露；譬如在Activity中关联了一个生命周期超过Activity的Thread，在退出Activity时切记结束线程。一个典型的例子就是HandlerThread的run方法是一个死循环，它不会自己结束，线程的生命周期超过了Activity生命周期，我们必须手动在Activity的销毁方法中中调运thread.getLooper().quit();才不会泄露。</li>
+<li>对象的注册与反注册没有成对出现造成的内存泄露；譬如注册广播接收器、注册观察者（典型的譬如数据库的监听）等。</li>
+<li>创建与关闭没有成对出现造成的泄露；譬如Cursor资源必须手动关闭，WebView必须手动销毁，流等对象必须手动关闭等。</li>
+<li>不要在执行频率很高的方法或者循环中创建对象（比如onmeasure），可以使用HashTable等创建一组对象容器从容器中取那些对象，而不用每次new与释放。</li>
+<li>避免代码设计模式的错误造成内存泄露；譬如循环引用，A持有B，B持有C，C持有A，这样的设计谁都得不到释放。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://blog.csdn.net/imuhao/article/details/51694144" target="_blank" rel="external">Android内存泄漏解决方案(OOM)</a></li>
+<li><a href="http://www.cnblogs.com/liushilin/p/5900089.html" target="_blank" rel="external">内存泄漏全解析，从此拒绝ANR，让OOM远离你的身边，跟内存泄漏say byebye</a></li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-28T14:40:13.000Z" itemprop="dateUpdated">2017-03-28 22:40:13</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2017/03/01/memory-leak-analysis/" target="_blank" rel="external">http://f1reking.me/2017/03/01/memory-leak-analysis/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.me">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&source=本篇对于Android中内存泄漏进行解析。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2017/03/01/memory-leak-analysis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《内存泄漏解析》 — F1ReKing Blog&url=http://f1reking.me/2017/03/01/memory-leak-analysis/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2017/03/01/memory-leak-analysis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/29/Android-Toast/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android用户关闭APP通知导致Toast不显示的解决方案</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/20/mac-chrome-keyboard-shortcuts/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Chrome for Mac键盘快捷键整理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://f1reking.me/2017/03/01/memory-leak-analysis/index.html',
+        sourceId: 'memory-leak-analysis',
+        productKey: 'b39936ac61594c73a0b39d620881867c',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&source=本篇对于Android中内存泄漏进行解析。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2017/03/01/memory-leak-analysis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《内存泄漏解析》 — F1ReKing Blog&url=http://f1reking.me/2017/03/01/memory-leak-analysis/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2017/03/01/memory-leak-analysis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3awZKDIBAE0P3/n85ec1iTbtCtAp4nK1HkeaCGaX9+4uP1diS/XB3vV16dv/9y84GBgbEsI3/w1QOu7kommj/381MwMDBOYFxNrp1K+4KSZ32eGwYGBkYydL5Mf1k0MTAwMB5ecPPdZbsxxsDAwBhrkCWlXvJv/spu24tjYGAsyMi77v9//ki+gYGBsRTjVR6fi7OxYLINQf+YFQYGxtaMfIFri7N8zJl7MTAwTmDMtPLzbWd7TR6OTn2zhoGBsRSj/fBrJoxsG3BJdIqBgbE3Iw8a722c5dfUBSgGBsbWjKSV1kaVMzHkzBYXAwNjJ0a78LXlWr4pnSkQMTAwTmDMbCDbBTSPOYtzDAyMwxjJ8jrWRMsLwXqLi4GBsTVjbAM5M92xiq4GYGBgbM1ICr57A8s2SCgiAQwMjI0YbXO/aIQFpV5bmF5iMDAwNmWMAZKVOy/1xiIEDAwMjJkGWVsatjXsVL6BgYGxIKOND+cjzLxtV293MTAwDmCM/TIff7ajfVlwMTAwtmaMTagNCfIIoQ1EMTAwTmPMt8zu/SwjGgEDA2NTxlhBlgcDycZ4bOM6WBRiYGAsyBhb5sZKt3yEfOo1BgMDY1lG29hqW2bt+8vDAAwMjNMY+WcNeVT5RKl3eSUGBgZGWdIl5WMRTybFKAYGBkY7aDzO/CKOgYFxDqP9qGtsaZ6JNr+Mg4GBsTWj3TomUxkLCZ64CwMDY3HGL3cpGQbdRqCNAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android开发规范(编码+性能+UI) | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="从事Android开发半年以来，我始终觉得自己的Android规范很不行，每个项目都不一样，所以我找了些网上的规范整理出来，以后我的项目会按照这个规范去做应用。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发规范(编码+性能+UI)">
+<meta property="og:url" content="http://f1reking.me/2015/08/01/Android-development-specifications/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="从事Android开发半年以来，我始终觉得自己的Android规范很不行，每个项目都不一样，所以我找了些网上的规范整理出来，以后我的项目会按照这个规范去做应用。">
+<meta property="og:updated_time" content="2016-11-24T13:27:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发规范(编码+性能+UI)">
+<meta name="twitter:description" content="从事Android开发半年以来，我始终觉得自己的Android规范很不行，每个项目都不一样，所以我找了些网上的规范整理出来，以后我的项目会按照这个规范去做应用。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android开发规范(编码+性能+UI)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android开发规范(编码+性能+UI)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2015-08-01T14:08:27.000Z" itemprop="datePublished" class="page-time">
+  2015-08-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、Android编码规范"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、Android编码规范</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、Android性能优化"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、Android性能优化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、AndroidUI优化"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、AndroidUI优化</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android-development-specifications"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android开发规范(编码+性能+UI)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2015-08-01 22:08:27" datetime="2015-08-01T14:08:27.000Z"  itemprop="datePublished">2015-08-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>从事Android开发半年以来，我始终觉得自己的Android规范很不行，每个项目都不一样，所以我找了些网上的规范整理出来，以后我的项目会按照这个规范去做应用。 <a id="more"></a></p>
+<h1 id="一、Android编码规范"><a href="#一、Android编码规范" class="headerlink" title="一、Android编码规范"></a>一、Android编码规范</h1><ol>
+<li>java代码中不出现中文，最多注释中可以出现中文</li>
+<li>局部变量命名、静态成员变量命名<br>只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写。</li>
+<li>常量命名<br>只能包含字母和<em>，字母全部大写，单词之间用</em>隔开。</li>
+<li><p>layout中的id命名命名模式为： view缩写_模块名称_view的逻辑名称<br>view的缩写详情如下：    </p>
+<ul>
+<li>LayoutView：lv</li>
+<li>RelativeView:rv</li>
+<li>TextView:tv</li>
+<li>ImageView:iv</li>
+<li>ImageButton:im</li>
+<li>Button:btn     </li>
+</ul>
+</li>
+<li><p>activity中的view变量命名<br>命名模式为：逻辑名称+view缩写  </p>
+<p> <strong>建议：</strong>如果layout文件很复杂，建议将layout分成多个模块，每个模块定义一个moduleViewHolder，其成员变量包含所属view</p>
+</li>
+<li>strings.xml中的id命名<br><strong>命名模式：</strong>activity名称<em>功能模块名称</em>逻辑名称/activity名称<em>逻辑名称/common</em>逻辑名称<br>strings.xml中，使用activity名称注释，将文件内容区分开来。</li>
+<li>drawable中的图片命名<br><strong>命名模式：</strong>activity名称<em>逻辑名称/common</em>逻辑名称</li>
+<li>styles.xml：将layout中不断重现的style提炼出通用的style通用组件，放到styles.xml中；</li>
+<li>使用layer-list和selector</li>
+<li>图片尽量分拆成多个可重用的图片</li>
+<li>服务端可以实现的，就不要放在客户端</li>
+<li>引用第三方库要慎重，避免应用大容量的第三方库，导致客户端包非常大</li>
+<li>处理应用全局异常和错误，将错误以邮件的形式发送给服务端</li>
+<li>图片的.9处理</li>
+<li>使用静态变量方式实现界面间共享要慎重</li>
+<li>Log(系统名称 模块名称 接口名称，详细描述)</li>
+<li>单元测试（逻辑测试、界面测试）</li>
+<li>不要重用父类的handler，对应一个类的handler也不应该让其子类用到，否则会导致message.what冲突</li>
+<li>activity中在一个View.OnClickListener中处理所有的逻辑</li>
+<li>strings.xml中使用%1$s实现字符串的通配</li>
+<li>如果多个Activity中包含共同的UI处理，那么可以提炼一个CommonActivity，把通用部分叫由它来处理，其他activity只要继承它即可</li>
+<li>使用button+activitgroup实现tab效果时，使用Button.setSelected(true)，确保按钮处于选择状态，并使activitygroup的当前activity与该button对应</li>
+<li>如果所开发的为通用组件，为避免冲突，将drawable/layout/menu/values目录下的文件名增加前缀</li>
+<li>数据一定要效验，例如字符型转数字型，如果转换失败一定要有缺省值；服务端响应数据是否有效判断；</li>
+<li>同一个客户端如果要放在不同的市场，而且要统计各个市场下载及使用数据时针对不同的客户端打不同的包，唯一的区别是versionName，apk文件名为versionName.apk。在升级时，要将自己的versionCode和versionName一并传给服务端，如果需要升级，则下载versionName相对应的apk<br>关于是否要强制升级：  <ul>
+<li>1).不管何种情况都强制升级</li>
+<li>2).判断用户的版本和当前最新版本，如果兼容则强制升级，否则可选；</li>
+</ul>
+</li>
+<li>有的按钮要避免重复点击  </li>
+</ol>
+<h1 id="二、Android性能优化"><a href="#二、Android性能优化" class="headerlink" title="二、Android性能优化"></a>二、Android性能优化</h1><ol>
+<li>http用gzip压缩，设置连接超时时间和响应超时时间<br>http请求按照业务需求，分为是否可以缓存和不可缓存，那么在无网络的环境中，仍然通过缓存的httpresponse浏览部分数据，实现离线阅读.</li>
+<li>listview 性能优化  <ul>
+<li>1)复用convertView<br>在getItemView中，判断convertView是否为空，如果不为空，可复用。如果couvertview中的view需要添加listerner，代码一定要在if(convertView==null){}之外。</li>
+<li>2)异步加载图片 item中如果包含有webimage，那么最好异步加载</li>
+<li>3)快速滑动时不显示图片<br>当快速滑动列表时（SCROLL_STATE_FLING），item中的图片或获取需要消耗资源的view，可以不显示出来；而处于其他两种状态（SCROLL_STATE_IDLE 和SCROLL_STATE_TOUCH_SCROLL），则将那些view显示出来</li>
+<li>4)list中异步加载的图片，当不在可视范围内，按照一定的算法及时回收（如在当前可视范围的上下10条item以外的图片进行回收，或者将图片进行缓存，设置一个大小，按照最近最少使用原则超过部分进行回收）</li>
+<li>5)BaseAdapter避免内存溢出<br>如果BaseAdapter的实体类有属性非常消耗内存，可以将保存到文件；为提高性能，可以进行缓存，并限制缓存大小。</li>
+</ul>
+</li>
+<li>使用线程池，分为核心线程池和普通线程池，下载图片等耗时任务放置在普通线程池，避免耗时任务阻塞线程池后，导致所有异步任务都必须等待</li>
+<li>异步任务，分为核心任务和普通任务，只有核心任务中出现的系统级错误才会报错，异步任务的ui操作需要判断原activity是否处于激活状态<ul>
+<li>1)主线程不要进行网络处理；</li>
+<li>2)主线程不要进行数据库处理；</li>
+<li>3)主线程不要进行文件处理；</li>
+</ul>
+</li>
+<li>尽量避免static成员变量引用资源耗费过多的实例，比如Context</li>
+<li>.使用WeakReference代替强引用，弱引用可以让您保持对对象的引用，同时允许GC在必要时释放对象，回收内存。对于那些创建便宜但耗费大量内存的对象，即希望保持该对象，又要在应用程序需要时使用，同时希望GC必要时回收时，可以考虑使用弱引用。</li>
+<li><strong>超级大胖子Bitmap</strong><br>及时的销毁(Activity的onDestroy时将bitmap回收，在被UI组件使用后马上进行回收会抛RuntimeException: Canvas: trying to use a recycled bitmap android.graphics.Bitmap) 设置一定的采样率(有开发者提供的图片无需进行采样，对于有用户上传或第三方的大小不可控图片，可进行采样减少图片所占的内存)，从服务端返回图片，建议同时反馈图片的size 巧妙的运用软引用 drawable对应resid的资源，bitmap对应其他资源 任何类型的图片，如果获取不到（例如文件不存在，或者读取文件时跑OutOfMemory异常），应该有对应的默认图片（默认图片放在在apk中，通过resid获取）；</li>
+<li>保证Cursor 占用的内存被及时的释放掉，而不是等待GC来处理。并且 Android明显是倾向于编 程者手动的将Cursor close掉</li>
+<li>线程也是造成内存泄露的一个重要的源头。线程产生内存泄露的主要原因在于线程生命周期的不可控</li>
+<li>如果ImageView的图片是来自网络，进行异步加载</li>
+<li>应用开发中自定义View的时候，交互部分，千万不要写成线程不断刷新界面显示，而是根据TouchListener事件主动触发界面的更新</li>
+<li>Drawable<br>ui组件需要用到的图片是apk包自带的，那么一律用setImageResource或者setBackgroundResource，而不要根据resourceid<br><strong>注意：</strong>get(getResources(), R.drawable.btn_achievement_normal)该方法通过resid转换为drawable，需要考虑回收的问题，如果drawable是对象私有对象，在对象销毁前是肯定不会释放内存的。  </li>
+<li>复用、回收Activity对象<br>临时的activity及时finish<ul>
+<li>主界面设置为singleTask</li>
+<li>一般界面设置为singleTop</li>
+</ul>
+</li>
+<li>位置信息<br>获取用户的地理位置信息时，在需要获取数据的时候打开GPS，之后及时关闭掉</li>
+<li>在onResume时设置该界面的电源管理，在onPause时取消设置  </li>
+</ol>
+<h1 id="三、AndroidUI优化"><a href="#三、AndroidUI优化" class="headerlink" title="三、AndroidUI优化"></a>三、AndroidUI优化</h1><ol>
+<li><p>layout组件化，尽量使用merge及include复用</p>
+</li>
+<li><p>使用styles，复用样式定义</p>
+</li>
+<li><p>软键盘的弹出控制，不要让其覆盖输入框</p>
+</li>
+<li><p>数字、字母和汉字混排占位问题：将数字和字母全角化。由于现在大多数情况下我们的输入都是半角，所以 字母和数字的占位无法确定，但是一旦全角化之后，数字、字母的占位就和一个汉字的占位相同了，这样就可以避免由于占位导致的排版问题。</p>
+</li>
+<li><p>英文文档排版：textview自动换行时要保持单词的完整性，解决方案是计算字符串长度，然后手动设定每一行显示多少个字母并加上‘\n‘</p>
+</li>
+<li><p>复杂布局使用RelativeLayout</p>
+</li>
+<li><p>自适应屏幕，使用dp替代pix</p>
+</li>
+<li><p>使用android:layout_weight或者TableLayout制作等分布局</p>
+</li>
+<li><p>使用animation-list制作动画效果  </p>
+</li>
+</ol>
+<p><strong>本文原文发自 <a href="http://f1reking.com/2015/08/01/android-2/" target="_blank" rel="external">F1ReKing</a>, 转载请保留出处, 谢谢.</strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2016-11-24T13:27:28.000Z" itemprop="dateUpdated">2016-11-24 21:27:28</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2015/08/01/Android-development-specifications/" target="_blank" rel="external">http://f1reking.me/2015/08/01/Android-development-specifications/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.me">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2015/08/01/Android-development-specifications/&title=《Android开发规范(编码+性能+UI)》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2015/08/01/Android-development-specifications/&title=《Android开发规范(编码+性能+UI)》 — F1ReKing Blog&source=从事Android开发半年以来，我始终觉得自己的Android规范很不行，每个项目都不一样，所以我找了些网上的规范整理出来，以后我的项目会按照这个规范去做..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2015/08/01/Android-development-specifications/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android开发规范(编码+性能+UI)》 — F1ReKing Blog&url=http://f1reking.me/2015/08/01/Android-development-specifications/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2015/08/01/Android-development-specifications/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2015/12/31/First-work/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">工作第一年</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/06/21/Use-wifi-to-debug-the-program/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">用wifi来调试Android程序</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: 'http://f1reking.me/2015/08/01/Android-development-specifications/index.html',
+        sourceId: 'Android-development-specifications',
+        productKey: 'b39936ac61594c73a0b39d620881867c',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/pc.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/pc.min.js',
+        ],
+        mobileFiles: [
+            '//unpkg.com/hexo-theme-material-indigo@latest/css/cloudTie/mobile.css',
+            '//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/mobile.min.js'
+        ]
+    };
+    </script>
+    <script src="//unpkg.com/hexo-theme-material-indigo@latest/js/cloudTie/loader.min.js"></script>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.me/2015/08/01/Android-development-specifications/&title=《Android开发规范(编码+性能+UI)》 — F1ReKing Blog&pic=http://f1reking.me/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.me/2015/08/01/Android-development-specifications/&title=《Android开发规范(编码+性能+UI)》 — F1ReKing Blog&source=从事Android开发半年以来，我始终觉得自己的Android规范很不行，每个项目都不一样，所以我找了些网上的规范整理出来，以后我的项目会按照这个规范去做..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.me/2015/08/01/Android-development-specifications/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android开发规范(编码+性能+UI)》 — F1ReKing Blog&url=http://f1reking.me/2015/08/01/Android-development-specifications/&via=http://f1reking.me" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.me/2015/08/01/Android-development-specifications/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aW04DMQwF0O5/00XiCwlmem3HUKGTr6r0kROkxL3x4xGP5+f4/vj+ma/j6q/J598/f2Dg4eHhtaZ+NXrTzZcpGdX34uHh4f0OL59KMvV8u08WenR44OHh4f0p774gvn9+XiLj4eHh/T9e773VPAEPDw/vfXh5Ods7HqqAfJmOZS14eHh4MW9Szv7V41+638PDw8Mr3qonG241buiRegMPDw9vg9crhfO4ttdq0CuUC78Y8PDw8Ma8SS2aB7VVzGRxXyDx8PDwBry8IJ40P1UPm0nz1uUvBjw8PLw1XvLR1eBgctHVO0Lw8PDw9nj5hp7zepOutlg12wXw8PDwDvGSN88vwyYRbR5q/PAaPDw8vGVeNTztRQnJEvQuui5bB/Dw8PAO8fLLpElzQK8xq3fZdtluhYeHh7fGy0OKPHq4n2iv0yFaMjw8PLwFXhKMVqOK3tfnS9wsyvHw8PCO8noF9MZRkYcR+U8CPDw8vLO8PHKdXHrl2/2p2BcPDw9vj9ebYtJ0VQ18C+dYsDR4eHh427xJuZwUxKdaB/I4GA8PD2+PV/3ZX20O6G361faFF01XeHh4eAu8ZJPttT3lQXCvgH7xj8HDw8Nb401anSYHRm/J8uIbDw8Pb4OXXHoVSthx6ZyHEYWWLDw8PLyjvFNxQL4ovSaDZzCiMAIPDw9vmdcLFE4t0IFDCA8PD2+BN9/c58dAtYivXtTh4eHhneU9iyOPd3PSpLnqxXLj4eHhLfB6m2/eZFA4l26/5VShj4eHh3eKV45Hg6lUI4ZqS0HhkgwPDw9vjdfMMMalcF7K58dJuTMLDw8Pb42Xxwfl7bvVWBB9Ah4eHt7b8CbRQ/UoGrWF4eHh4a3xqmFEbytPDokkkigcD3h4eHgLvF7xmsSsvYMkf818cfHw8PCKvA8T/8U6zF/rDAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
