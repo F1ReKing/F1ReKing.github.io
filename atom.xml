@@ -4,9 +4,9 @@
   <subtitle>Be the change you want to see in the world.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://f1reking.me/"/>
+  <link href="http://f1reking.com/"/>
   <updated>2017-05-24T07:33:39.000Z</updated>
-  <id>http://f1reking.me/</id>
+  <id>http://f1reking.com/</id>
   
   <author>
     <name>F1ReKing</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>谈谈Kotlin</title>
-    <link href="http://f1reking.me/2017/05/24/Kotlin/"/>
-    <id>http://f1reking.me/2017/05/24/Kotlin/</id>
+    <link href="http://f1reking.com/2017/05/24/Kotlin/"/>
+    <id>http://f1reking.com/2017/05/24/Kotlin/</id>
     <published>2017-05-24T07:33:01.000Z</published>
     <updated>2017-05-24T07:33:39.000Z</updated>
     
@@ -27,14 +27,14 @@
     </summary>
     
     
-      <category term="kotlin" scheme="http://f1reking.me/tags/kotlin/"/>
+      <category term="kotlin" scheme="http://f1reking.com/tags/kotlin/"/>
     
   </entry>
   
   <entry>
     <title>Mac JDK版本切换</title>
-    <link href="http://f1reking.me/2017/04/20/Mac-JDK-Change/"/>
-    <id>http://f1reking.me/2017/04/20/Mac-JDK-Change/</id>
+    <link href="http://f1reking.com/2017/04/20/Mac-JDK-Change/"/>
+    <id>http://f1reking.com/2017/04/20/Mac-JDK-Change/</id>
     <published>2017-04-20T07:44:33.000Z</published>
     <updated>2017-04-20T08:12:29.000Z</updated>
     
@@ -73,17 +73,17 @@
     
     </summary>
     
-      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
   </entry>
   
   <entry>
     <title>Android用户关闭APP通知导致Toast不显示的解决方案</title>
-    <link href="http://f1reking.me/2017/03/29/Android-Toast/"/>
-    <id>http://f1reking.me/2017/03/29/Android-Toast/</id>
+    <link href="http://f1reking.com/2017/03/29/Android-Toast/"/>
+    <id>http://f1reking.com/2017/03/29/Android-Toast/</id>
     <published>2017-03-29T08:00:18.000Z</published>
     <updated>2017-04-20T07:45:30.000Z</updated>
     
@@ -99,17 +99,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>内存泄漏解析</title>
-    <link href="http://f1reking.me/2017/03/01/memory-leak-analysis/"/>
-    <id>http://f1reking.me/2017/03/01/memory-leak-analysis/</id>
+    <link href="http://f1reking.com/2017/03/01/memory-leak-analysis/"/>
+    <id>http://f1reking.com/2017/03/01/memory-leak-analysis/</id>
     <published>2017-03-01T01:51:34.000Z</published>
     <updated>2017-03-28T14:40:13.000Z</updated>
     
@@ -220,17 +220,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Chrome for Mac键盘快捷键整理</title>
-    <link href="http://f1reking.me/2017/01/20/mac-chrome-keyboard-shortcuts/"/>
-    <id>http://f1reking.me/2017/01/20/mac-chrome-keyboard-shortcuts/</id>
+    <link href="http://f1reking.com/2017/01/20/mac-chrome-keyboard-shortcuts/"/>
+    <id>http://f1reking.com/2017/01/20/mac-chrome-keyboard-shortcuts/</id>
     <published>2017-01-20T07:53:01.000Z</published>
     <updated>2017-02-21T02:08:18.000Z</updated>
     
@@ -605,17 +605,17 @@
     
     </summary>
     
-      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
   </entry>
   
   <entry>
     <title>使用DownloadManager进行版本更新（兼容7.0）</title>
-    <link href="http://f1reking.me/2017/01/16/Android-DownloadManager/"/>
-    <id>http://f1reking.me/2017/01/16/Android-DownloadManager/</id>
+    <link href="http://f1reking.com/2017/01/16/Android-DownloadManager/"/>
+    <id>http://f1reking.com/2017/01/16/Android-DownloadManager/</id>
     <published>2017-01-16T08:34:53.000Z</published>
     <updated>2017-03-24T06:28:51.000Z</updated>
     
@@ -652,17 +652,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>快速集成友盟多渠道打包</title>
-    <link href="http://f1reking.me/2017/01/16/UMeng-package/"/>
-    <id>http://f1reking.me/2017/01/16/UMeng-package/</id>
+    <link href="http://f1reking.com/2017/01/16/UMeng-package/"/>
+    <id>http://f1reking.com/2017/01/16/UMeng-package/</id>
     <published>2017-01-16T01:24:46.000Z</published>
     <updated>2017-01-16T04:46:46.000Z</updated>
     
@@ -711,19 +711,19 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
-      <category term="tools" scheme="http://f1reking.me/tags/tools/"/>
+      <category term="tools" scheme="http://f1reking.com/tags/tools/"/>
     
   </entry>
   
   <entry>
     <title>Bye2016Hi2017</title>
-    <link href="http://f1reking.me/2016/12/31/Bye2016Hi2017/"/>
-    <id>http://f1reking.me/2016/12/31/Bye2016Hi2017/</id>
+    <link href="http://f1reking.com/2016/12/31/Bye2016Hi2017/"/>
+    <id>http://f1reking.com/2016/12/31/Bye2016Hi2017/</id>
     <published>2016-12-31T10:28:10.000Z</published>
     <updated>2016-12-31T15:11:23.000Z</updated>
     
@@ -751,17 +751,17 @@
     
     </summary>
     
-      <category term="Life" scheme="http://f1reking.me/categories/Life/"/>
+      <category term="Life" scheme="http://f1reking.com/categories/Life/"/>
     
     
-      <category term="Life" scheme="http://f1reking.me/tags/Life/"/>
+      <category term="Life" scheme="http://f1reking.com/tags/Life/"/>
     
   </entry>
   
   <entry>
     <title>Android中WebView指南</title>
-    <link href="http://f1reking.me/2016/12/04/Android-webview/"/>
-    <id>http://f1reking.me/2016/12/04/Android-webview/</id>
+    <link href="http://f1reking.com/2016/12/04/Android-webview/"/>
+    <id>http://f1reking.com/2016/12/04/Android-webview/</id>
     <published>2016-12-04T13:14:42.000Z</published>
     <updated>2016-12-31T06:19:31.000Z</updated>
     
@@ -775,17 +775,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Android中shape的特性详解</title>
-    <link href="http://f1reking.me/2016/12/01/Android-shape/"/>
-    <id>http://f1reking.me/2016/12/01/Android-shape/</id>
+    <link href="http://f1reking.com/2016/12/01/Android-shape/"/>
+    <id>http://f1reking.com/2016/12/01/Android-shape/</id>
     <published>2016-12-01T14:33:33.000Z</published>
     <updated>2016-12-31T06:20:59.000Z</updated>
     
@@ -879,17 +879,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Android中EditText的一切</title>
-    <link href="http://f1reking.me/2016/11/30/Android-edittext/"/>
-    <id>http://f1reking.me/2016/11/30/Android-edittext/</id>
+    <link href="http://f1reking.com/2016/11/30/Android-edittext/"/>
+    <id>http://f1reking.com/2016/11/30/Android-edittext/</id>
     <published>2016-11-30T01:38:32.000Z</published>
     <updated>2016-12-31T06:20:29.000Z</updated>
     
@@ -910,17 +910,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Android接入支付SDK</title>
-    <link href="http://f1reking.me/2016/11/28/Android-sdk-pay/"/>
-    <id>http://f1reking.me/2016/11/28/Android-sdk-pay/</id>
+    <link href="http://f1reking.com/2016/11/28/Android-sdk-pay/"/>
+    <id>http://f1reking.com/2016/11/28/Android-sdk-pay/</id>
     <published>2016-11-28T03:57:49.000Z</published>
     <updated>2016-12-31T06:20:42.000Z</updated>
     
@@ -983,17 +983,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Android之Activity</title>
-    <link href="http://f1reking.me/2016/11/23/Android-Activity/"/>
-    <id>http://f1reking.me/2016/11/23/Android-Activity/</id>
+    <link href="http://f1reking.com/2016/11/23/Android-Activity/"/>
+    <id>http://f1reking.com/2016/11/23/Android-Activity/</id>
     <published>2016-11-23T07:02:00.000Z</published>
     <updated>2017-03-09T02:15:02.000Z</updated>
     
@@ -1018,17 +1018,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Android之Service</title>
-    <link href="http://f1reking.me/2016/11/23/Android-Service/"/>
-    <id>http://f1reking.me/2016/11/23/Android-Service/</id>
+    <link href="http://f1reking.com/2016/11/23/Android-Service/"/>
+    <id>http://f1reking.com/2016/11/23/Android-Service/</id>
     <published>2016-11-23T03:00:24.000Z</published>
     <updated>2016-11-24T13:31:53.000Z</updated>
     
@@ -1048,17 +1048,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Android中的“再按一次返回键退出程序”的改进</title>
-    <link href="http://f1reking.me/2016/11/19/Android-app-exit/"/>
-    <id>http://f1reking.me/2016/11/19/Android-app-exit/</id>
+    <link href="http://f1reking.com/2016/11/19/Android-app-exit/"/>
+    <id>http://f1reking.com/2016/11/19/Android-app-exit/</id>
     <published>2016-11-19T05:27:19.000Z</published>
     <updated>2016-11-24T13:30:35.000Z</updated>
     
@@ -1075,17 +1075,17 @@
     
     </summary>
     
-      <category term="Android" scheme="http://f1reking.me/categories/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="Android" scheme="http://f1reking.me/tags/Android/"/>
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title>Java中String、StringBuffer及StringBuilder的区别</title>
-    <link href="http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/"/>
-    <id>http://f1reking.me/2016/11/17/String-StringBuffer-StringBuilder/</id>
+    <link href="http://f1reking.com/2016/11/17/String-StringBuffer-StringBuilder/"/>
+    <id>http://f1reking.com/2016/11/17/String-StringBuffer-StringBuilder/</id>
     <published>2016-11-17T05:14:26.000Z</published>
     <updated>2017-03-01T09:20:59.000Z</updated>
     
@@ -1119,17 +1119,17 @@
     
     </summary>
     
-      <category term="Java" scheme="http://f1reking.me/categories/Java/"/>
+      <category term="Java" scheme="http://f1reking.com/categories/Java/"/>
     
     
-      <category term="Java" scheme="http://f1reking.me/tags/Java/"/>
+      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>iterm2设置代理</title>
-    <link href="http://f1reking.me/2016/11/13/Iterm2-set-agent/"/>
-    <id>http://f1reking.me/2016/11/13/Iterm2-set-agent/</id>
+    <link href="http://f1reking.com/2016/11/13/Iterm2-set-agent/"/>
+    <id>http://f1reking.com/2016/11/13/Iterm2-set-agent/</id>
     <published>2016-11-13T06:01:42.000Z</published>
     <updated>2016-11-24T13:40:25.000Z</updated>
     
@@ -1146,19 +1146,19 @@
     
     </summary>
     
-      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
-      <category term="Tools" scheme="http://f1reking.me/tags/Tools/"/>
+      <category term="Tools" scheme="http://f1reking.com/tags/Tools/"/>
     
   </entry>
   
   <entry>
     <title>Mac环境配置adb不起作用解决方案</title>
-    <link href="http://f1reking.me/2016/11/13/Mac-set-adb/"/>
-    <id>http://f1reking.me/2016/11/13/Mac-set-adb/</id>
+    <link href="http://f1reking.com/2016/11/13/Mac-set-adb/"/>
+    <id>http://f1reking.com/2016/11/13/Mac-set-adb/</id>
     <published>2016-11-13T02:39:24.000Z</published>
     <updated>2016-11-24T13:40:19.000Z</updated>
     
@@ -1175,19 +1175,19 @@
     
     </summary>
     
-      <category term="Mac" scheme="http://f1reking.me/categories/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/categories/Mac/"/>
     
     
-      <category term="Mac" scheme="http://f1reking.me/tags/Mac/"/>
+      <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
-      <category term="Tools" scheme="http://f1reking.me/tags/Tools/"/>
+      <category term="Tools" scheme="http://f1reking.com/tags/Tools/"/>
     
   </entry>
   
   <entry>
     <title>设计模式之单例模式</title>
-    <link href="http://f1reking.me/2016/08/29/Design-Pattern-Singleton/"/>
-    <id>http://f1reking.me/2016/08/29/Design-Pattern-Singleton/</id>
+    <link href="http://f1reking.com/2016/08/29/Design-Pattern-Singleton/"/>
+    <id>http://f1reking.com/2016/08/29/Design-Pattern-Singleton/</id>
     <published>2016-08-29T13:43:08.000Z</published>
     <updated>2016-11-24T13:28:37.000Z</updated>
     
@@ -1207,19 +1207,19 @@
     
     </summary>
     
-      <category term="Java" scheme="http://f1reking.me/categories/Java/"/>
+      <category term="Java" scheme="http://f1reking.com/categories/Java/"/>
     
     
-      <category term="Java" scheme="http://f1reking.me/tags/Java/"/>
+      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
     
-      <category term="Design-Pattern" scheme="http://f1reking.me/tags/Design-Pattern/"/>
+      <category term="Design-Pattern" scheme="http://f1reking.com/tags/Design-Pattern/"/>
     
   </entry>
   
   <entry>
     <title>我的Gradle配置</title>
-    <link href="http://f1reking.me/2016/08/25/Gradle-config/"/>
-    <id>http://f1reking.me/2016/08/25/Gradle-config/</id>
+    <link href="http://f1reking.com/2016/08/25/Gradle-config/"/>
+    <id>http://f1reking.com/2016/08/25/Gradle-config/</id>
     <published>2016-08-25T14:06:01.000Z</published>
     <updated>2016-11-24T13:40:13.000Z</updated>
     
@@ -1237,10 +1237,10 @@
     
     </summary>
     
-      <category term="Gradle" scheme="http://f1reking.me/categories/Gradle/"/>
+      <category term="Gradle" scheme="http://f1reking.com/categories/Gradle/"/>
     
     
-      <category term="Gradle" scheme="http://f1reking.me/tags/Gradle/"/>
+      <category term="Gradle" scheme="http://f1reking.com/tags/Gradle/"/>
     
   </entry>
   
