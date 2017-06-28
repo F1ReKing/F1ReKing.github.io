@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://f1reking.com/me/index.html</loc>
+    
+    <lastmod>2017-06-28T00:56:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://f1reking.com/google2c47c1a77b635959.html</loc>
     
     <lastmod>2017-06-27T15:03:53.000Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://f1reking.com/tags/index.html</loc>
     
     <lastmod>2017-05-11T02:28:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/about/index.html</loc>
-    
-    <lastmod>2017-05-02T13:16:55.000Z</lastmod>
     
   </url>
   
