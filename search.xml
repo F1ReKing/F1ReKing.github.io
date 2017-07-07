@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于Android7.0使用webview遇到的一个坑(二级跳转后界面空白)]]></title>
+    <url>%2F2017%2F07%2F07%2Fandroid-webview-keng%2F</url>
+    <content type="text"><![CDATA[这是一篇android7.0使用webview的时候一个坑的解决方案。 之前对于webview的使用做了总结，以为坑应该都吃掉了，没想到今天发版后才发现有一个大坑： 在Android7.0+，第一个加载webview显示是完全没有问题的，但当点击webview内容进行二级页面跳转后，就会显示一片空白，查询了url是正常可以打开的，这就坑了！！ 遇到问题，解决问题！！！ 首先，凭过去前端开发经验，出现空白页面就是url为about:blank，于是就在onPageFinished()的回调里对url打个log，果然输出是about:blank。 1234567891011121314151617@Overridepublic void onPageFinished(WebView view, String url) &#123; super.onPageFinished(view, url); Log.i("TAG",url);&#125;``` 接下去就是定位shouldOverrideUrlLoading()这个回调方法，应该是loadUrl的时候出了问题。```java//在webview内加载url@Overridepublic boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) &#123; view.loadUrl(request.toString()); Log.i(TAG, request.toString()); return true;&#125; 打开Log一看，果然load的是一个对象，而不是一个url。然后跟踪到request中持有getUrl()方法，所以直接调用就出错了，经查询只有在5.0系统才能用，所以只要做个兼容判断就可以了。 最终处理方案为： 12345678910//在webview内加载url@Overridepublic boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) &#123; if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) &#123; view.loadUrl(request.getUrl().toString()); &#125; else &#123; view.loadUrl(request.toString()); &#125; return true;&#125;]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[android-emotion]]></title>
+    <url>%2F2017%2F07%2F05%2Fandroid-emotion%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[谈谈Kotlin]]></title>
     <url>%2F2017%2F05%2F24%2FKotlin%2F</url>
     <content type="text"></content>

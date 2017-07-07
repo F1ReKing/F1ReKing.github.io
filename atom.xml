@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://f1reking.com/"/>
-  <updated>2017-05-24T07:33:39.000Z</updated>
+  <updated>2017-07-07T17:58:13.000Z</updated>
   <id>http://f1reking.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于Android7.0使用webview遇到的一个坑(二级跳转后界面空白)</title>
+    <link href="http://f1reking.com/2017/07/07/android-webview-keng/"/>
+    <id>http://f1reking.com/2017/07/07/android-webview-keng/</id>
+    <published>2017-07-07T15:39:28.000Z</published>
+    <updated>2017-07-07T17:58:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一篇android7.0使用webview的时候一个坑的解决方案。<a id="more"></a></p>
+<p>之前对于webview的使用做了总结，以为坑应该都吃掉了，没想到今天发版后才发现有一个大坑：</p>
+<blockquote>
+<p>在Android7.0+，第一个加载webview显示是完全没有问题的，但当点击webview内容进行二级页面跳转后，就会显示一片空白，查询了url是正常可以打开的，这就坑了！！</p>
+</blockquote>
+<p>遇到问题，解决问题！！！</p>
+<p>首先，凭过去前端开发经验，出现空白页面就是url为about:blank，于是就在onPageFinished()的回调里对url打个log，果然输出是about:blank。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPageFinished</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onPageFinished(view, url);</div><div class="line">    Log.i(<span class="string">"TAG"</span>,url);</div><div class="line">&#125;</div><div class="line">``` </div><div class="line"></div><div class="line">接下去就是定位shouldOverrideUrlLoading()这个回调方法，应该是loadUrl的时候出了问题。</div><div class="line"></div><div class="line">```java</div><div class="line"><span class="comment">//在webview内加载url</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</div><div class="line">    view.loadUrl(request.toString());</div><div class="line">    Log.i(TAG, request.toString());</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打开Log一看，果然load的是一个对象，而不是一个url。然后跟踪到request中持有getUrl()方法，所以直接调用就出错了，经查询只有在5.0系统才能用，所以只要做个兼容判断就可以了。</p>
+<p><strong>最终处理方案为：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在webview内加载url</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) &#123;</div><div class="line">        view.loadUrl(request.getUrl().toString());</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        view.loadUrl(request.toString());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一篇android7.0使用webview的时候一个坑的解决方案。
+    
+    </summary>
+    
+      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
+    
+    
+      <category term="android" scheme="http://f1reking.com/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>android-emotion</title>
+    <link href="http://f1reking.com/2017/07/05/android-emotion/"/>
+    <id>http://f1reking.com/2017/07/05/android-emotion/</id>
+    <published>2017-07-05T08:50:51.000Z</published>
+    <updated>2017-07-05T08:50:51.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>谈谈Kotlin</title>
@@ -1181,66 +1228,6 @@
       <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
       <category term="Tools" scheme="http://f1reking.com/tags/Tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式之单例模式</title>
-    <link href="http://f1reking.com/2016/08/29/Design-Pattern-Singleton/"/>
-    <id>http://f1reking.com/2016/08/29/Design-Pattern-Singleton/</id>
-    <published>2016-08-29T13:43:08.000Z</published>
-    <updated>2016-11-24T13:28:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。<a id="more"></a></p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>确保某个类有且只有一个对象的场景，避免产生多个对象消耗过多的资源，或者某种类型的对象只应该有且只有一个。例如，创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源，这时就要考虑使用单例模式。</p>
-<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><h2 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h2><p>懒汉模式是声明一个静态对象，并且在用户第一次调用getInstance时进行初始化，其实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>优点：只有在使用时才会被实例化，在一定程度上节约了资源；<br>缺点：第一次加载时需要及时进行实例化，反应稍慢，最大的问题是每次调用getInstance都进行同步，造成不必要的同步开销。<br><strong>这种模式一般不建议使用</strong></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li>《Android源码设计模式-解析与实战》</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;简述&quot;&gt;&lt;a href=&quot;#简述&quot; class=&quot;headerlink&quot; title=&quot;简述&quot;&gt;&lt;/a&gt;简述&lt;/h1&gt;&lt;p&gt;单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。
-    
-    </summary>
-    
-      <category term="Java" scheme="http://f1reking.com/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
-    
-      <category term="Design-Pattern" scheme="http://f1reking.com/tags/Design-Pattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的Gradle配置</title>
-    <link href="http://f1reking.com/2016/08/25/Gradle-config/"/>
-    <id>http://f1reking.com/2016/08/25/Gradle-config/</id>
-    <published>2016-08-25T14:06:01.000Z</published>
-    <updated>2016-11-24T13:40:13.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。<a id="more"></a></p>
-<h2 id="Default-Config"><a href="#Default-Config" class="headerlink" title="Default Config"></a>Default Config</h2><p>由于多项目管理总是需要配置Gradle和第三方包的依赖，然而不可能每次新开项目都要一个个去添加第三方依赖，所以我们可以统一管理起来，也给多个module统一管理Gradle。  </p>
-<p>在project的根目录下新建Config.gradle文件来统一管理基本配置。</p>
-<p>Config.gradle文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">    supportVersion = &apos;23.4.0&apos;</div><div class="line"></div><div class="line">    android = [compileSdkVersion: 23,</div><div class="line">               buildToolsVersion: &quot;23.0.3&quot;,</div><div class="line">               applicationId    : &quot;me.f1reking.demo&quot;,</div><div class="line">               minSdkVersion    : 15,</div><div class="line">               targetSdkVersion : 23,</div><div class="line">               versionCode      : 1,</div><div class="line">               versionName      : &quot;1.0&quot;]</div><div class="line"></div><div class="line"></div><div class="line">    dependencies = [appcompatV7              : &quot;com.android.support:appcompat-v7:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    supportV4                : &quot;com.android.support:support-v4:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    design                   : &quot;com.android.support:design:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    recyclerview             : &quot;com.android.support:recyclerview-v7:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    glide                    : &apos;com.github.bumptech.glide:glide:3.7.0&apos;]</div></pre></td></tr></table></figure></p>
-<p>然后在build.gradle文件添加<code>apply from: &quot;config.gradle&quot;</code> 作为文件引导</p>
-<p>最后就可以在app的build.gradle使用配置了，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def config = rootProject.ext.android //android配置</div><div class="line">def dep = rootProject.ext.dependencies // 依赖配置</div><div class="line"></div><div class="line">compileSdkVersion config.compileSdkVersion</div><div class="line">buildToolsVersion config.buildToolsVersion</div><div class="line"></div><div class="line">defaultConfig &#123;</div><div class="line">  applicationId config.applicationId</div><div class="line">  minSdkVersion config.minSdkVersion</div><div class="line">  targetSdkVersion config.targetSdkVersion</div><div class="line">  versionCode config.versionCode</div><div class="line">  versionName config.versionName</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">  compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</div><div class="line">  compile dep.appcompatV7</div><div class="line">  compile dep.supportV4</div><div class="line">  compile dep.design</div><div class="line">  compile dep.recyclerview</div><div class="line">  compile dep.glide</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。
-    
-    </summary>
-    
-      <category term="Gradle" scheme="http://f1reking.com/categories/Gradle/"/>
-    
-    
-      <category term="Gradle" scheme="http://f1reking.com/tags/Gradle/"/>
     
   </entry>
   
