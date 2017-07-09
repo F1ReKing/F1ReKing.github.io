@@ -65,22 +65,6 @@
   </entry>
   
   <entry>
-    <title>谈谈Kotlin</title>
-    <link href="http://f1reking.com/2017/05/24/Kotlin/"/>
-    <id>http://f1reking.com/2017/05/24/Kotlin/</id>
-    <published>2017-05-24T07:33:01.000Z</published>
-    <updated>2017-05-24T07:33:39.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="kotlin" scheme="http://f1reking.com/tags/kotlin/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mac JDK版本切换</title>
     <link href="http://f1reking.com/2017/04/20/Mac-JDK-Change/"/>
     <id>http://f1reking.com/2017/04/20/Mac-JDK-Change/</id>
@@ -782,30 +766,6 @@
   </entry>
   
   <entry>
-    <title>Android中WebView指南</title>
-    <link href="http://f1reking.com/2016/12/04/Android-webview/"/>
-    <id>http://f1reking.com/2016/12/04/Android-webview/</id>
-    <published>2016-12-04T13:14:42.000Z</published>
-    <updated>2016-12-31T06:19:31.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>so,在Android系统中内置了webkit内核浏览器，Android中有个组件叫<a href="https://developer.android.com/reference/android/webkit/WebView.html" target="_blank" rel="external">WebView</a>，能够在应用中展示web界面，此篇就剥解WebView的一切。<a id="more"></a></p>
-<h2 id="WebView简介"><a href="#WebView简介" class="headerlink" title="WebView简介"></a>WebView简介</h2><p>为了开发者能够实现在app内展示网页内容并与网页交互的需求，</p>
-<h2 id="WebView基本使用"><a href="#WebView基本使用" class="headerlink" title="WebView基本使用"></a>WebView基本使用</h2><h2 id="WebView-API详解"><a href="#WebView-API详解" class="headerlink" title="WebView API详解"></a>WebView API详解</h2><h2 id="WebSettings"><a href="#WebSettings" class="headerlink" title="WebSettings"></a>WebSettings</h2><h2 id="WebViewClient"><a href="#WebViewClient" class="headerlink" title="WebViewClient"></a>WebViewClient</h2><h2 id="WebChromeClient"><a href="#WebChromeClient" class="headerlink" title="WebChromeClient"></a>WebChromeClient</h2><h2 id="JavaScript与WebView交互"><a href="#JavaScript与WebView交互" class="headerlink" title="JavaScript与WebView交互"></a>JavaScript与WebView交互</h2><h2 id="WebView加载优化"><a href="#WebView加载优化" class="headerlink" title="WebView加载优化"></a>WebView加载优化</h2><h2 id="WebView使用经验"><a href="#WebView使用经验" class="headerlink" title="WebView使用经验"></a>WebView使用经验</h2>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;so,在Android系统中内置了webkit内核浏览器，Android中有个组件叫&lt;a href=&quot;https://developer.android.com/reference/android/webkit/WebView.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;WebView&lt;/a&gt;，能够在应用中展示web界面，此篇就剥解WebView的一切。
-    
-    </summary>
-    
-      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Android中shape的特性详解</title>
     <link href="http://f1reking.com/2016/12/01/Android-shape/"/>
     <id>http://f1reking.com/2016/12/01/Android-shape/</id>
@@ -1236,6 +1196,69 @@
       <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
     
       <category term="Design-Pattern" scheme="http://f1reking.com/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的Gradle配置</title>
+    <link href="http://f1reking.com/2016/08/25/Gradle-config/"/>
+    <id>http://f1reking.com/2016/08/25/Gradle-config/</id>
+    <published>2016-08-25T14:06:01.000Z</published>
+    <updated>2016-11-24T13:40:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。<a id="more"></a></p>
+<h2 id="Default-Config"><a href="#Default-Config" class="headerlink" title="Default Config"></a>Default Config</h2><p>由于多项目管理总是需要配置Gradle和第三方包的依赖，然而不可能每次新开项目都要一个个去添加第三方依赖，所以我们可以统一管理起来，也给多个module统一管理Gradle。  </p>
+<p>在project的根目录下新建Config.gradle文件来统一管理基本配置。</p>
+<p>Config.gradle文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">    supportVersion = &apos;23.4.0&apos;</div><div class="line"></div><div class="line">    android = [compileSdkVersion: 23,</div><div class="line">               buildToolsVersion: &quot;23.0.3&quot;,</div><div class="line">               applicationId    : &quot;me.f1reking.demo&quot;,</div><div class="line">               minSdkVersion    : 15,</div><div class="line">               targetSdkVersion : 23,</div><div class="line">               versionCode      : 1,</div><div class="line">               versionName      : &quot;1.0&quot;]</div><div class="line"></div><div class="line"></div><div class="line">    dependencies = [appcompatV7              : &quot;com.android.support:appcompat-v7:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    supportV4                : &quot;com.android.support:support-v4:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    design                   : &quot;com.android.support:design:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    recyclerview             : &quot;com.android.support:recyclerview-v7:$&#123;supportVersion&#125;&quot;,</div><div class="line">                    glide                    : &apos;com.github.bumptech.glide:glide:3.7.0&apos;]</div></pre></td></tr></table></figure></p>
+<p>然后在build.gradle文件添加<code>apply from: &quot;config.gradle&quot;</code> 作为文件引导</p>
+<p>最后就可以在app的build.gradle使用配置了，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def config = rootProject.ext.android //android配置</div><div class="line">def dep = rootProject.ext.dependencies // 依赖配置</div><div class="line"></div><div class="line">compileSdkVersion config.compileSdkVersion</div><div class="line">buildToolsVersion config.buildToolsVersion</div><div class="line"></div><div class="line">defaultConfig &#123;</div><div class="line">  applicationId config.applicationId</div><div class="line">  minSdkVersion config.minSdkVersion</div><div class="line">  targetSdkVersion config.targetSdkVersion</div><div class="line">  versionCode config.versionCode</div><div class="line">  versionName config.versionName</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">  compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</div><div class="line">  compile dep.appcompatV7</div><div class="line">  compile dep.supportV4</div><div class="line">  compile dep.design</div><div class="line">  compile dep.recyclerview</div><div class="line">  compile dep.glide</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。
+    
+    </summary>
+    
+      <category term="Gradle" scheme="http://f1reking.com/categories/Gradle/"/>
+    
+    
+      <category term="Gradle" scheme="http://f1reking.com/tags/Gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RxBus</title>
+    <link href="http://f1reking.com/2016/08/22/RxBus/"/>
+    <id>http://f1reking.com/2016/08/22/RxBus/</id>
+    <published>2016-08-22T13:43:54.000Z</published>
+    <updated>2016-11-24T13:30:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>之前项目用的是<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>，最近项目开始用RxJava去替换些复杂的逻辑操作，所以可以用RxBus来替代EventBus，这样可以省去库的依赖，减小apk的大小。<a id="more"></a></p>
+</blockquote>
+<h4 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h4><p>此篇需要有RxJava的基础，关于RxJava，可以看扔物线的<a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">给 Android 开发者的 RxJava 详解</a>.</p>
+<h4 id="RxBus"><a href="#RxBus" class="headerlink" title="RxBus"></a>RxBus</h4><p>若对于RxJava有些了解，其RxBus的简单代码如下:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RxBus</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> RxBus instance;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Subject bus;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RxBus</span><span class="params">()</span> </span>&#123;</div><div class="line">        bus = <span class="keyword">new</span> SerializedSubject&lt;&gt;(PublishSubject.create());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RxBus <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (RxBus.class) &#123;</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">                    instance = <span class="keyword">new</span> RxBus();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//提供一个事件传递</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">post</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        bus.onNext(o);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 根据传递的 eventType 类型返回特定类型(eventType)的 被观察者</span></div><div class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">Observable&lt;T&gt; <span class="title">toObserverable</span><span class="params">(Class&lt;T&gt; eventType)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> bus.ofType(eventType);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>发送事件的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RxBus.getInstance().post(<span class="keyword">new</span> Event(<span class="number">0</span>));</div></pre></td></tr></table></figure></p>
+<p>Event是要发送的事件:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> flag;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(<span class="keyword">int</span> flag)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.flag = flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event</span><span class="params">(String message, <span class="keyword">int</span> flag)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">        <span class="keyword">this</span>.flag = flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> message;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getFlag</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接收事件的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// rxSubscription是一个Subscription的全局变量，这段代码可以在onCreate/onStart等生命周期内</span></div><div class="line">rxSubscription = RxBus.getDefault().toObserverable(Event.class)</div><div class="line">        .subscribe(<span class="keyword">new</span> Action1&lt;UserEvent&gt;() &#123;</div><div class="line">               <span class="meta">@Override</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Event event)</span> </span>&#123;</div><div class="line">                 </div><div class="line">                   String message = event.getMessage();</div><div class="line">                   ...</div><div class="line">               &#125;</div><div class="line">           &#125;,</div><div class="line">        <span class="keyword">new</span> Action1&lt;Throwable&gt;() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Throwable throwable)</span> </span>&#123;</div><div class="line">                <span class="comment">// <span class="doctag">TODO:</span> 处理异常</span></div><div class="line">            &#125;        </div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p> 一定要记得在生命周期结束的地方取消订阅事件，防止RxJava可能会引起的内存泄漏问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onDestroy();</div><div class="line">    <span class="keyword">if</span>(!rxSubscription.isUnsubscribed()) &#123;</div><div class="line">        rxSubscription.unsubscribe();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;之前项目用的是&lt;a href=&quot;https://github.com/greenrobot/EventBus&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;EventBus&lt;/a&gt;，最近项目开始用RxJava去替换些复杂的逻辑操作，所以可以用RxBus来替代EventBus，这样可以省去库的依赖，减小apk的大小。
+    
+    </summary>
+    
+      <category term="RxJava" scheme="http://f1reking.com/categories/RxJava/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
+    
+      <category term="RxJava" scheme="http://f1reking.com/tags/RxJava/"/>
     
   </entry>
   

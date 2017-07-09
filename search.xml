@@ -17,14 +17,6 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[谈谈Kotlin]]></title>
-    <url>%2F2017%2F05%2F24%2FKotlin%2F</url>
-    <content type="text"></content>
-      <tags>
-        <tag>kotlin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Mac JDK版本切换]]></title>
     <url>%2F2017%2F04%2F20%2FMac-JDK-Change%2F</url>
     <content type="text"><![CDATA[本篇是通过命令轻松切换到对应的Java版本教程。 由于开发Android项目现在基本用到JDK8，但最近在搞JavaWeb项目需要用到JDK7而已，所以需要同时有多个版本的JDK并存，就研究下如何并存。 目标：通过命令’jdk7’,’jdk8’轻松切换到对应的jdk版本，默认初始为jdk7。 做法： 安装所有的JDK： 自行到Oracle官网下载安装对应的版本，由于Oracle官网已经下不到JDK7的安装包，所以这里我可以提供下载：百度云：密码34bj 配置： 创建.bash_profile配置文件（若已经有该文件直接跳过此步骤） 1touch ~/.bash_profile 编辑.bash_profile 1vim ~/.bash_profile 设置jdk版本 123export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0.jdk/Contents/Homeexport JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Homeexport JAVA_HOME=$JAVA_7_HOME alias命令动态切换配置 12alias jdk8=&apos;export JAVA_HOME=$JAVA_8_HOME&apos;alias jdk7=&apos;export JAVA_HOME=$JAVA_7_HOME&apos; 重新执行.bash_profile文件 1source ~/.bash_profile 验证：使用jdk7、jdk8命令即可切换jdk版本]]></content>
@@ -89,17 +81,6 @@
       </categories>
       <tags>
         <tag>Life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Android中WebView指南]]></title>
-    <url>%2F2016%2F12%2F04%2FAndroid-webview%2F</url>
-    <content type="text"><![CDATA[so,在Android系统中内置了webkit内核浏览器，Android中有个组件叫WebView，能够在应用中展示web界面，此篇就剥解WebView的一切。 WebView简介为了开发者能够实现在app内展示网页内容并与网页交互的需求， WebView基本使用WebView API详解WebSettingsWebViewClientWebChromeClientJavaScript与WebView交互WebView加载优化WebView使用经验]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
