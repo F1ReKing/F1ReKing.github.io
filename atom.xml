@@ -128,32 +128,6 @@
   </entry>
   
   <entry>
-    <title>Android用户关闭APP通知导致Toast不显示的解决方案</title>
-    <link href="http://f1reking.com/2017/03/29/Android-Toast/"/>
-    <id>http://f1reking.com/2017/03/29/Android-Toast/</id>
-    <published>2017-03-29T08:00:18.000Z</published>
-    <updated>2017-04-20T07:45:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一篇在开发过程中发现Toast不显示的解决方案文章<a id="more"></a></p>
-<h3 id="案发"><a href="#案发" class="headerlink" title="案发"></a>案发</h3><p>在最近的开发过程中，测试反映华为手机没有显示toast，于是先排查是不是华为rom的问题，后来一步步排查，发现只要Notification被关闭，toast也不能显示，而且华为手机安装app后默认是关闭Notification，WTF，这是个坑，必须得解决。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>好久没去看Toast的源码了，从肯定从Toast的源码下手，从源码中发现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Show the view for the specified duration.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (mNextView == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"setView must have been called"</span>);</div><div class="line">    &#125;</div><div class="line">    INotificationManager service = getService();</div><div class="line">    String pkg = mContext.getOpPackageName();</div><div class="line">    TN tn = mTN;</div><div class="line">    tn.mNextView = mNextView;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        service.enqueueToast(pkg, tn, mDuration);</div><div class="line">    &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</div><div class="line">        <span class="comment">// Empty</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一篇在开发过程中发现Toast不显示的解决方案文章
-    
-    </summary>
-    
-      <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
-    
-    
-      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
-    
-  </entry>
-  
-  <entry>
     <title>内存泄漏解析</title>
     <link href="http://f1reking.com/2017/03/01/memory-leak-analysis/"/>
     <id>http://f1reking.com/2017/03/01/memory-leak-analysis/</id>
@@ -1228,6 +1202,38 @@
       <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
       <category term="Tools" scheme="http://f1reking.com/tags/Tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式之单例模式</title>
+    <link href="http://f1reking.com/2016/08/29/Design-Pattern-Singleton/"/>
+    <id>http://f1reking.com/2016/08/29/Design-Pattern-Singleton/</id>
+    <published>2016-08-29T13:43:08.000Z</published>
+    <updated>2016-11-24T13:28:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。<a id="more"></a></p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>确保某个类有且只有一个对象的场景，避免产生多个对象消耗过多的资源，或者某种类型的对象只应该有且只有一个。例如，创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源，这时就要考虑使用单例模式。</p>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><h2 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h2><p>懒汉模式是声明一个静态对象，并且在用户第一次调用getInstance时进行初始化，其实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>优点：只有在使用时才会被实例化，在一定程度上节约了资源；<br>缺点：第一次加载时需要及时进行实例化，反应稍慢，最大的问题是每次调用getInstance都进行同步，造成不必要的同步开销。<br><strong>这种模式一般不建议使用</strong></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li>《Android源码设计模式-解析与实战》</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简述&quot;&gt;&lt;a href=&quot;#简述&quot; class=&quot;headerlink&quot; title=&quot;简述&quot;&gt;&lt;/a&gt;简述&lt;/h1&gt;&lt;p&gt;单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。
+    
+    </summary>
+    
+      <category term="Java" scheme="http://f1reking.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
+    
+      <category term="Design-Pattern" scheme="http://f1reking.com/tags/Design-Pattern/"/>
     
   </entry>
   
