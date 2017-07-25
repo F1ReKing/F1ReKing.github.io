@@ -1,4 +1,199 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Android中EditText的一切 · F1ReKing Blog</title><meta name="description" content="Android中EditText的一切 - F1ReKing"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://f1reking.com/atom.xml" title="F1ReKing Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android中EditText的一切</h1><div class="post-info">Nov 30, 2016</div><div class="post-content"><p>本篇我想总结下关于EditText控件的使用和遇到的问题<a id="more"></a></p>
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android中EditText的一切 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="本篇我想总结下关于EditText控件的使用和遇到的问题">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中EditText的一切">
+<meta property="og:url" content="http://f1reking.com/2016/11/30/Android-edittext/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="本篇我想总结下关于EditText控件的使用和遇到的问题">
+<meta property="og:updated_time" content="2016-12-31T06:20:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中EditText的一切">
+<meta name="twitter:description" content="本篇我想总结下关于EditText控件的使用和遇到的问题">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android中EditText的一切</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android中EditText的一切</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-30T01:38:32.000Z" itemprop="datePublished" class="page-time">
+  2016-11-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android-edittext"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android中EditText的一切</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-11-30 09:38:32" datetime="2016-11-30T01:38:32.000Z"  itemprop="datePublished">2016-11-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本篇我想总结下关于EditText控件的使用和遇到的问题<a id="more"></a></p>
 <p>可以，不跟你多bb，基本知识请直接看<a href="https://developer.android.com/reference/android/widget/EditText.html" target="_blank" rel="external">Android Developers中关于EditText的API</a>，本篇问题也大多于查看api之后的方法总结。</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
 <li>经常碰到界面初始化后EditText就会自动获取焦点并弹出输入法，这样的用户体验很不好，所以我们可以禁止输入法自动弹出。<br>解决方案：<br>方案1：在Activity的onCreate()方法中加入：<br><code>getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);</code><br>方案2：在Manifest文件中的Activity注册标签下，加入属性：<br><code>android:windowSoftInputMode=&quot;statehidden&quot;</code></li>
@@ -7,4 +202,267 @@
 </ol>
 <p><strong>注意：</strong>必须在xml上加上<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">android:maxLines="1"     </div><div class="line">android:inputType="text"</div></pre></td></tr></table></figure></p>
 <p>中其中一个才能使用这个导航功能，或者用java代码也行<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">editText.setInputType(EditorInfo.TYPE_CLASS_TEXT);  </div><div class="line">editText.setSingleLine(<span class="keyword">true</span>);</div></pre></td></tr></table></figure></p>
-</div></article></div></main><footer><div class="paginator"><a href="/2016/12/01/Android-shape/" class="prev">PREV</a><a href="/2016/11/28/Android-sdk-pay/" class="next">NEXT</a></div><div class="copyright"><p>powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p><p>© 2014 - 2017 <a href="http://f1reking.com">F1ReKing</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2016-12-31T06:20:29.000Z" itemprop="dateUpdated">2016-12-31 14:20:29</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2016/11/30/Android-edittext/" target="_blank" rel="external">http://f1reking.com/2016/11/30/Android-edittext/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.com">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2016/11/30/Android-edittext/&title=《Android中EditText的一切》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2016/11/30/Android-edittext/&title=《Android中EditText的一切》 — F1ReKing Blog&source=本篇我想总结下关于EditText控件的使用和遇到的问题" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2016/11/30/Android-edittext/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android中EditText的一切》 — F1ReKing Blog&url=http://f1reking.com/2016/11/30/Android-edittext/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2016/11/30/Android-edittext/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/12/01/Android-shape/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android中shape的特性详解</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/28/Android-sdk-pay/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android接入支付SDK</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2016/11/30/Android-edittext/&title=《Android中EditText的一切》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2016/11/30/Android-edittext/&title=《Android中EditText的一切》 — F1ReKing Blog&source=本篇我想总结下关于EditText控件的使用和遇到的问题" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2016/11/30/Android-edittext/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android中EditText的一切》 — F1ReKing Blog&url=http://f1reking.com/2016/11/30/Android-edittext/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2016/11/30/Android-edittext/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3aQY6kMAwF0L7/pWu2I7WA/x1mpEoeq1IJEh4Ly4798xNfn1/X7/+v7v/7n+T379VeuzAwML6W8bm92tdtP0T+me5XwMDAOIFxtXEbFh82u9gxCccP74yBgYERbNzCZvtiYGBgtMu1JW6eIGJgYGDMitiVl1v5/XItjoGB8YWM/NT9///+J/0NDAyMr2J8yqs9hpsli/VbYWBgbM3IA1yenCXl7nrAxcDAOJlxX4Lmgxf56EYboKNTQwwMjO0YbeOwHRFLPtPKsxgYGHsz2jZAwpuNYkTJ39VTGBgYWzPe7S3k7cZZeH0hKcTAwNiUsT7ukD9Vl6wYGBgHMGah8P4TzAJuEnwfilgMDIxNGXk5Omtz5iu0zz6siYGBsRFjZTBiVqYmK7RHexgYGOcw2lGJttBdGQh7SAoxMDCOZ7zQXByF0aLQxcDAOICRPFxPmcV3rpe+GBgYJzDaVuL9lm2zIU9AL/fCwMDYmjE7pm9HN/IENP9AxRQJBgbGFoz15dpAOTvse9gLAwPjYEbbGFiJgdHI130jEwMD4xhGkUXGjYG6BC1HNDAwMHZlrCRkbarXlsr5+hgYGHszVoJdG2RnQ2Cz1ikGBsZ+jPZgqz1Qa4PjsC2BgYFxAGMW+GYJ3EqSd3knBgYGRhz43h01w8DAwJgxkkbmbLQiL4Mv+xsYGBhbM9pmQJLw5clfW7JiYGCcxnhrhGLlpdskcqm/gYGB8U2MP5uT+gh/CCoAAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

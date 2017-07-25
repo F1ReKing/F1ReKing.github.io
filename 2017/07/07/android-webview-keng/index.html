@@ -1,4 +1,192 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 关于Android7.0使用webview遇到的一个坑 · F1ReKing Blog</title><meta name="description" content="关于Android7.0使用webview遇到的一个坑 - F1ReKing"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://f1reking.com/atom.xml" title="F1ReKing Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">关于Android7.0使用webview遇到的一个坑</h1><div class="post-info">Jul 7, 2017</div><div class="post-content"><p>这是一篇android7.0使用webview的时候一个坑的解决方案。<a id="more"></a></p>
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>关于Android7.0使用webview遇到的一个坑 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="android">
+    <meta name="description" content="这是一篇android7.0使用webview的时候一个坑的解决方案。">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Android7.0使用webview遇到的一个坑">
+<meta property="og:url" content="http://f1reking.com/2017/07/07/android-webview-keng/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="这是一篇android7.0使用webview的时候一个坑的解决方案。">
+<meta property="og:updated_time" content="2017-07-09T13:56:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Android7.0使用webview遇到的一个坑">
+<meta name="twitter:description" content="这是一篇android7.0使用webview的时候一个坑的解决方案。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">关于Android7.0使用webview遇到的一个坑</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">关于Android7.0使用webview遇到的一个坑</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-07T15:39:28.000Z" itemprop="datePublished" class="page-time">
+  2017-07-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-android-webview-keng"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">关于Android7.0使用webview遇到的一个坑</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-07 23:39:28" datetime="2017-07-07T15:39:28.000Z"  itemprop="datePublished">2017-07-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这是一篇android7.0使用webview的时候一个坑的解决方案。<a id="more"></a></p>
 <p>之前对于webview的使用做了总结，以为坑应该都吃掉了，没想到今天发版后才发现有一个大坑：</p>
 <blockquote>
 <p>在Android7.0+，第一个加载webview显示是完全没有问题的，但当点击webview内容进行二级页面跳转后，就会显示一片空白，查询了url是正常可以打开的，这就坑了！！</p>
@@ -11,4 +199,260 @@
 <p>打开Log一看，果然load的是一个对象，而不是一个url。然后跟踪到request中持有getUrl()方法，所以直接调用就出错了，经查询只有在5.0系统才能用，所以只要做个兼容判断就可以了。</p>
 <p><strong>最终处理方案为：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在webview内加载url</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) &#123;</div><div class="line">        view.loadUrl(request.getUrl().toString());</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        view.loadUrl(request.toString());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/07/05/android-emotion/" class="next">NEXT</a></div><div class="copyright"><p>powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p><p>© 2014 - 2017 <a href="http://f1reking.com">F1ReKing</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-07-09T13:56:07.000Z" itemprop="dateUpdated">2017-07-09 21:56:07</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2017/07/07/android-webview-keng/" target="_blank" rel="external">http://f1reking.com/2017/07/07/android-webview-keng/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.com">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2017/07/07/android-webview-keng/&title=《关于Android7.0使用webview遇到的一个坑》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2017/07/07/android-webview-keng/&title=《关于Android7.0使用webview遇到的一个坑》 — F1ReKing Blog&source=这是一篇android7.0使用webview的时候一个坑的解决方案。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2017/07/07/android-webview-keng/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于Android7.0使用webview遇到的一个坑》 — F1ReKing Blog&url=http://f1reking.com/2017/07/07/android-webview-keng/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2017/07/07/android-webview-keng/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/05/android-emotion/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">android-emotion</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2017/07/07/android-webview-keng/&title=《关于Android7.0使用webview遇到的一个坑》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2017/07/07/android-webview-keng/&title=《关于Android7.0使用webview遇到的一个坑》 — F1ReKing Blog&source=这是一篇android7.0使用webview的时候一个坑的解决方案。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2017/07/07/android-webview-keng/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《关于Android7.0使用webview遇到的一个坑》 — F1ReKing Blog&url=http://f1reking.com/2017/07/07/android-webview-keng/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2017/07/07/android-webview-keng/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3ay26EMAwF0Pn/n6bbShXMtU0XSU5WIwo0h4XlRz6feF2/1t2V5P7k9907X1gYGBjLMq7HdXfP3zfcvTl/Q/J/b6kYGBgHMJJNVEnJm/Nw/GXPGBgYGC1SOWhiYGBgvMRItpiUvs8JIgYGBkaviJ206nqB+19qcQwMjAUZ727l3d//Mt/AwMBYinEV13OzLL+eD0ejXWFgYGzNyANc7/BEHsST618+EAYGxqaMa7B6uVleyiahvJkaYmBgLMWoBrvqGKDXbsuHE7e7xcDAOIyRP1zdYjmHnQRcDAyMZRm9SUKvNfYcuEclLgYGxtaMpNE/afq/1aqLPjcGBsYBjGTT755wyAvUUe8QAwNjcUa1ZM3bbb0ittrCw8DAOIGRBNNki3mBmgfl5zQxqsgxMDC2YFRTwHnYrX6UaJ8YGBhbM+YvrT6V/zUP7hgYGHsz8vDaGypUB5OFg18YGBiHMZKkbbLyYFoN3BgYGCcwJi2zfAw5TwcjJAYGxjGMPMz10rheMy7CYGBgHMboJW35ACAva/N0EwMD4xxGcqV35GvS1IuewsDA2JRxFVc11cuL2N5xjU+eS2JgYCzL6IXIPMjmxeqknYeBgXECo9rYemHcWPxk0bfHwMA4gJE0zuZHKCZF7Jc7MTAwMOJ7egOAahDHwMDAmNfEkyNfzbEoBgbGAYxqoz9v3FeHBKPDFhgYGJsyJqVjdcTYC7Lz0hcDA2NZxg9mAkupt7ZeGgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

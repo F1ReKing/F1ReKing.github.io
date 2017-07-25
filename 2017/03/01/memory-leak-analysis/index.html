@@ -1,4 +1,199 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 内存泄漏解析 · F1ReKing Blog</title><meta name="description" content="内存泄漏解析 - F1ReKing"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://f1reking.com/atom.xml" title="F1ReKing Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">内存泄漏解析</h1><div class="post-info">Mar 1, 2017</div><div class="post-content"><p>本篇对于Android中内存泄漏进行解析。<a id="more"></a></p>
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>内存泄漏解析 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="本篇对于Android中内存泄漏进行解析。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存泄漏解析">
+<meta property="og:url" content="http://f1reking.com/2017/03/01/memory-leak-analysis/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="本篇对于Android中内存泄漏进行解析。">
+<meta property="og:updated_time" content="2017-03-28T14:40:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内存泄漏解析">
+<meta name="twitter:description" content="本篇对于Android中内存泄漏进行解析。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">内存泄漏解析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">内存泄漏解析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-01T01:51:34.000Z" itemprop="datePublished" class="page-time">
+  2017-03-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#杂谈"><span class="post-toc-number">2.</span> <span class="post-toc-text">杂谈</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存泄漏解析"><span class="post-toc-number">3.</span> <span class="post-toc-text">内存泄漏解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-持有Context"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1.持有Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Handler"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.Handler</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-单例模式"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.单例模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-非静态内部类创建静态实例"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4.非静态内部类创建静态实例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-线程"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">5.线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-资源未关闭"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">6.资源未关闭</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-监听器未注销"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">7.监听器未注销</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-WebView"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">8.WebView</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-集合容器"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">9.集合容器</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存泄漏检测工具"><span class="post-toc-number">4.</span> <span class="post-toc-text">内存泄漏检测工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-memory-leak-analysis"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">内存泄漏解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-03-01 09:51:34" datetime="2017-03-01T01:51:34.000Z"  itemprop="datePublished">2017-03-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android/">Android</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本篇对于Android中内存泄漏进行解析。<a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相对于C/C++的内存泄漏是new出来的对象没有delete，而java中内存泄漏是new出来的对象放在Heap上无法被GC回收，所以对于内存泄漏，在开发过程中不可轻易忽视。</p>
 <h2 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h2><p>首先谈谈Java的内存分配：</p>
 <ol>
@@ -97,4 +292,267 @@
 <li><a href="http://blog.csdn.net/imuhao/article/details/51694144" target="_blank" rel="external">Android内存泄漏解决方案(OOM)</a></li>
 <li><a href="http://www.cnblogs.com/liushilin/p/5900089.html" target="_blank" rel="external">内存泄漏全解析，从此拒绝ANR，让OOM远离你的身边，跟内存泄漏say byebye</a></li>
 </ol>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/04/20/Mac-JDK-Change/" class="prev">PREV</a><a href="/2017/01/20/mac-chrome-keyboard-shortcuts/" class="next">NEXT</a></div><div class="copyright"><p>powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p><p>© 2014 - 2017 <a href="http://f1reking.com">F1ReKing</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-03-28T14:40:13.000Z" itemprop="dateUpdated">2017-03-28 22:40:13</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2017/03/01/memory-leak-analysis/" target="_blank" rel="external">http://f1reking.com/2017/03/01/memory-leak-analysis/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.com">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&source=本篇对于Android中内存泄漏进行解析。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2017/03/01/memory-leak-analysis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《内存泄漏解析》 — F1ReKing Blog&url=http://f1reking.com/2017/03/01/memory-leak-analysis/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2017/03/01/memory-leak-analysis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/20/Mac-JDK-Change/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Mac JDK版本切换</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/20/mac-chrome-keyboard-shortcuts/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Chrome for Mac键盘快捷键整理</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2017/03/01/memory-leak-analysis/&title=《内存泄漏解析》 — F1ReKing Blog&source=本篇对于Android中内存泄漏进行解析。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2017/03/01/memory-leak-analysis/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《内存泄漏解析》 — F1ReKing Blog&url=http://f1reking.com/2017/03/01/memory-leak-analysis/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2017/03/01/memory-leak-analysis/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNUlEQVR42u3aS46DMBBFUfa/aVrqKW24r+xETfl6FBECPhmUXJ/jwOv8XaPr12+v16+fR/eM3rVgyZAh47WM83bdM8gW+XP40/54jgwZMjZg8MfxWMfvSdkyZMiQMWLMvBIFzdv3ypAhQ0YacHmaOp/uypAhQwZPYvkm0vDKg/uCXFyGDBkvZKSNgW9+/mB/Q4YMGS9hnOFKA+JMCzPYlQwZMlozRgEuSB1Lpf+ZXw33IEOGjA0YaZJZC5S85UDwMmTI2IFBwh8JrCQRnWlkxp0NGTJkNGLwQ156iJxpc9ZGPWTIkNGVwY9ia9uN5L/kIyAyZMjYgZEOhKWJaC2sB3uQIUNGawY/0s1sfb6cl6bZMmTI6Mrg+S4vq/E2JE+bH6gyZMjYhlGr26WDFHzYQoYMGTszauEyPVDOFNqCaREZMmQ0ZZCf8dLYp1PZYDhMhgwZTRnpXAY/LJJ1gPVwvwwZMpoySKjlD12b6PKSnwwZMnozagWvdBiChOy08CdDhox9GGmAS6+nYxn8jzt4zJYhQ0YLBj+ipeW5dFvFt8uQIaM1g6evPKVc1eyMG5wyZMhoyjjDxVNNckDkBbiHb2XIkNGaMRPmeJoaFPdxAixDhozdGGnqWCuT1YYqgj3IkCFjA0Zab08bALWUNTiMypAhQwZIO2uFufujJE+qZciQISNtBpBUlh8cEUaGDBkbMEgSu7aGN19uK+biMmTIeCFjpjFw/9C0hZk2UJf1N2TIkPF/GT8H4Tf1VN5ctQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

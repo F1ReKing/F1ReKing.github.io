@@ -332,7 +332,7 @@
   <entry>
     <title><![CDATA[Android Studio问题集锦]]></title>
     <url>%2F2016%2F01%2F13%2FAndroid-Studio-Collection-Problems%2F</url>
-    <content type="text"><![CDATA[从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。 Android Studio - no debuggable applications在使用Android Studio的时候有碰过这个问题，看不到所要调试的app选项。 经过研究后，通过 Tools-&gt;Android-&gt;Enable ADB Integration active. 即可解决问题。 本文原文发自 F1ReKing, 转载请保留出处, 谢谢.]]></content>
+    <content type="text"><![CDATA[从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。 Android Studio - no debuggable applications 在使用Android Studio的时候有碰过这个问题，看不到所要调试的app选项。 经过研究后，通过 Tools-&gt;Android-&gt;Enable ADB Integration active. 即可解决问题。 本文原文发自 F1ReKing, 转载请保留出处, 谢谢.]]></content>
       <categories>
         <category>Android Studio</category>
       </categories>

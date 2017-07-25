@@ -1,4 +1,471 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Android Studio问题集锦 · F1ReKing Blog</title><meta name="description" content="Android Studio问题集锦 - F1ReKing"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://f1reking.com/atom.xml" title="F1ReKing Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Android Studio问题集锦</h1><div class="post-info">Jan 13, 2016</div><div class="post-content"><p>从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。<br><a id="more"></a></p>
-<h4 id="Android-Studio-no-debuggable-applications"><a href="#Android-Studio-no-debuggable-applications" class="headerlink" title="Android Studio - no debuggable applications"></a>Android Studio - no debuggable applications</h4><p><img src="http://7fv9un.com1.z0.glb.clouddn.com/2016-01-13_234717.jpg" alt=""><br>在使用Android Studio的时候有碰过这个问题，看不到所要调试的app选项。<br>  经过研究后，通过<strong> Tools-&gt;Android-&gt;Enable ADB Integration active.</strong> 即可解决问题。  </p>
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android Studio问题集锦 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android,Android Studio">
+    <meta name="description" content="从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。">
+<meta name="keywords" content="Android,Android Studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Studio问题集锦">
+<meta property="og:url" content="http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。">
+<meta property="og:image" content="http://7fv9un.com1.z0.glb.clouddn.com/2016-01-13_234717.jpg">
+<meta property="og:updated_time" content="2016-11-24T13:28:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Studio问题集锦">
+<meta name="twitter:description" content="从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。">
+<meta name="twitter:image" content="http://7fv9un.com1.z0.glb.clouddn.com/2016-01-13_234717.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android Studio问题集锦</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android Studio问题集锦</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-01-13T15:37:11.000Z" itemprop="datePublished" class="page-time">
+  2016-01-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android-Studio/">Android Studio</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Android-Studio-no-debuggable-applications"><span class="post-toc-number">1.</span> <span class="post-toc-text">Android Studio - no debuggable applications</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android-Studio-Collection-Problems"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android Studio问题集锦</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-01-13 23:37:11" datetime="2016-01-13T15:37:11.000Z"  itemprop="datePublished">2016-01-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Android-Studio/">Android Studio</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇到的软件和bug问题。<br><a id="more"></a></p>
+<h4 id="Android-Studio-no-debuggable-applications"><a href="#Android-Studio-no-debuggable-applications" class="headerlink" title="Android Studio - no debuggable applications"></a>Android Studio - no debuggable applications</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://7fv9un.com1.z0.glb.clouddn.com/2016-01-13_234717.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>在使用Android Studio的时候有碰过这个问题，看不到所要调试的app选项。<br>  经过研究后，通过<strong> Tools-&gt;Android-&gt;Enable ADB Integration active.</strong> 即可解决问题。  </p>
 <p><strong>本文原文发自 <a href="http://f1reking.com/2016/01/13/android-3/">F1ReKing</a>, 转载请保留出处, 谢谢.</strong></p>
-</div></article></div></main><footer><div class="paginator"><a href="/2016/01/21/Android-CountDownTimer/" class="prev">PREV</a><a href="/2015/12/31/Bye2015Hi2016/" class="next">NEXT</a></div><div class="copyright"><p>powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p><p>© 2014 - 2017 <a href="http://f1reking.com">F1ReKing</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2016-11-24T13:28:24.000Z" itemprop="dateUpdated">2016-11-24 21:28:24</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2016/01/13/Android-Studio-Collection-Problems/" target="_blank" rel="external">http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.com">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/&title=《Android Studio问题集锦》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/&title=《Android Studio问题集锦》 — F1ReKing Blog&source=从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android Studio问题集锦》 — F1ReKing Blog&url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/01/21/Android-CountDownTimer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android之CountDownTimer使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2015/12/31/Bye2015Hi2016/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Bye2015Hi2016</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/&title=《Android Studio问题集锦》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/&title=《Android Studio问题集锦》 — F1ReKing Blog&source=从Android Studio发布时我就开始用了，一直以来版本的迭代出现很多bug问题和软件使用问题，但这些在近来的版本都解决了，所以这里记录下平时使用遇..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android Studio问题集锦》 — F1ReKing Blog&url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2016/01/13/Android-Studio-Collection-Problems/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3aQW4bMRAEQP3/0w7gu9fdM6QiA7WnwIq5LBogR815veLn6/uZffrT//npJ8/P68aDh4eHN5r683DPU9mPNhshWgI8PDy8a7znrTyn5gfA7C35nPHw8PA+gTfb0PMRng8ePDw8vL/Iy8vrZ1h7VORFOR4eHt47ee22nm/6s1j2P2QteHh4eBdukT7n3xfv9/Dw8PAWt+rtRf6sOaBtUCjmhoeHh3eBtw9Y81I7hyWfFgcGHh4e3jVeDtg3BOwXKC/68fDw8G7w8lg2f0FbKG/SlGgEPDw8vEO8/JK+baVKJjp7e/FlAA8PD+8tvFOXYTdiiySS+OVgwMPDwzvE27RbtSV13m7Vflrf7+Hh4eGNeG0Vmgy9mdBsnGOxDB4eHl5Jai+W2vCifUteuOPh4eG9k5d87W8XIo8n2rm18S4eHh7eDV67o25en0e0+dLkYDw8PLxTvLxFoG0I2ATB+eHxS8GNh4eHd4H3XObmheysjG4vumbtX3h4eHg3eG082jZa5UFtfoTUkTQeHh7eUd7+AMi3/lmLQF7o4+Hh4d3mtYfBpjjeb/3DvxseHh7eUV5SLuexbL7R5yFIHhy/2hXCw8PDW/BmQ7QNAcl0Z+0FvywHHh4e3gXe7Hg4GzfkB0ze4IWHh4f3ft57LrpOLUf9vQEPDw9vwUsYZwPWr/hJeFHrAB4eHt4FXr5BzxoIZlFC23RVJxx4eHh4h2D5i2eh7WxR2gs5PDw8vBu8do+dNR/MQoRk+fIIGA8PD+8sbx8H5GHEpmjODwY8PDy89/BmW3wSK+S/uwkg8PDw8P4Kb9MckB8SbVSBh4eH9zm8PD5oQ9j9gv74W3h4eHjXeO3kZsdJ/pbDl1t4eHh4R3mza6196TxrR6hLajw8PLyTvH/yJjXKMuZttQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

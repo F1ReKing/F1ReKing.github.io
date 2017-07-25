@@ -1,4 +1,199 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Google Java编程风格指南中文版 · F1ReKing Blog</title><meta name="description" content="Google Java编程风格指南中文版 - F1ReKing"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://f1reking.com/atom.xml" title="F1ReKing Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Google Java编程风格指南中文版</h1><div class="post-info">Jul 17, 2016</div><div class="post-content"><p>这是一篇关于 Google Java编程风格的指南书，摘抄自网上。<a id="more"></a></p>
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?1e2f5cdcbd29b91693b7048ad213f697"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Google Java编程风格指南中文版 | F1ReKing Blog | Be the change you want to see in the world.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="这是一篇关于 Google Java编程风格的指南书，摘抄自网上。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Java编程风格指南中文版">
+<meta property="og:url" content="http://f1reking.com/2016/07/17/Google-java-style/index.html">
+<meta property="og:site_name" content="F1ReKing Blog">
+<meta property="og:description" content="这是一篇关于 Google Java编程风格的指南书，摘抄自网上。">
+<meta property="og:updated_time" content="2016-11-24T13:28:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google Java编程风格指南中文版">
+<meta name="twitter:description" content="这是一篇关于 Google Java编程风格的指南书，摘抄自网上。">
+    
+        <link rel="alternate" type="application/atom+xml" title="F1ReKing Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">F1ReKing</h5>
+          <a href="mailto:hyh9102@gmail.com" title="hyh9102@gmail.com" class="mail">hyh9102@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/F1ReKing" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/jaly6829197" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Google Java编程风格指南中文版</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Google Java编程风格指南中文版</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-07-17T05:25:11.000Z" itemprop="datePublished" class="page-time">
+  2016-07-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#术语说明"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">术语说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#指南说明"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">指南说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源文件基础"><span class="post-toc-number">2.</span> <span class="post-toc-text">源文件基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件名"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">文件名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件编码：UTF-8"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">文件编码：UTF-8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特殊字符"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">特殊字符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#空白字符"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">空白字符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#特殊转义序列"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">特殊转义序列</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#非ASCII字符"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">非ASCII字符</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#源文件结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">源文件结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#许可证或版权信息"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">许可证或版权信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#package语句"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">package语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#import语句"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">import语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#import不要使用通配符"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">import不要使用通配符</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#不要换行"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">不要换行</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#顺序和间距"><span class="post-toc-number">3.3.3.</span> <span class="post-toc-text">顺序和间距</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#类声明"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">类声明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#只有一个顶级类声明"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">只有一个顶级类声明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类成员顺序"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">类成员顺序</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#重载：永不分离"><span class="post-toc-number">3.4.3.</span> <span class="post-toc-text">重载：永不分离</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#格式"><span class="post-toc-number">4.</span> <span class="post-toc-text">格式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#大括号"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">大括号</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用大括号-即使是可选的"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">使用大括号(即使是可选的)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#非空块：K-amp-R-风格"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">非空块：K & R 风格</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#空块：可以用简洁版本"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">空块：可以用简洁版本</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#块缩进：2个空格"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">块缩进：2个空格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一行一个语句"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">一行一个语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#列限制：80或100"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">列限制：80或100</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自动换行"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">自动换行</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#从哪里断开"><span class="post-toc-number">4.5.1.</span> <span class="post-toc-text">从哪里断开</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#自动换行时缩进至少-4个空格"><span class="post-toc-number">4.5.2.</span> <span class="post-toc-text">自动换行时缩进至少+4个空格</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#空白"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">空白</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#垂直空白"><span class="post-toc-number">4.6.1.</span> <span class="post-toc-text">垂直空白</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#水平空白"><span class="post-toc-number">4.6.2.</span> <span class="post-toc-text">水平空白</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#水平对齐：不做要求"><span class="post-toc-number">4.6.3.</span> <span class="post-toc-text">水平对齐：不做要求</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用小括号来限定组：推荐"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">用小括号来限定组：推荐</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#具体结构"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">具体结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#枚举类"><span class="post-toc-number">4.8.1.</span> <span class="post-toc-text">枚举类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#变量声明"><span class="post-toc-number">4.8.2.</span> <span class="post-toc-text">变量声明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#数组"><span class="post-toc-number">4.8.3.</span> <span class="post-toc-text">数组</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#switch语句"><span class="post-toc-number">4.8.4.</span> <span class="post-toc-text">switch语句</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注解-Annotations"><span class="post-toc-number">4.8.5.</span> <span class="post-toc-text">注解(Annotations)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注释"><span class="post-toc-number">4.8.6.</span> <span class="post-toc-text">注释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Modifiers"><span class="post-toc-number">4.8.7.</span> <span class="post-toc-text">Modifiers</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#命名约定"><span class="post-toc-number">5.</span> <span class="post-toc-text">命名约定</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对所有标识符都通用的规则"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">对所有标识符都通用的规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标识符类型的规则"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">标识符类型的规则</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#包名"><span class="post-toc-number">5.2.1.</span> <span class="post-toc-text">包名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类名"><span class="post-toc-number">5.2.2.</span> <span class="post-toc-text">类名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法名"><span class="post-toc-number">5.2.3.</span> <span class="post-toc-text">方法名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常量名"><span class="post-toc-number">5.2.4.</span> <span class="post-toc-text">常量名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#非常量字段名"><span class="post-toc-number">5.2.5.</span> <span class="post-toc-text">非常量字段名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参数名"><span class="post-toc-number">5.2.6.</span> <span class="post-toc-text">参数名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#局部变量名"><span class="post-toc-number">5.2.7.</span> <span class="post-toc-text">局部变量名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#类型变量名"><span class="post-toc-number">5.2.8.</span> <span class="post-toc-text">类型变量名</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#驼峰式命名法-CamelCase"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">驼峰式命名法(CamelCase)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编程实践"><span class="post-toc-number">6.</span> <span class="post-toc-text">编程实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Override：能用则用"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">@Override：能用则用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#捕获的异常：不能忽视"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">捕获的异常：不能忽视</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态成员：使用类进行调用"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">静态成员：使用类进行调用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Finalizers-禁用"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">Finalizers: 禁用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Javadoc"><span class="post-toc-number">7.</span> <span class="post-toc-text">Javadoc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#格式-1"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">格式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一般形式"><span class="post-toc-number">7.1.1.</span> <span class="post-toc-text">一般形式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#段落"><span class="post-toc-number">7.1.2.</span> <span class="post-toc-text">段落</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Javadoc标记"><span class="post-toc-number">7.1.3.</span> <span class="post-toc-text">Javadoc标记</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#摘要片段"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">摘要片段</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#哪里需要使用Javadoc"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">哪里需要使用Javadoc</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例外：不言自明的方法"><span class="post-toc-number">7.3.1.</span> <span class="post-toc-text">例外：不言自明的方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#例外：重写"><span class="post-toc-number">7.3.2.</span> <span class="post-toc-text">例外：重写</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#可选的Javadoc"><span class="post-toc-number">7.3.3.</span> <span class="post-toc-text">可选的Javadoc</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Google-java-style"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Google Java编程风格指南中文版</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-07-17 13:25:11" datetime="2016-07-17T05:25:11.000Z"  itemprop="datePublished">2016-07-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Java/">Java</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这是一篇关于 Google Java编程风格的指南书，摘抄自网上。<a id="more"></a></p>
 <p>作者：Hawstein<br>出处：<a href="http://hawstein.com/posts/google-java-style.html" target="_blank" rel="external">http://hawstein.com/posts/google-java-style.html</a><br>声明：本文采用以下协议进行授权： <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这份文档是Google Java编程风格规范的完整定义。当且仅当一个Java源文件符合此文档中的规则， 我们才认为它符合Google的Java编程风格。</p>
 <p>与其它的编程风格指南一样，这里所讨论的不仅仅是编码格式美不美观的问题， 同时也讨论一些约定及编码标准。然而，这份文档主要侧重于我们所普遍遵循的规则， 对于那些不是明确强制要求的，我们尽量避免提供意见。</p>
@@ -231,4 +426,267 @@
 </blockquote>
 <h4 id="例外：重写"><a href="#例外：重写" class="headerlink" title="例外：重写"></a>例外：重写</h4><p>如果一个方法重写了超类中的方法，那么Javadoc并非必需的。</p>
 <h4 id="可选的Javadoc"><a href="#可选的Javadoc" class="headerlink" title="可选的Javadoc"></a>可选的Javadoc</h4><p>对于包外不可见的类和方法，如有需要，也是要使用Javadoc的。如果一个注释是用来定义一个类，方法，字段的整体目的或行为， 那么这个注释应该写成Javadoc，这样更统一更友好。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2016/08/22/RxBus/" class="prev">PREV</a><a href="/2016/06/09/GreenDao/" class="next">NEXT</a></div><div class="copyright"><p>powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p><p>© 2014 - 2017 <a href="http://f1reking.com">F1ReKing</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2016-11-24T13:28:55.000Z" itemprop="dateUpdated">2016-11-24 21:28:55</time>
+</span><br>
+
+
+        
+        原始链接：<a href="/2016/07/17/Google-java-style/" target="_blank" rel="external">http://f1reking.com/2016/07/17/Google-java-style/</a>
+        
+    </div>
+    <footer>
+        <a href="http://f1reking.com">
+            <img src="/img/avatar.jpg" alt="F1ReKing">
+            F1ReKing
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2016/07/17/Google-java-style/&title=《Google Java编程风格指南中文版》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2016/07/17/Google-java-style/&title=《Google Java编程风格指南中文版》 — F1ReKing Blog&source=这是一篇关于 Google Java编程风格的指南书，摘抄自网上。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2016/07/17/Google-java-style/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Google Java编程风格指南中文版》 — F1ReKing Blog&url=http://f1reking.com/2016/07/17/Google-java-style/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2016/07/17/Google-java-style/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/08/22/RxBus/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RxBus</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/06/09/GreenDao/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">greenDAO数据库升级</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>F1ReKing &copy; 2014 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://f1reking.com/2016/07/17/Google-java-style/&title=《Google Java编程风格指南中文版》 — F1ReKing Blog&pic=http://f1reking.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://f1reking.com/2016/07/17/Google-java-style/&title=《Google Java编程风格指南中文版》 — F1ReKing Blog&source=这是一篇关于 Google Java编程风格的指南书，摘抄自网上。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://f1reking.com/2016/07/17/Google-java-style/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Google Java编程风格指南中文版》 — F1ReKing Blog&url=http://f1reking.com/2016/07/17/Google-java-style/&via=http://f1reking.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://f1reking.com/2016/07/17/Google-java-style/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQY7DMAgF0Ln/pTPbkaokfEhHiv28qtrU5XWBDObnp7yOk/X5af35s9d/33l4YWBgvJZxXK6zZ653+Pz0OtD6755SMTAwNmCcZbA0lHpw18m6HhsGBgbG9TNnQdePjJUdMDAwMHoJ9/rn07SLgYGBUWHUG2S93lc9NX+9FsfAwHghox7W/7/+yv0GBgbGqxhHuNJitRJWpUl3ExUGBsbSjEkrrVfQ9orkUjwYGBiLMtJxrnp6nTwTX5diYGBswEhb/73mV30gLI0KAwNjB0a9Ed+7hnyqtdec8sDAwHg54/rLvQNfZbebBJqOWWBgYCzNmBSc9X3SK4T68xgYGDsw6ukvLU17gxqTFI+BgbEqozeklR4Q08uG+gERAwNjH0ba4u/1viZXpDeHVAwMjKUZ9QPcZGyrd+xrHlsxMDCWY6SDX71Q0qNevDMGBsYGjPm4QyX0XvkazIxgYGAszUjL12ZTLNwh+IsxMDCWZqSt/F4LbJ5SS0gMDIxtGJMDYnrN2fv7SgkXAwNjUcZ1Sq0ggxm0hy4sMTAwdmNMis/0mvMb16IYGBirMo5wzYveOik4XGJgYCzN6BWlvXGuXnOtd3mAgYGxHmM0kjU4IKazEze7YWBgbMBIE9+zpW866oGBgYFRb+6nVwLzhh0GBgZGWkymibICSL+LgYGxD6NSxKYjEfNAgxENDAyMpRm90nGSgoNhr/GIBgYGxssZvykeIuB27H8EAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
