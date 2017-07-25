@@ -15,6 +15,12 @@
     <title><![CDATA[android-emotion]]></title>
     <url>%2F2017%2F07%2F05%2Fandroid-emotion%2F</url>
     <content type="text"></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>android</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Mac JDK版本切换]]></title>
@@ -35,7 +41,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -57,7 +63,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -68,8 +74,8 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>tools</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -91,7 +97,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -102,7 +108,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -113,7 +119,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -124,7 +130,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -135,7 +141,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -146,7 +152,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -215,8 +221,8 @@
         <category>RxJava</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>RxJava</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -238,29 +244,8 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxJava与Retrofit实践总结]]></title>
-    <url>%2F2016%2F03%2F23%2FRxJava-with-Retrofit%2F</url>
-    <content type="text"></content>
-      <categories>
-        <category>RxJava</category>
-      </categories>
-      <tags>
-        <tag>RxJava</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RxJava使用场景]]></title>
-    <url>%2F2016%2F03%2F13%2FRxJava%2F</url>
-    <content type="text"><![CDATA[研究了RxJava很久，最近才发现在实践中很难上手，所以此篇就是收集些使用场景 What RxJava一个词总结的很好：异步。RxJava在GitHub上自我介绍的是a Java VM implementation of Reactive Extensions: a library for composing asynchronous and event-based programs by using observable sequences.(一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库)。 学RxJava此篇不讲解RxJava的基础，推荐两个地方的学习资料： 扔物线大大写的给 Android 开发者的 RxJava 详解 最近一直在学习的ReactiveX/RxJava文档中文版 RxJava使用场景RxBus代替EventBus进行数据传递 前几天研究了下RxBus，基本可以替代EventBus来使用，但注意的是RxBus并不是一个库，它只是一种模式，用RxJava的思想来实现替代EventBus的部分功能。此篇文章有讲解 使用merge来合并两个数据源例如要将两组数据合并成一组数据再转化成json传递给服务端，这是我们项目的场景。123456789101112131415161718192021Observable&lt;CartList&gt; observableCartList1 = Observable.from(cartList1);Observable&lt;CartList&gt; observableCartList2 = Observable.from(cartList2);Observable&lt;CartList&gt; observableCartList = Observable.merge(observableCartList1, observableCartList2);observableCartList.subscribe(new Observer&lt;CartList&gt;() &#123; @Override public void onCompleted() &#123; //数据组合完成后的操作 &#125; @Override public void onError(Throwable e) &#123; &#125; @Override public void onNext(CartList cartList) &#123; //数组组合时的操作 &#125; &#125;&#125;);]]></content>
-      <categories>
-        <category>RxJava</category>
-      </categories>
-      <tags>
-        <tag>RxJava</tag>
+        <tag>android</tag>
+        <tag>greenDao</tag>
       </tags>
   </entry>
   <entry>
@@ -286,17 +271,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Android控件解析-RecyclerView]]></title>
-    <url>%2F2016%2F02%2F14%2FAndroid-RecyclerView%2F</url>
-    <content type="text"><![CDATA[概述：RecyclerView已经出现很久了，现在我才来总结下，它是support-v7包的新组件，与经典的ListView相比，同样拥有item回收复用的功能，但是直接把viewholder的实现封装起来，用户只要实现自己的viewholder就可以了，该组件会自动帮你回收复用每一个item。 替代listview: 它封装了viewholder的回收复用 RecyclerView使用布局管理器管理子view的位置（目前尚只提供了LinearLayoutManager），也就是说你再不用拘泥于ListView的线性展示方式，如果之后提供其他custom LayoutManager的支持，你能够使用复杂的布局来展示一个动态组件。 自带了ItemAnimation，可以设置加载和移除时的动画，方便做出各种动态浏览的效果。 sample：1.xml: &lt;android.support.v7.widget.RecyclerView android:id=&quot;@+id/my_recycler_view&quot; android:scrollbars=&quot;vertical&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot;/&gt;]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Android绘图整理]]></title>
     <url>%2F2016%2F02%2F08%2FAndroid-Drawer%2F</url>
     <content type="text"><![CDATA[对Android的绘图技术的整理 系统屏幕密度由于每个厂商的Android手机具有不同的大小尺寸和像素密度的屏幕。Android系统如果要精准到每种的DPI的屏幕，那是不可能的，因此，Android系统定义了几个标准的DPI值，作为手机的固定DPI。如下表所示： 密度 ldpi mdpi hdpi xhdpi xxhdpi 密度值 120 160 240 320 480 分辨率 240x320 320x480 480x800 720x1280 1080x1920 换算比例为：ldpi:mdpi:hdpi:xhdpi:xxhdpi=3:4:6:8:12 2D绘图基础系统通过提供的Canvas对象来提供绘图方法。Paintu作为一个重要的元素，其功能也是很强大的。比如： setAntiAlias(); //设置画笔的锯齿效果 setColor(); // 设置画笔的颜色 setARGB(); //设置画笔的A、R、G、B值 setAlpha(); //设置画笔的Alpha值 setTextSize(); //设置字体的尺寸 setStyle(); //设置画笔的风格(空心或实心) setStrokeWidth(); //设置空心边框的宽度 Canvas画布提供多种绘制方法，例如： drawLine //绘制直线 drawLines //绘制多条直线 drawRect //绘制矩形 drawCircle //绘制圆 drawText //绘制文本 drawPosText //在指定位置绘制文本 drawPoint //绘制点 drawRoundRect //绘制圆角矩形 drawArc //绘制弧形，扇形 drawOval //绘制椭圆 drawPath //绘制路径]]></content>
@@ -304,7 +278,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -315,7 +289,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -326,7 +300,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -337,8 +311,8 @@
         <category>Android Studio</category>
       </categories>
       <tags>
-        <tag>Android</tag>
-        <tag>Android Studio</tag>
+        <tag>android</tag>
+        <tag>as</tag>
       </tags>
   </entry>
   <entry>
@@ -371,7 +345,7 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>android</tag>
       </tags>
   </entry>
   <entry>
@@ -382,8 +356,8 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Android</tag>
         <tag>Tools</tag>
+        <tag>android</tag>
       </tags>
   </entry>
 </search>
