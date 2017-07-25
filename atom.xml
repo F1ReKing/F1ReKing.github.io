@@ -725,9 +725,9 @@
       <category term="Android" scheme="http://f1reking.com/categories/Android/"/>
     
     
-      <category term="tools" scheme="http://f1reking.com/tags/tools/"/>
-    
       <category term="android" scheme="http://f1reking.com/tags/android/"/>
+    
+      <category term="tools" scheme="http://f1reking.com/tags/tools/"/>
     
   </entry>
   
@@ -1284,9 +1284,9 @@
       <category term="RxJava" scheme="http://f1reking.com/categories/RxJava/"/>
     
     
-      <category term="RxJava" scheme="http://f1reking.com/tags/RxJava/"/>
-    
       <category term="android" scheme="http://f1reking.com/tags/android/"/>
+    
+      <category term="RxJava" scheme="http://f1reking.com/tags/RxJava/"/>
     
   </entry>
   

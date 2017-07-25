@@ -74,8 +74,8 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>tools</tag>
         <tag>android</tag>
+        <tag>tools</tag>
       </tags>
   </entry>
   <entry>
@@ -221,8 +221,8 @@
         <category>RxJava</category>
       </categories>
       <tags>
-        <tag>RxJava</tag>
         <tag>android</tag>
+        <tag>RxJava</tag>
       </tags>
   </entry>
   <entry>
@@ -356,8 +356,8 @@
         <category>Android</category>
       </categories>
       <tags>
-        <tag>Tools</tag>
         <tag>android</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
 </search>
