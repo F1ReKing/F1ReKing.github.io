@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://f1reking.com/2016/07/17/Google-java-style/</loc>
+    
+    <lastmod>2017-07-26T03:44:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://f1reking.com/2016/11/28/Android-sdk-pay/</loc>
     
     <lastmod>2017-07-26T03:42:39.000Z</lastmod>
@@ -89,13 +96,6 @@
     <loc>http://f1reking.com/2016/08/25/Gradle-config/</loc>
     
     <lastmod>2017-07-26T03:29:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/2016/07/17/Google-java-style/</loc>
-    
-    <lastmod>2017-07-26T03:29:16.000Z</lastmod>
     
   </url>
   

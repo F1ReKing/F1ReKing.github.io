@@ -922,7 +922,7 @@
     <link href="http://f1reking.com/2016/07/17/Google-java-style/"/>
     <id>http://f1reking.com/2016/07/17/Google-java-style/</id>
     <published>2016-07-17T05:25:11.000Z</published>
-    <updated>2017-07-26T03:29:16.000Z</updated>
+    <updated>2017-07-26T03:44:36.000Z</updated>
     
     <content type="html"><![CDATA[<p>这是一篇关于 Google Java编程风格的指南书，摘抄自网上。<a id="more"></a></p>
 <p>作者：Hawstein<br>出处：<a href="http://hawstein.com/posts/google-java-style.html" target="_blank" rel="external">http://hawstein.com/posts/google-java-style.html</a><br>声明：本文采用以下协议进行授权： <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
@@ -1168,7 +1168,9 @@
       <category term="域.业务领域" scheme="http://f1reking.com/categories/%E5%9F%9F-%E4%B8%9A%E5%8A%A1%E9%A2%86%E5%9F%9F/"/>
     
     
-      <category term="Java，规范" scheme="http://f1reking.com/tags/Java%EF%BC%8C%E8%A7%84%E8%8C%83/"/>
+      <category term="规范" scheme="http://f1reking.com/tags/%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
     
   </entry>
   
