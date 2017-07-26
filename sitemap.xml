@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://f1reking.com/2016/11/28/Android-sdk-pay/</loc>
+    
+    <lastmod>2017-07-26T03:42:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://f1reking.com/2016/06/09/GreenDao/</loc>
+    
+    <lastmod>2017-07-26T03:41:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://f1reking.com/2016/11/13/Mac-set-adb/</loc>
+    
+    <lastmod>2017-07-26T03:41:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://f1reking.com/2017/04/20/Mac-JDK-Change/</loc>
+    
+    <lastmod>2017-07-26T03:40:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://f1reking.com/2015/06/21/Use-wifi-to-debug-the-program/</loc>
     
     <lastmod>2017-07-26T03:35:40.000Z</lastmod>
@@ -44,20 +72,6 @@
   </url>
   
   <url>
-    <loc>http://f1reking.com/2016/11/13/Mac-set-adb/</loc>
-    
-    <lastmod>2017-07-26T03:32:53.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/2017/04/20/Mac-JDK-Change/</loc>
-    
-    <lastmod>2017-07-26T03:32:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://f1reking.com/2016/02/17/Java-Memory/</loc>
     
     <lastmod>2017-07-26T03:31:43.000Z</lastmod>
@@ -68,13 +82,6 @@
     <loc>http://f1reking.com/2016/11/13/Iterm2-set-agent/</loc>
     
     <lastmod>2017-07-26T03:31:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/2016/06/09/GreenDao/</loc>
-    
-    <lastmod>2017-07-26T03:30:38.000Z</lastmod>
     
   </url>
   
@@ -138,13 +145,6 @@
     <loc>http://f1reking.com/2016/11/23/Android-Service/</loc>
     
     <lastmod>2017-07-26T03:26:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/2016/11/28/Android-sdk-pay/</loc>
-    
-    <lastmod>2017-07-26T03:25:48.000Z</lastmod>
     
   </url>
   

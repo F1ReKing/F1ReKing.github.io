@@ -81,7 +81,7 @@
     <link href="http://f1reking.com/2017/04/20/Mac-JDK-Change/"/>
     <id>http://f1reking.com/2017/04/20/Mac-JDK-Change/</id>
     <published>2017-04-20T07:44:33.000Z</published>
-    <updated>2017-07-26T03:32:16.000Z</updated>
+    <updated>2017-07-26T03:40:49.000Z</updated>
     
     <content type="html"><![CDATA[<p>本篇是通过命令轻松切换到对应的Java版本教程。<a id="more"></a></p>
 <p>由于开发Android项目现在基本用到JDK8，但最近在搞JavaWeb项目需要用到JDK7而已，所以需要同时有多个版本的JDK并存，就研究下如何并存。</p>
@@ -118,7 +118,7 @@
     
     </summary>
     
-      <category term="法.方法手段" scheme="http://f1reking.com/categories/%E6%B3%95-%E6%96%B9%E6%B3%95%E6%89%8B%E6%AE%B5/"/>
+      <category term="法.手段方法" scheme="http://f1reking.com/categories/%E6%B3%95-%E6%89%8B%E6%AE%B5%E6%96%B9%E6%B3%95/"/>
     
     
       <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
@@ -532,7 +532,7 @@
     <link href="http://f1reking.com/2016/11/28/Android-sdk-pay/"/>
     <id>http://f1reking.com/2016/11/28/Android-sdk-pay/</id>
     <published>2016-11-28T03:57:49.000Z</published>
-    <updated>2017-07-26T03:25:48.000Z</updated>
+    <updated>2017-07-26T03:42:39.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。<a id="more"></a></p>
 <h2 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
@@ -611,7 +611,7 @@
     
     </summary>
     
-      <category term="法.方法手段" scheme="http://f1reking.com/categories/%E6%B3%95-%E6%96%B9%E6%B3%95%E6%89%8B%E6%AE%B5/"/>
+      <category term="法.手段方法" scheme="http://f1reking.com/categories/%E6%B3%95-%E6%89%8B%E6%AE%B5%E6%96%B9%E6%B3%95/"/>
     
     
       <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
@@ -798,7 +798,7 @@
     <link href="http://f1reking.com/2016/11/13/Mac-set-adb/"/>
     <id>http://f1reking.com/2016/11/13/Mac-set-adb/</id>
     <published>2016-11-13T02:39:24.000Z</published>
-    <updated>2017-07-26T03:32:53.000Z</updated>
+    <updated>2017-07-26T03:41:10.000Z</updated>
     
     <content type="html"><![CDATA[<p>在mac下配置好了adb之后，发现每次要使用的话 都需要source .bash_profile后才能使用。这是一个大坑啊，索性就研究下如何避免这个操作。</p>
 <p>经过查找原因之后，发现其实这个是zsh的锅，所以就去改zsh的配置文件了。</p>
@@ -813,7 +813,7 @@
     
     </summary>
     
-      <category term="法.方法手段" scheme="http://f1reking.com/categories/%E6%B3%95-%E6%96%B9%E6%B3%95%E6%89%8B%E6%AE%B5/"/>
+      <category term="法.手段方法" scheme="http://f1reking.com/categories/%E6%B3%95-%E6%89%8B%E6%AE%B5%E6%96%B9%E6%B3%95/"/>
     
     
       <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
