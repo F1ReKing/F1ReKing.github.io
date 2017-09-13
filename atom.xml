@@ -538,27 +538,15 @@
 <h2 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
 <li>注册账号，创建应用，开通微信支付。</li>
 <li>查看APP支付文档：<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_1" target="_blank" rel="external">https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=8_1</a>  </li>
-<li>了解支付流程：<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://ww2.sinaimg.cn/large/006y8mN6gw1fa82y2qyfkj30ou0sydk0.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure></li>
+<li>了解支付流程：<img src="http://ww2.sinaimg.cn/large/006y8mN6gw1fa82y2qyfkj30ou0sydk0.jpg" alt=""></li>
 </ol>
 <h3 id="接入SDK"><a href="#接入SDK" class="headerlink" title="接入SDK"></a>接入SDK</h3><ol>
 <li>引入libs，下载<a href="https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1" target="_blank" rel="external">https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1</a>，并将libammsdk.jar放到libs文件夹下。</li>
 <li><p>配置签名<br>在debug下直接配置key，这样就可以在debug下调试了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">signingConfigs &#123;</div><div class="line">        debug &#123;</div><div class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"你的keystore文件路径"</span>)</span></span></div><div class="line">            storePassword "xxx"</div><div class="line">            keyAlias "xxx"</div><div class="line">            keyPassword "xxx"</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"你的keystore文件路径"</span>)</span></span></div><div class="line">            storePassword "xxx"</div><div class="line">            keyAlias "xxx"</div><div class="line">            keyPassword "xxx"</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line">buildTypes &#123;</div><div class="line">        debug &#123;</div><div class="line">            signingConfig signingConfigs.debug</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            signingConfig signingConfigs.release</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>创建WXPayEntryActivity<br>在报名下创建如下图的Activity，demo里也有，WXPaEntryActivity是支付的回调，WXEntryActivity是微信登录和分享的回调。</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa83ekftcij30es03gjrp.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure></li>
+<li><p>创建WXPayEntryActivity<br>在报名下创建如下图的Activity，demo里也有，WXPaEntryActivity是支付的回调，WXEntryActivity是微信登录和分享的回调。<br><img src="http://ww4.sinaimg.cn/large/006y8mN6gw1fa83ekftcij30es03gjrp.jpg" alt=""></p>
+</li>
 <li><p>AndroidManifest.xml中注册</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">activity</span></span></div><div class="line">   <span class="attr">android:name</span>=<span class="string">".wxapi.WXPayEntryActivity"</span></div><div class="line">   <span class="attr">android:exported</span>=<span class="string">"true"</span></div><div class="line">   <span class="attr">android:launchMode</span>=<span class="string">"singleTop"</span></div><div class="line">   <span class="attr">android:screenOrientation</span>=<span class="string">"portrait"</span></div><div class="line">   <span class="attr">android:theme</span>=<span class="string">"@android:style/Theme.Translucent.NoTitleBar"</span></div><div class="line">   <span class="attr">android:windowSoftInputMode</span>=<span class="string">"stateHidden"</span>/&gt;</div></pre></td></tr></table></figure>
 </li>
@@ -578,13 +566,7 @@
 <h2 id="支付宝支付"><a href="#支付宝支付" class="headerlink" title="支付宝支付"></a>支付宝支付</h2><h3 id="前期准备-1"><a href="#前期准备-1" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
 <li>注册账号，创建应用，开通支付功能。</li>
 <li>查看文档:<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7386797.0.0.Eky59h&amp;treeId=59&amp;articleId=103563&amp;docType=1" target="_blank" rel="external">支付文档</a></li>
-<li>了解支付流程：<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa85omq9ydj30nk0coq53.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure></li>
+<li>了解支付流程：<img src="http://ww1.sinaimg.cn/large/006y8mN6gw1fa85omq9ydj30nk0coq53.jpg" alt=""></li>
 </ol>
 <h3 id="接入SDK-1"><a href="#接入SDK-1" class="headerlink" title="接入SDK"></a>接入SDK</h3><ol>
 <li>引入libs，下载<a href="https://doc.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.Q5gnm8&amp;treeId=193&amp;articleId=104509&amp;docType=1" target="_blank" rel="external">支付宝SDK及DEMO</a>，并将alipaySdk-xx.jar包放到libs文件夹下</li>
@@ -668,13 +650,7 @@
 <li>startService只是启动Service，启动它的组件（如Activity）和Service并没有关联，只有当Service调用stopSelf或者其他组件调用stopService服务才会终止。 </li>
 <li>bindService方法启动Service，其他组件可以通过回调获取Service的代理对象和Service交互，而这两方也进行了绑定，当启动方销毁时，Service也会自动进行unBind操作，当发现所有绑定都进行了unBind时才会销毁Service。  </li>
 </ol>
-<h3 id="生命周期比较"><a href="#生命周期比较" class="headerlink" title="生命周期比较"></a>生命周期比较</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://ww2.sinaimg.cn/large/7853084cgw1fa1x7s8uh1j20at0e3tan.jpg" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<h3 id="生命周期比较"><a href="#生命周期比较" class="headerlink" title="生命周期比较"></a>生命周期比较</h3><p><img src="http://ww2.sinaimg.cn/large/7853084cgw1fa1x7s8uh1j20at0e3tan.jpg" alt=""></p>
 <h3 id="Service的onCreate回调函数可以做耗时的操作吗？"><a href="#Service的onCreate回调函数可以做耗时的操作吗？" class="headerlink" title="Service的onCreate回调函数可以做耗时的操作吗？"></a>Service的onCreate回调函数可以做耗时的操作吗？</h3><p>不可以，Service的onCreate是在主线程(ActivityThread)中调用的，耗时操作会阻塞UI，如果你只需要在当前界面去做一些耗时操作，界面退出或改变时，工作也要停止，那么这时直接使用Thread(或者AsyncTask,ThreadHandler)会更合适你。</p>
 ]]></content>
     
