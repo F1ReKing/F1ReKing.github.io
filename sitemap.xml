@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://f1reking.com/categories/index.html</loc>
+    
+    <lastmod>2017-09-18T06:02:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://f1reking.com/tags/index.html</loc>
+    
+    <lastmod>2017-09-18T06:01:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://f1reking.com/about/index.html</loc>
     
-    <lastmod>2017-09-13T06:16:55.000Z</lastmod>
+    <lastmod>2017-09-18T05:50:49.000Z</lastmod>
     
   </url>
   
@@ -208,20 +222,6 @@
     <loc>http://f1reking.com/2016/11/23/Android-Activity/</loc>
     
     <lastmod>2017-07-26T03:13:16.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/categories/index.html</loc>
-    
-    <lastmod>2017-07-25T14:04:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://f1reking.com/tags/index.html</loc>
-    
-    <lastmod>2017-07-25T14:04:00.000Z</lastmod>
     
   </url>
   
