@@ -14,8 +14,8 @@
   </entry>
   <entry>
     <title><![CDATA[文字中表情的解决方案]]></title>
-    <url>%2F2017%2F07%2F05%2Fandroid-emotion%2F</url>
-    <content type="text"><![CDATA[待写…]]></content>
+    <url>%2F2017%2F07%2F05%2FAndroid-Emotion%2F</url>
+    <content type="text"><![CDATA[前言 产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。 预览 原理待写…]]></content>
       <categories>
         <category>术.解决方案</category>
       </categories>
@@ -92,7 +92,7 @@
   </entry>
   <entry>
     <title><![CDATA[Android中EditText的一切]]></title>
-    <url>%2F2016%2F11%2F30%2FAndroid-edittext%2F</url>
+    <url>%2F2016%2F11%2F30%2FAndroid-EditText%2F</url>
     <content type="text"><![CDATA[本篇我想总结下关于EditText控件的使用和遇到的问题 可以，不跟你多bb，基本知识请直接看Android Developers中关于EditText的API，本篇问题也大多于查看api之后的方法总结。 问题 经常碰到界面初始化后EditText就会自动获取焦点并弹出输入法，这样的用户体验很不好，所以我们可以禁止输入法自动弹出。解决方案：方案1：在Activity的onCreate()方法中加入：getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);方案2：在Manifest文件中的Activity注册标签下，加入属性：android:windowSoftInputMode=&quot;statehidden&quot; 用户在使用EditText进行输入后，我们可以利用软键盘上特色功能进行导航，提高用户体验。在xml中添加属性：android:imeOptions.actionGo 输入法右下角显示“去往”.actionSearch 输入法右下角显示“搜索”.actionSend 输入法右下角显示“发送”.actionNext 输入法右下角显示“下一个”.actionDone 输入法右下角显示“完成”.actionPrevious 输入法右下角显示“上一个”.给EditText设置OnEditorActionListener，代码如下： 1234567891011121314151617181920private OnEditorActionListener actionListener = new OnEditorActionListener() &#123; @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) &#123; switch (v.getId()) &#123; case R.id.et_first: if(actionId == EditorInfo.IME_ACTION_SEND) &#123; //进行处理 &#125; break; case R.id.et_second: if(actionId == EditorInfo.IME_ACTION_SEARCH) &#123; //进行处理 &#125; break; default: break; &#125; return false; &#125; &#125;; 注意：必须在xml上加上12android:maxLines="1" android:inputType="text" 中其中一个才能使用这个导航功能，或者用java代码也行12editText.setInputType(EditorInfo.TYPE_CLASS_TEXT); editText.setSingleLine(true);]]></content>
       <categories>
         <category>术.解决方案</category>
@@ -138,7 +138,7 @@
   </entry>
   <entry>
     <title><![CDATA[Android中的“再按一次返回键退出程序”的改进]]></title>
-    <url>%2F2016%2F11%2F19%2FAndroid-app-exit%2F</url>
+    <url>%2F2016%2F11%2F19%2FAndroid-App-Exit%2F</url>
     <content type="text"><![CDATA[最近在优化公司项目的代码，发现以前的坑很多，我慢慢地在填，今天就发现了一个坑，就是首页的“再按一次返回键退出程序“功能，所以这个坑，我就填了。 首先，项目里的版本代码是这样的：1234567891011121314151617181920212223242526272829private static boolean isExit = false;Handler mHandler = new Handler() &#123; @Override public void handleMessage(Message msg) &#123; super.handleMessage(msg); isExit = false; &#125; &#125;; @Overridepublic boolean onKeyDown(int keyCode, KeyEvent event) &#123; if (keyCode == KeyEvent.KEYCODE_BACK) &#123; exit(); return false; &#125; return super.onKeyDown(keyCode, event); &#125;private void exit() &#123; if (!isExit) &#123; isExit = true; Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show(); mHandler.sendEmptyMessageDelayed(0, 2000); &#125; else &#123; finish(); System.exit(0); &#125; &#125; 这是一种很扯淡的写法，而且用handler有内存泄漏的风险，而且代码也不精简，所以我就填了这个坑。 经过修改直接写个简洁版的：12345678910111213141516private long exitTime = 0;@Overridepublic boolean onKeyDown(int keyCode, KeyEvent event) &#123; if (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; event.getAction() == KeyEvent.ACTION_DOWN) &#123; if ((System.currentTimeMillis() - exitTime) &gt; 2000) &#123; Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show(); exitTime = System.currentTimeMillis(); &#125; else &#123; finish(); System.exit(0); &#125; return true; &#125; return super.onKeyDown(keyCode, event); &#125; 经过修改后，代码精简易懂。]]></content>
       <categories>
         <category>术.解决方案</category>

@@ -54,18 +54,22 @@
   
   <entry>
     <title>文字中表情的解决方案</title>
-    <link href="http://f1reking.com/2017/07/05/android-emotion/"/>
-    <id>http://f1reking.com/2017/07/05/android-emotion/</id>
+    <link href="http://f1reking.com/2017/07/05/Android-Emotion/"/>
+    <id>http://f1reking.com/2017/07/05/Android-Emotion/</id>
     <published>2017-07-05T08:50:51.000Z</published>
-    <updated>2017-07-26T03:24:48.000Z</updated>
+    <updated>2017-09-22T09:46:18.000Z</updated>
     
-    <content type="html"><![CDATA[<p>待写…</p>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。</p>
+</blockquote>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fjs3tntul4j30k00e33zo.jpg" alt=""></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>待写…</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;待写…&lt;/p&gt;
-
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有
     
     </summary>
     
@@ -498,8 +502,8 @@
   
   <entry>
     <title>Android中EditText的一切</title>
-    <link href="http://f1reking.com/2016/11/30/Android-edittext/"/>
-    <id>http://f1reking.com/2016/11/30/Android-edittext/</id>
+    <link href="http://f1reking.com/2016/11/30/Android-EditText/"/>
+    <id>http://f1reking.com/2016/11/30/Android-EditText/</id>
     <published>2016-11-30T01:38:32.000Z</published>
     <updated>2017-07-26T03:23:56.000Z</updated>
     
@@ -671,8 +675,8 @@
   
   <entry>
     <title>Android中的“再按一次返回键退出程序”的改进</title>
-    <link href="http://f1reking.com/2016/11/19/Android-app-exit/"/>
-    <id>http://f1reking.com/2016/11/19/Android-app-exit/</id>
+    <link href="http://f1reking.com/2016/11/19/Android-App-Exit/"/>
+    <id>http://f1reking.com/2016/11/19/Android-App-Exit/</id>
     <published>2016-11-19T05:27:19.000Z</published>
     <updated>2017-07-26T03:14:00.000Z</updated>
     
@@ -898,7 +902,7 @@
     <link href="http://f1reking.com/2016/07/17/Google-java-style/"/>
     <id>http://f1reking.com/2016/07/17/Google-java-style/</id>
     <published>2016-07-17T05:25:11.000Z</published>
-    <updated>2017-07-26T03:44:36.000Z</updated>
+    <updated>2017-09-20T05:10:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>这是一篇关于 Google Java编程风格的指南书，摘抄自网上。<a id="more"></a></p>
 <p>作者：Hawstein<br>出处：<a href="http://hawstein.com/posts/google-java-style.html" target="_blank" rel="external">http://hawstein.com/posts/google-java-style.html</a><br>声明：本文采用以下协议进行授权： <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
