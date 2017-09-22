@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://f1reking.com/"/>
-  <updated>2017-07-26T03:27:39.000Z</updated>
+  <updated>2017-09-22T13:45:54.000Z</updated>
   <id>http://f1reking.com/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>文字中表情的解决方案</title>
+    <link href="http://f1reking.com/2017/09/22/AndroidEmojiTool/"/>
+    <id>http://f1reking.com/2017/09/22/AndroidEmojiTool/</id>
+    <published>2017-09-22T13:44:50.000Z</published>
+    <updated>2017-09-22T13:45:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。</p>
+</blockquote>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fjs3tntul4j30k00e33zo.jpg" alt=""></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>待写……</p>
+<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><p><a href="https://github.com/F1ReKing/EmojiTool" target="_blank" rel="external">https://github.com/F1ReKing/EmojiTool</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有
+    
+    </summary>
+    
+      <category term="术.解决方案" scheme="http://f1reking.com/categories/%E6%9C%AF-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    
+      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>关于Android7.0使用webview遇到的一个坑</title>
@@ -49,35 +78,6 @@
       <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
       <category term="WebView" scheme="http://f1reking.com/tags/WebView/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文字中表情的解决方案</title>
-    <link href="http://f1reking.com/2017/07/05/android-emotion/"/>
-    <id>http://f1reking.com/2017/07/05/android-emotion/</id>
-    <published>2017-07-05T08:50:51.000Z</published>
-    <updated>2017-09-22T13:43:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。</p>
-</blockquote>
-<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fjs3tntul4j30k00e33zo.jpg" alt=""></p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>待写……</p>
-<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><p><a href="https://github.com/F1ReKing/EmojiTool" target="_blank" rel="external">https://github.com/F1ReKing/EmojiTool</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有
-    
-    </summary>
-    
-      <category term="术.解决方案" scheme="http://f1reking.com/categories/%E6%9C%AF-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    
-    
-      <category term="Android" scheme="http://f1reking.com/tags/Android/"/>
     
   </entry>
   
