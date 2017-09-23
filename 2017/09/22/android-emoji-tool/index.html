@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -96,18 +96,19 @@
 
 
 
-<meta name="description" content="关于自称F1ReKing，别人叫我大F，因为高大，身高187cm左右，出身计算机科学与技术，geek向，漫威迷，奥特曼迷，喜欢Android而从事Android开发工作。 联系 Github：@F1ReKing Weibo： @F1ReKing Email：&amp;#104;&amp;#121;&amp;#x68;&amp;#57;&amp;#x31;&amp;#48;&amp;#x32;&amp;#x40;&amp;#103;&amp;#x6d;&amp;#97;&amp;#105;&amp;#">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://f1reking.com/about/index.html">
+<meta name="description" content="前言 产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。  预览 原理待写…… 源码地址https://github.com/F1ReKing/EmojiTool">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文字中表情的解决方案">
+<meta property="og:url" content="http://f1reking.com/2017/09/22/android-emoji-tool/index.html">
 <meta property="og:site_name" content="F1ReKing Blog">
-<meta property="og:description" content="关于自称F1ReKing，别人叫我大F，因为高大，身高187cm左右，出身计算机科学与技术，geek向，漫威迷，奥特曼迷，喜欢Android而从事Android开发工作。 联系 Github：@F1ReKing Weibo： @F1ReKing Email：&amp;#104;&amp;#121;&amp;#x68;&amp;#57;&amp;#x31;&amp;#48;&amp;#x32;&amp;#x40;&amp;#103;&amp;#x6d;&amp;#97;&amp;#105;&amp;#">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/006tNc79gy1ff7bslolmej30go0cz776.jpg">
-<meta property="og:updated_time" content="2017-09-18T05:50:49.000Z">
+<meta property="og:description" content="前言 产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。  预览 原理待写…… 源码地址https://github.com/F1ReKing/EmojiTool">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fjs3tntul4j30k00e33zo.jpg">
+<meta property="og:updated_time" content="2017-09-22T13:45:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="关于自称F1ReKing，别人叫我大F，因为高大，身高187cm左右，出身计算机科学与技术，geek向，漫威迷，奥特曼迷，喜欢Android而从事Android开发工作。 联系 Github：@F1ReKing Weibo： @F1ReKing Email：&amp;#104;&amp;#121;&amp;#x68;&amp;#57;&amp;#x31;&amp;#48;&amp;#x32;&amp;#x40;&amp;#103;&amp;#x6d;&amp;#97;&amp;#105;&amp;#">
-<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006tNc79gy1ff7bslolmej30go0cz776.jpg">
+<meta name="twitter:title" content="文字中表情的解决方案">
+<meta name="twitter:description" content="前言 产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。  预览 原理待写…… 源码地址https://github.com/F1ReKing/EmojiTool">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fjs3tntul4j30k00e33zo.jpg">
 
 
 
@@ -136,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://f1reking.com/about/"/>
+  <link rel="canonical" href="http://f1reking.com/2017/09/22/android-emoji-tool/"/>
 
 
 
 
 
-  <title>关于 | F1ReKing Blog</title>
+  <title>文字中表情的解决方案 | F1ReKing Blog</title>
   
 
 
@@ -307,40 +308,246 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://f1reking.com/2017/09/22/android-emoji-tool/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="F1ReKing">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="F1ReKing Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h3 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h3><p>自称F1ReKing，别人叫我大F，因为高大，身高187cm左右，出身计算机科学与技术，geek向，漫威迷，奥特曼迷，喜欢Android而从事Android开发工作。</p>
-<h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><ul>
-<li><strong>Github：</strong><a href="https://github.com/F1ReKing" target="_blank" rel="external">@F1ReKing</a></li>
-<li><strong>Weibo：</strong> <a href="http://weibo.com/jaly6829197" target="_blank" rel="external">@F1ReKing</a></li>
-<li><strong>Email：</strong><a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#104;&#121;&#x68;&#57;&#x31;&#48;&#x32;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#104;&#121;&#x68;&#57;&#x31;&#48;&#x32;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></li>
-</ul>
-<p><img src="http://ww3.sinaimg.cn/large/006tNc79gy1ff7bslolmej30go0cz776.jpg" alt=""></p>
-
+          <h1 class="post-title" itemprop="name headline">文字中表情的解决方案</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-22T21:44:50+08:00">
+                2017-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/术-解决方案/" itemprop="url" rel="index">
+                    <span itemprop="name">术.解决方案</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。</p>
+</blockquote>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fjs3tntul4j30k00e33zo.jpg" alt=""></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>待写……</p>
+<h2 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h2><p><a href="https://github.com/F1ReKing/EmojiTool" target="_blank" rel="external">https://github.com/F1ReKing/EmojiTool</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat.png" alt="F1ReKing WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay.png" alt="F1ReKing Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    F1ReKing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://f1reking.com/2017/09/22/android-emoji-tool/" title="文字中表情的解决方案">http://f1reking.com/2017/09/22/android-emoji-tool/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/07/android-webview-keng/" rel="next" title="关于Android7.0使用webview遇到的一个坑">
+                <i class="fa fa-chevron-left"></i> 关于Android7.0使用webview遇到的一个坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -497,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于"><span class="nav-number">1.</span> <span class="nav-text">关于</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联系"><span class="nav-number">2.</span> <span class="nav-text">联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预览"><span class="nav-number">2.</span> <span class="nav-text">预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码地址"><span class="nav-number">4.</span> <span class="nav-text">源码地址</span></a></li></ol></div>
             
 
           </div>
@@ -643,10 +850,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
