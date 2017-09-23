@@ -300,8 +300,8 @@
   
   <entry>
     <title>快速集成友盟多渠道打包</title>
-    <link href="http://f1reking.com/2017/01/16/UMeng-package/"/>
-    <id>http://f1reking.com/2017/01/16/UMeng-package/</id>
+    <link href="http://f1reking.com/2017/01/16/umeng-package/"/>
+    <id>http://f1reking.com/2017/01/16/umeng-package/</id>
     <published>2017-01-16T01:24:46.000Z</published>
     <updated>2017-07-26T03:35:12.000Z</updated>
     
@@ -609,8 +609,8 @@
   
   <entry>
     <title>Android之Activity</title>
-    <link href="http://f1reking.com/2016/11/23/Android-Activity/"/>
-    <id>http://f1reking.com/2016/11/23/Android-Activity/</id>
+    <link href="http://f1reking.com/2016/11/23/android-activity/"/>
+    <id>http://f1reking.com/2016/11/23/android-activity/</id>
     <published>2016-11-23T07:02:00.000Z</published>
     <updated>2017-07-26T03:13:16.000Z</updated>
     
@@ -676,8 +676,8 @@
   
   <entry>
     <title>Android中的“再按一次返回键退出程序”的改进</title>
-    <link href="http://f1reking.com/2016/11/19/Android-App-Exit/"/>
-    <id>http://f1reking.com/2016/11/19/Android-App-Exit/</id>
+    <link href="http://f1reking.com/2016/11/19/android-app-exit/"/>
+    <id>http://f1reking.com/2016/11/19/android-app-exit/</id>
     <published>2016-11-19T05:27:19.000Z</published>
     <updated>2017-07-26T03:14:00.000Z</updated>
     
@@ -865,8 +865,8 @@
   
   <entry>
     <title>RxBus</title>
-    <link href="http://f1reking.com/2016/08/22/RxBus/"/>
-    <id>http://f1reking.com/2016/08/22/RxBus/</id>
+    <link href="http://f1reking.com/2016/08/22/rxbus/"/>
+    <id>http://f1reking.com/2016/08/22/rxbus/</id>
     <published>2016-08-22T13:43:54.000Z</published>
     <updated>2017-07-26T03:33:44.000Z</updated>
     
@@ -1149,9 +1149,9 @@
       <category term="域.业务领域" scheme="http://f1reking.com/categories/%E5%9F%9F-%E4%B8%9A%E5%8A%A1%E9%A2%86%E5%9F%9F/"/>
     
     
-      <category term="规范" scheme="http://f1reking.com/tags/%E8%A7%84%E8%8C%83/"/>
-    
       <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
+    
+      <category term="规范" scheme="http://f1reking.com/tags/%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
