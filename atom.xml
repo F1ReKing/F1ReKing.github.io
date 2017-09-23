@@ -1149,9 +1149,9 @@
       <category term="域.业务领域" scheme="http://f1reking.com/categories/%E5%9F%9F-%E4%B8%9A%E5%8A%A1%E9%A2%86%E5%9F%9F/"/>
     
     
-      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
-    
       <category term="规范" scheme="http://f1reking.com/tags/%E8%A7%84%E8%8C%83/"/>
+    
+      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
     
   </entry>
   
