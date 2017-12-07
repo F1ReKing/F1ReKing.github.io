@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Android,Tools," />
 
 
 
@@ -96,17 +96,19 @@
 
 
 
-<meta name="description" content="本篇对于Android中对于DownloadManager的使用经验分享。">
-<meta name="keywords" content="Android">
+<meta name="description" content="以前自学Android时总是要通过usb线来连接真机调试，然而在我usb线不稳定的情况下，我试着找寻能不能用wifi来调试android程序，这个方法是可行的。">
+<meta name="keywords" content="Android,Tools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用DownloadManager进行版本更新（兼容7.0）">
-<meta property="og:url" content="http://f1reking.com/2017/01/16/android-downloadmanager/index.html">
+<meta property="og:title" content="用wifi来调试Android程序">
+<meta property="og:url" content="http://f1reking.com/archives/undefined.html">
 <meta property="og:site_name" content="F1ReKing Blog">
-<meta property="og:description" content="本篇对于Android中对于DownloadManager的使用经验分享。">
-<meta property="og:updated_time" content="2017-07-26T03:22:59.000Z">
+<meta property="og:description" content="以前自学Android时总是要通过usb线来连接真机调试，然而在我usb线不稳定的情况下，我试着找寻能不能用wifi来调试android程序，这个方法是可行的。">
+<meta property="og:image" content="http://img.blog.csdn.net/20150411114346906">
+<meta property="og:updated_time" content="2017-07-26T03:35:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用DownloadManager进行版本更新（兼容7.0）">
-<meta name="twitter:description" content="本篇对于Android中对于DownloadManager的使用经验分享。">
+<meta name="twitter:title" content="用wifi来调试Android程序">
+<meta name="twitter:description" content="以前自学Android时总是要通过usb线来连接真机调试，然而在我usb线不稳定的情况下，我试着找寻能不能用wifi来调试android程序，这个方法是可行的。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150411114346906">
 
 
 
@@ -135,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://f1reking.com/2017/01/16/android-downloadmanager/"/>
+  <link rel="canonical" href="http://f1reking.com/archives/undefined.html"/>
 
 
 
 
 
-  <title>使用DownloadManager进行版本更新（兼容7.0） | F1ReKing Blog</title>
+  <title>用wifi来调试Android程序 | F1ReKing Blog</title>
   
 
 
@@ -318,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://f1reking.com/2017/01/16/android-downloadmanager/">
+    <link itemprop="mainEntityOfPage" href="http://f1reking.com/archives/undefined.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="F1ReKing">
@@ -335,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用DownloadManager进行版本更新（兼容7.0）</h1>
+          <h1 class="post-title" itemprop="name headline">用wifi来调试Android程序</h1>
         
 
         <div class="post-meta">
@@ -347,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-16T16:34:53+08:00">
-                2017-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-21T18:20:44+08:00">
+                2015-06-21
               </time>
             
 
@@ -370,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技-技术研究/" itemprop="url" rel="index">
-                    <span itemprop="name">技.技术研究</span>
+                  <a href="/categories/器-工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">器.工具使用</span>
                   </a>
                 </span>
 
@@ -412,31 +414,20 @@
       
 
       
-        <p>本篇对于Android中对于DownloadManager的使用经验分享。<a id="more"></a></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>DownloadManager是Android SDK中封装的下载文件类，可以很方便开发者使用下载文件。其具体看官方API<a href="https://developer.android.com/reference/android/app/DownloadManager.html" target="_blank" rel="external">https://developer.android.com/reference/android/app/DownloadManager.html</a></p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><ol>
-<li><p>使用DownloadManager下载 </p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadUtils</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> DownloadManager mDownloadManager;</div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> downloadId;</div><div class="line">    <span class="keyword">private</span> String apkName;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DownloadUtils</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">(String url, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> String packageName = <span class="string">"com.android.providers.downloads"</span>;</div><div class="line">        <span class="keyword">int</span> state = mContext.getPackageManager().getApplicationEnabledSetting(packageName);</div><div class="line">        <span class="comment">//检测下载管理器是否被禁用</span></div><div class="line">        <span class="keyword">if</span> (state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED</div><div class="line">            || state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER</div><div class="line">            || state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_UNTIL_USED) &#123;</div><div class="line">            AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.Builder(mContext).setTitle(<span class="string">"温馨提示"</span>).setMessage</div><div class="line">                (<span class="string">"系统下载管理器被禁止，需手动打开"</span>).setPositiveButton(<span class="string">"确定"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                    dialog.dismiss();</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);</div><div class="line">                        intent.setData(Uri.parse(<span class="string">"package:"</span> + packageName));</div><div class="line">                        mContext.startActivity(intent);</div><div class="line">                    &#125; <span class="keyword">catch</span> (ActivityNotFoundException e) &#123;</div><div class="line">                        Intent intent = <span class="keyword">new</span> Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);</div><div class="line">                        mContext.startActivity(intent);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;).setNegativeButton(<span class="string">"取消"</span>, <span class="keyword">new</span> DialogInterface.OnClickListener() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(DialogInterface dialog, <span class="keyword">int</span> which)</span> </span>&#123;</div><div class="line">                    dialog.dismiss();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            builder.create().show();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//正常下载流程</span></div><div class="line">            apkName = name;</div><div class="line">            DownloadManager.Request request = <span class="keyword">new</span> DownloadManager.Request(Uri.parse(url));</div><div class="line">            request.setAllowedOverRoaming(<span class="keyword">false</span>);</div><div class="line"></div><div class="line">            <span class="comment">//通知栏显示</span></div><div class="line">            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);</div><div class="line">            request.setTitle(AppUtils.getAppName(mContext));</div><div class="line">            request.setDescription(<span class="string">"正在下载中..."</span>);</div><div class="line">            request.setVisibleInDownloadsUi(<span class="keyword">true</span>);</div><div class="line"></div><div class="line">            <span class="comment">//设置下载的路径</span></div><div class="line">            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, apkName);</div><div class="line"></div><div class="line">            <span class="comment">//获取DownloadManager</span></div><div class="line">            mDownloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);</div><div class="line">            downloadId = mDownloadManager.enqueue(request);</div><div class="line"></div><div class="line">            mContext.registerReceiver(mReceiver, <span class="keyword">new</span> IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> BroadcastReceiver mReceiver = <span class="keyword">new</span> BroadcastReceiver() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</div><div class="line">            checkStatus();</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 检查下载状态</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkStatus</span><span class="params">()</span> </span>&#123;</div><div class="line">        DownloadManager.Query query = <span class="keyword">new</span> DownloadManager.Query();</div><div class="line">        query.setFilterById(downloadId);</div><div class="line">        Cursor cursor = mDownloadManager.query(query);</div><div class="line">        <span class="keyword">if</span> (cursor.moveToFirst()) &#123;</div><div class="line">            <span class="keyword">int</span> status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));</div><div class="line">            <span class="keyword">switch</span> (status) &#123;</div><div class="line">                <span class="comment">//下载暂停</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_PAUSED:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载延迟</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_PENDING:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//正在下载</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_RUNNING:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载完成</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_SUCCESSFUL:</div><div class="line">                    installAPK();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="comment">//下载失败</span></div><div class="line">                <span class="keyword">case</span> DownloadManager.STATUS_FAILED:</div><div class="line">                    Toast.makeText(mContext, <span class="string">"下载失败"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        cursor.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 7.0兼容</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">installAPK</span><span class="params">()</span> </span>&#123;</div><div class="line">        File apkFile =</div><div class="line">            <span class="keyword">new</span> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), apkName);</div><div class="line">        Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW);</div><div class="line">        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</div><div class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</div><div class="line">            Uri apkUri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + <span class="string">".provider"</span>, apkFile);</div><div class="line">            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</div><div class="line">            intent.setDataAndType(apkUri, <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            intent.setDataAndType(Uri.fromFile(apkFile), <span class="string">"application/vnd.android.package-archive"</span>);</div><div class="line">        &#125;</div><div class="line">        mContext.startActivity(intent);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
+        <p>　　以前自学Android时总是要通过usb线来连接真机调试，然而在我usb线不稳定的情况下，我试着找寻能不能用wifi来调试android程序，这个方法是可行的。<br><a id="more"></a><br><strong>条件：</strong>  </p>
 <ol>
-<li><p>在Manifest中添加使用权限</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>在Manifest中添加7.0私有文件权限</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">    <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">    <span class="attr">android:authorities</span>=<span class="string">"$&#123;applicationId&#125;.provider"</span></div><div class="line">    <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">    <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">        <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">        <span class="attr">android:resource</span>=<span class="string">"@xml/provider_paths"</span>/&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>建立xml私有文件权限配置<br>在res中建立xml文件夹，建立provider_paths.xml文件，文件中：</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">resources</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">paths</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">external-path</span></span></div><div class="line">            <span class="attr">name</span>=<span class="string">"download"</span></div><div class="line">            <span class="attr">path</span>=<span class="string">""</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">paths</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
+<li>手机与电脑同一个wifi局域网下</li>
+<li>Android studio我试过，Eclipse没试过</li>
 </ol>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
-<li>已兼容7.0私有文件权限问题</li>
-<li>对于部分机型默认或者一些原因，下载管理器是被禁用掉的，必须手动开启或者写代码去跳转到设置界面开启，代码中已兼容。</li>
+<p><strong>方法： </strong>  </p>
+<ol>
+<li>要先知道你手机的网络ip是什么，这里我选择用app来查找，通过<a href="http://pan.baidu.com/s/1dD1u2eH" target="_blank" rel="external">http://pan.baidu.com/s/1dD1u2eH</a> 下载wifi adb （需要root权限）App来查找手机ip。</li>
+<li>首先要先把SDK\platform-tools下的adb.exe、AdbWinApi.dll、AdbWinUsbApi.dll复制到C:\Windows\System32和C:\Windows\SysWOW64（系统64位才需要）下。</li>
+<li>用管理员模式运行命令行管理器，并输入wifi adb应用上的提示。</li>
+<li>此时在Android Devices上就可以看到连接的手机了，可以直接调试操作了，到这里，你再也不用担心因为usb口不稳定而不好调试，只要你的wifi是稳定的，可以很轻松的进行真机调试应用了。</li>
 </ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="http://www.trinea.cn/android/android-downloadmanager/" target="_blank" rel="external">Android系统下载管理DownloadManager功能介绍及使用示例</a></li>
-</ol>
+<p><img src="http://img.blog.csdn.net/20150411114346906" alt="">   </p>
+<p><strong>本文原文发自 <a href="http://f1reking.com/2015/06/21/android-1/">F1ReKing</a>, 转载请保留出处, 谢谢.</strong></p>
 
       
     </div>
@@ -486,7 +477,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://f1reking.com/2017/01/16/android-downloadmanager/" title="使用DownloadManager进行版本更新（兼容7.0）">http://f1reking.com/2017/01/16/android-downloadmanager/</a>
+    <a href="http://f1reking.com/archives/undefined.html" title="用wifi来调试Android程序">http://f1reking.com/archives/undefined.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -503,6 +494,8 @@
           
             <a href="/tags/Android/" rel="tag"># Android</a>
           
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
         </div>
       
 
@@ -514,18 +507,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/16/umeng-package/" rel="next" title="快速集成友盟多渠道打包">
-                <i class="fa fa-chevron-left"></i> 快速集成友盟多渠道打包
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/01/memory-leak-analysis/" rel="prev" title="内存泄漏解析">
-                内存泄漏解析 <i class="fa fa-chevron-right"></i>
+              <a href="/archives/undefined.html" rel="prev" title="Android开发规范(编码+性能+UI)">
+                Android开发规范(编码+性能+UI) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -601,17 +590,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -715,22 +695,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
