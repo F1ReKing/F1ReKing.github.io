@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://f1reking.com/"/>
-  <updated>2017-09-22T13:45:54.000Z</updated>
+  <updated>2017-12-07T00:55:13.808Z</updated>
   <id>http://f1reking.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://f1reking.com/archives/ef1752f5.html"/>
     <id>http://f1reking.com/archives/ef1752f5.html</id>
     <published>2017-09-22T13:44:50.000Z</published>
-    <updated>2017-09-22T13:45:54.000Z</updated>
+    <updated>2017-12-07T00:55:13.808Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。</p>
@@ -49,7 +49,7 @@
     <link href="http://f1reking.com/archives/5a8c4251.html"/>
     <id>http://f1reking.com/archives/5a8c4251.html</id>
     <published>2017-07-07T15:39:28.000Z</published>
-    <updated>2017-07-26T03:27:39.000Z</updated>
+    <updated>2017-12-07T00:55:13.811Z</updated>
     
     <content type="html"><![CDATA[<p>这是一篇android7.0使用webview的时候一个坑的解决方案。<a id="more"></a></p>
 <p>之前对于webview的使用做了总结，以为坑应该都吃掉了，没想到今天发版后才发现有一个大坑：</p>
@@ -86,7 +86,7 @@
     <link href="http://f1reking.com/archives/e827d3ca.html"/>
     <id>http://f1reking.com/archives/e827d3ca.html</id>
     <published>2017-04-20T07:44:33.000Z</published>
-    <updated>2017-07-26T03:40:49.000Z</updated>
+    <updated>2017-12-07T00:55:13.819Z</updated>
     
     <content type="html"><![CDATA[<p>本篇是通过命令轻松切换到对应的Java版本教程。<a id="more"></a></p>
 <p>由于开发Android项目现在基本用到JDK8，但最近在搞JavaWeb项目需要用到JDK7而已，所以需要同时有多个版本的JDK并存，就研究下如何并存。</p>
@@ -135,7 +135,7 @@
     <link href="http://f1reking.com/archives/94883248.html"/>
     <id>http://f1reking.com/archives/94883248.html</id>
     <published>2017-03-01T01:51:34.000Z</published>
-    <updated>2017-07-26T03:33:14.000Z</updated>
+    <updated>2017-12-07T00:55:13.821Z</updated>
     
     <content type="html"><![CDATA[<p>本篇对于Android中内存泄漏进行解析。<a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相对于C/C++的内存泄漏是new出来的对象没有delete，而java中内存泄漏是new出来的对象放在Heap上无法被GC回收，所以对于内存泄漏，在开发过程中不可轻易忽视。</p>
@@ -256,7 +256,7 @@
     <link href="http://f1reking.com/archives/b217e21f.html"/>
     <id>http://f1reking.com/archives/b217e21f.html</id>
     <published>2017-01-16T08:34:53.000Z</published>
-    <updated>2017-07-26T03:22:59.000Z</updated>
+    <updated>2017-12-07T00:55:13.806Z</updated>
     
     <content type="html"><![CDATA[<p>本篇对于Android中对于DownloadManager的使用经验分享。<a id="more"></a></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>DownloadManager是Android SDK中封装的下载文件类，可以很方便开发者使用下载文件。其具体看官方API<a href="https://developer.android.com/reference/android/app/DownloadManager.html" target="_blank" rel="external">https://developer.android.com/reference/android/app/DownloadManager.html</a></p>
@@ -303,7 +303,7 @@
     <link href="http://f1reking.com/archives/5a901349.html"/>
     <id>http://f1reking.com/archives/5a901349.html</id>
     <published>2017-01-16T01:24:46.000Z</published>
-    <updated>2017-07-26T03:35:12.000Z</updated>
+    <updated>2017-12-07T00:55:13.822Z</updated>
     
     <content type="html"><![CDATA[<p>本篇针对快速集成友盟多渠道打包的经验分享<a id="more"></a></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>依个人理解，多渠道只是给运营数据统计方便查看而已，并不是个技术，虽然以前面试的时候有被问到会不会多渠道打包，不过说实在，如果你公司的项目没有要求数据统计，一般不会有多渠道统计的，所以即使要用，也能很快集成的，首先还是放出官网的文档：<a href="http://dev.umeng.com/analytics/android-doc/integration" target="_blank" rel="external">http://dev.umeng.com/analytics/android-doc/integration</a>,本篇就是让你快速集成，不用再去翻看文档。</p>
@@ -364,7 +364,7 @@
     <link href="http://f1reking.com/archives/fda6581b.html"/>
     <id>http://f1reking.com/archives/fda6581b.html</id>
     <published>2016-12-31T10:28:10.000Z</published>
-    <updated>2017-07-26T03:28:10.000Z</updated>
+    <updated>2017-12-07T00:55:13.813Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Be the change you want to see in the world.<a id="more"></a></p>
@@ -402,7 +402,7 @@
     <link href="http://f1reking.com/archives/6267c9b.html"/>
     <id>http://f1reking.com/archives/6267c9b.html</id>
     <published>2016-12-01T14:33:33.000Z</published>
-    <updated>2017-07-26T03:26:28.000Z</updated>
+    <updated>2017-12-07T00:55:13.810Z</updated>
     
     <content type="html"><![CDATA[<p>本文针对shape中的属性进行详解<a id="more"></a></p>
 <h3 id="shape"><a href="#shape" class="headerlink" title="shape"></a>shape</h3><p>首先讲下shape，shape可以自定义形状，可以定义以下四种类型，通过android:shape属性定义：  </p>
@@ -506,7 +506,7 @@
     <link href="http://f1reking.com/archives/8ba838de.html"/>
     <id>http://f1reking.com/archives/8ba838de.html</id>
     <published>2016-11-30T01:38:32.000Z</published>
-    <updated>2017-07-26T03:23:56.000Z</updated>
+    <updated>2017-12-07T00:55:13.809Z</updated>
     
     <content type="html"><![CDATA[<p>本篇我想总结下关于EditText控件的使用和遇到的问题<a id="more"></a></p>
 <p>可以，不跟你多bb，基本知识请直接看<a href="https://developer.android.com/reference/android/widget/EditText.html" target="_blank" rel="external">Android Developers中关于EditText的API</a>，本篇问题也大多于查看api之后的方法总结。</p>
@@ -537,7 +537,7 @@
     <link href="http://f1reking.com/archives/6d1eb058.html"/>
     <id>http://f1reking.com/archives/6d1eb058.html</id>
     <published>2016-11-28T03:57:49.000Z</published>
-    <updated>2017-07-26T03:42:39.000Z</updated>
+    <updated>2017-12-07T00:55:13.813Z</updated>
     
     <content type="html"><![CDATA[<p>最近公司项目做到支付模块，之前也做过，没整理成博客，这次整理一下。<a id="more"></a></p>
 <h2 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ol>
@@ -612,7 +612,7 @@
     <link href="http://f1reking.com/archives/afbea56.html"/>
     <id>http://f1reking.com/archives/afbea56.html</id>
     <published>2016-11-23T07:02:00.000Z</published>
-    <updated>2017-07-26T03:13:16.000Z</updated>
+    <updated>2017-12-07T00:55:13.802Z</updated>
     
     <content type="html"><![CDATA[<p>最近打算整理下之前的学习笔记，这篇是关于学习Activity的小结<a id="more"></a></p>
 <h2 id="Activity的四种launchMode"><a href="#Activity的四种launchMode" class="headerlink" title="Activity的四种launchMode"></a>Activity的四种launchMode</h2><p>launchMode在多个Activity跳转的过程中扮演着重要的角色，它可以决定是否生成新的Activity实例，是否重用已存在的Activity实例，是否和其他Activity实例公用一个task里。task是一个具有栈结构的对象，一个task可以管理多个Activity，启动一个应用，也就创建一个与之对应的task。<br>Activity一共有四个launchMode：  </p>
@@ -647,7 +647,7 @@
     <link href="http://f1reking.com/archives/d229f177.html"/>
     <id>http://f1reking.com/archives/d229f177.html</id>
     <published>2016-11-23T03:00:24.000Z</published>
-    <updated>2017-07-26T03:26:09.000Z</updated>
+    <updated>2017-12-07T00:55:13.811Z</updated>
     
     <content type="html"><![CDATA[<p>对Android的Service组件写个小结<a id="more"></a></p>
 <h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><h3 id="Service有几种启动方式"><a href="#Service有几种启动方式" class="headerlink" title="Service有几种启动方式"></a>Service有几种启动方式</h3><p>Service是一个专门在后台处理长时间任务的Android组件，它没有UI。它有两种启动方式，startService和bindService，结束用stopService和unBindService。</p>
@@ -679,7 +679,7 @@
     <link href="http://f1reking.com/archives/6391b80c.html"/>
     <id>http://f1reking.com/archives/6391b80c.html</id>
     <published>2016-11-19T05:27:19.000Z</published>
-    <updated>2017-07-26T03:14:00.000Z</updated>
+    <updated>2017-12-07T00:55:13.806Z</updated>
     
     <content type="html"><![CDATA[<p>最近在优化公司项目的代码，发现以前的坑很多，我慢慢地在填，今天就发现了一个坑，就是首页的“再按一次返回键退出程序“功能，所以这个坑，我就填了。<a id="more"></a></p>
 <p>首先，项目里的版本代码是这样的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isExit = <span class="keyword">false</span>;</div><div class="line"></div><div class="line">Handler mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>.handleMessage(msg);</div><div class="line">            isExit = <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onKeyDown</span><span class="params">(<span class="keyword">int</span> keyCode, KeyEvent event)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK) &#123;</div><div class="line">            exit();</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onKeyDown(keyCode, event);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">exit</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!isExit) &#123;</div><div class="line">            isExit = <span class="keyword">true</span>;</div><div class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"再按一次退出程序"</span>, Toast.LENGTH_SHORT).show();</div><div class="line">            mHandler.sendEmptyMessageDelayed(<span class="number">0</span>, <span class="number">2000</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            finish();</div><div class="line">            System.exit(<span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
@@ -706,7 +706,7 @@
     <link href="http://f1reking.com/archives/3d023387.html"/>
     <id>http://f1reking.com/archives/3d023387.html</id>
     <published>2016-11-17T05:14:26.000Z</published>
-    <updated>2017-07-26T03:34:24.000Z</updated>
+    <updated>2017-12-07T00:55:13.822Z</updated>
     
     <content type="html"><![CDATA[<p>最近在reviews公司项目代码的时候，发现自己三个月前写的代码效率不高，所以都一一去优化，在优化到部分涉及到字符串拼接的问题上时，发现自己以前都没注意到效率，都是String直接拼接，所以就研究下字符串拼接的效率。<a id="more"></a></p>
 <h2 id="String介绍"><a href="#String介绍" class="headerlink" title="String介绍"></a>String介绍</h2><p>从官网介绍中可看到String是字符串常量，字符串长度不变，它是不可变的。<br>在使用String主要注意的几点：  </p>
@@ -750,7 +750,7 @@
     <link href="http://f1reking.com/archives/cb190e13.html"/>
     <id>http://f1reking.com/archives/cb190e13.html</id>
     <published>2016-11-13T06:01:42.000Z</published>
-    <updated>2017-07-26T03:31:18.000Z</updated>
+    <updated>2017-12-07T00:55:13.818Z</updated>
     
     <content type="html"><![CDATA[<p>因为最近刚用上MacOS，还在熟悉阶段，我以为我把ss开了全局代理之后就能顺利走代理了，然而我错了，这个全局代理对终端是没有用的，最后发现终端还是需要单独设置代理的。  </p>
 <p>在终端下执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export http_proxy=socks5://127.0.0.1:1080   </div><div class="line">export https_proxy=socks5://127.0.0.1:1080</div></pre></td></tr></table></figure></p>
@@ -779,7 +779,7 @@
     <link href="http://f1reking.com/archives/2cd9f623.html"/>
     <id>http://f1reking.com/archives/2cd9f623.html</id>
     <published>2016-11-13T02:39:24.000Z</published>
-    <updated>2017-07-26T03:41:10.000Z</updated>
+    <updated>2017-12-07T00:55:13.818Z</updated>
     
     <content type="html"><![CDATA[<p>在mac下配置好了adb之后，发现每次要使用的话 都需要source .bash_profile后才能使用。这是一个大坑啊，索性就研究下如何避免这个操作。</p>
 <p>经过查找原因之后，发现其实这个是zsh的锅，所以就去改zsh的配置文件了。</p>
@@ -808,7 +808,7 @@
     <link href="http://f1reking.com/archives/1a4b62fe.html"/>
     <id>http://f1reking.com/archives/1a4b62fe.html</id>
     <published>2016-08-29T13:43:08.000Z</published>
-    <updated>2017-07-26T03:28:43.000Z</updated>
+    <updated>2017-12-07T00:55:13.817Z</updated>
     
     <content type="html"><![CDATA[<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。<a id="more"></a></p>
 <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
@@ -840,7 +840,7 @@
     <link href="http://f1reking.com/archives/b077382e.html"/>
     <id>http://f1reking.com/archives/b077382e.html</id>
     <published>2016-08-25T14:06:01.000Z</published>
-    <updated>2017-07-26T03:29:51.000Z</updated>
+    <updated>2017-12-07T00:55:13.816Z</updated>
     
     <content type="html"><![CDATA[<p>从Android Studio第一版我就尝试用了，但一开始不太懂为啥配置这么麻烦，到慢慢版本更新，也越来越懂得Gradle是怎么一回事，到参考了些国外文章关于Gradle的配置后，近期差不多搞懂了些Gradle的配置，本文关于我个人的Gradle配置。<a id="more"></a></p>
 <h2 id="Default-Config"><a href="#Default-Config" class="headerlink" title="Default Config"></a>Default Config</h2><p>由于多项目管理总是需要配置Gradle和第三方包的依赖，然而不可能每次新开项目都要一个个去添加第三方依赖，所以我们可以统一管理起来，也给多个module统一管理Gradle。  </p>
@@ -868,7 +868,7 @@
     <link href="http://f1reking.com/archives/c220175e.html"/>
     <id>http://f1reking.com/archives/c220175e.html</id>
     <published>2016-08-22T13:43:54.000Z</published>
-    <updated>2017-07-26T03:33:44.000Z</updated>
+    <updated>2017-12-07T00:55:13.820Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>之前项目用的是<a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>，最近项目开始用RxJava去替换些复杂的逻辑操作，所以可以用RxBus来替代EventBus，这样可以省去库的依赖，减小apk的大小。<a id="more"></a></p>
@@ -903,7 +903,7 @@
     <link href="http://f1reking.com/archives/f9997a74.html"/>
     <id>http://f1reking.com/archives/f9997a74.html</id>
     <published>2016-07-17T05:25:11.000Z</published>
-    <updated>2017-09-20T05:10:56.000Z</updated>
+    <updated>2017-12-07T00:55:13.816Z</updated>
     
     <content type="html"><![CDATA[<p>这是一篇关于 Google Java编程风格的指南书，摘抄自网上。<a id="more"></a></p>
 <p>作者：Hawstein<br>出处：<a href="http://hawstein.com/posts/google-java-style.html" target="_blank" rel="external">http://hawstein.com/posts/google-java-style.html</a><br>声明：本文采用以下协议进行授权： <a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
