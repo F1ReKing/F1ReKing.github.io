@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Bye2017Hi2018]]></title>
+    <url>%2Farchives%2Fcb6e4e3e.html</url>
+    <content type="text"><![CDATA[Be the change you want to see in the world. 回首2017展望2018]]></content>
+      <categories>
+        <category>生.人生随笔</category>
+      </categories>
+      <tags>
+        <tag>Life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[文字中表情的解决方案]]></title>
     <url>%2Farchives%2Fef1752f5.html</url>
     <content type="text"><![CDATA[前言 产品说要弄个带有表情的商家公告需求。之前也没做过带有表情的文字，但是知道表情符号是特殊文本的符号组成，以前的项目有遇到过处理表情符号录入问题，但没有处理过解析表情文字的问题，于是就练练手了。 预览 原理待写…… 源码地址https://github.com/F1ReKing/EmojiTool]]></content>
