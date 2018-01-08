@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://f1reking.com/"/>
-  <updated>2018-01-02T00:47:15.557Z</updated>
+  <updated>2018-01-02T00:47:24.889Z</updated>
   <id>http://f1reking.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://f1reking.com/archives/cb6e4e3e.html"/>
     <id>http://f1reking.com/archives/cb6e4e3e.html</id>
     <published>2017-12-31T10:20:05.000Z</published>
-    <updated>2018-01-02T00:47:15.557Z</updated>
+    <updated>2018-01-02T00:47:24.889Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Be the change you want to see in the world.<a id="more"></a></p>
@@ -634,13 +634,13 @@
   </entry>
   
   <entry>
-    <title>Android之Activity</title>
+    <title>Android之LaunchMode</title>
     <link href="http://f1reking.com/archives/afbea56.html"/>
     <id>http://f1reking.com/archives/afbea56.html</id>
     <published>2016-11-23T07:02:00.000Z</published>
-    <updated>2017-12-07T00:55:13.802Z</updated>
+    <updated>2018-01-08T03:50:15.977Z</updated>
     
-    <content type="html"><![CDATA[<p>最近打算整理下之前的学习笔记，这篇是关于学习Activity的小结<a id="more"></a></p>
+    <content type="html"><![CDATA[<p>最近打算整理下之前的学习笔记，这篇是关于学习LaunchMode的小结<a id="more"></a></p>
 <h2 id="Activity的四种launchMode"><a href="#Activity的四种launchMode" class="headerlink" title="Activity的四种launchMode"></a>Activity的四种launchMode</h2><p>launchMode在多个Activity跳转的过程中扮演着重要的角色，它可以决定是否生成新的Activity实例，是否重用已存在的Activity实例，是否和其他Activity实例公用一个task里。task是一个具有栈结构的对象，一个task可以管理多个Activity，启动一个应用，也就创建一个与之对应的task。<br>Activity一共有四个launchMode：  </p>
 <ol>
 <li>standard</li>
@@ -657,7 +657,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;最近打算整理下之前的学习笔记，这篇是关于学习Activity的小结
+      &lt;p&gt;最近打算整理下之前的学习笔记，这篇是关于学习LaunchMode的小结
     
     </summary>
     
