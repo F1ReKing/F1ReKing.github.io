@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://f1reking.com/"/>
-  <updated>2018-02-28T05:06:35.110Z</updated>
+  <updated>2018-09-16T15:05:52.285Z</updated>
   <id>http://f1reking.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新的生活，新的人生</title>
+    <link href="http://f1reking.com/archives/1b8a7866.html"/>
+    <id>http://f1reking.com/archives/1b8a7866.html</id>
+    <published>2018-09-16T14:32:03.000Z</published>
+    <updated>2018-09-16T15:05:52.285Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天突然想写博客，现在的我很迷茫，人生迷茫，仿佛站在人生的十字路口…</p>
+<p>工作事业上很迷茫，很不确定自己当初选择的这份工作是否正确，但确实能带给我过去技术上的突破和所没有过的技术感觉，但同时也对自己的技术要求更高，对自己接下来的工作需要做好基础的准备，接下去想通过一步步学习Android的整个技术体系和加强Java的code编写能力及技巧，彻底改变下自己过去浪费的时间，好好努力下，争取能早日达到高级工程师的水平。<br>再过2个月左右吧，^_^ 人生中第一个小孩即将诞生。自己也没想到能在30岁之前完成这个事情，一直人生的计划是在30岁结婚，32岁左右有小孩，但竟然提前了好多年，只能做好这个准备了。可能有了小孩，对自己的人生规划会做一些调整吧。</p>
+<p>所以接下来的日子里，算是新的生活和新的人生，好好整理下博客了，整理下技术，github，知识体系。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天突然想写博客，现在的我很迷茫，人生迷茫，仿佛站在人生的十字路口…&lt;/p&gt;
+&lt;p&gt;工作事业上很迷茫，很不确定自己当初选择的这份工作是否正确，但确实能带给我过去技术上的突破和所没有过的技术感觉，但同时也对自己的技术要求更高，对自己接下来的工作需要做好基础的准备，接下去想通过
+    
+    </summary>
+    
+      <category term="生.人生随笔" scheme="http://f1reking.com/categories/%E7%94%9F-%E4%BA%BA%E7%94%9F%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="life" scheme="http://f1reking.com/tags/life/"/>
+    
+  </entry>
   
   <entry>
     <title>Android缓存机制</title>
@@ -946,38 +972,6 @@
       <category term="Mac" scheme="http://f1reking.com/tags/Mac/"/>
     
       <category term="Tools" scheme="http://f1reking.com/tags/Tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式之单例模式</title>
-    <link href="http://f1reking.com/archives/1a4b62fe.html"/>
-    <id>http://f1reking.com/archives/1a4b62fe.html</id>
-    <published>2016-08-29T13:43:08.000Z</published>
-    <updated>2017-12-07T00:55:13.817Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。<a id="more"></a></p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
-<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>确保某个类有且只有一个对象的场景，避免产生多个对象消耗过多的资源，或者某种类型的对象只应该有且只有一个。例如，创建一个对象需要消耗的资源过多，如要访问IO和数据库等资源，这时就要考虑使用单例模式。</p>
-<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><h2 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h2><p>懒汉模式是声明一个静态对象，并且在用户第一次调用getInstance时进行初始化，其实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> Singleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>优点：只有在使用时才会被实例化，在一定程度上节约了资源；<br>缺点：第一次加载时需要及时进行实例化，反应稍慢，最大的问题是每次调用getInstance都进行同步，造成不必要的同步开销。<br><strong>这种模式一般不建议使用</strong></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
-<li>《Android源码设计模式-解析与实战》</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;简述&quot;&gt;&lt;a href=&quot;#简述&quot; class=&quot;headerlink&quot; title=&quot;简述&quot;&gt;&lt;/a&gt;简述&lt;/h1&gt;&lt;p&gt;单例模式是应用最广的模式之一，在应用这个模式时，单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要拥有一个全局对象，这样有利于我们协调系统整体的行为。
-    
-    </summary>
-    
-      <category term="理.理论学习" scheme="http://f1reking.com/categories/%E7%90%86-%E7%90%86%E8%AE%BA%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="Java" scheme="http://f1reking.com/tags/Java/"/>
-    
-      <category term="设计模式" scheme="http://f1reking.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
